@@ -1,0 +1,9 @@
+{
+	"entryPoints": [
+		"main/apr-blogspot.ts"
+	],
+	"out": "docs/generated",
+	"name": "Aprakos.blogspot.com",
+	"theme": "default",
+	"includes": "ss/"
+}
