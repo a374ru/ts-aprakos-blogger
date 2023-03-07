@@ -146,6 +146,7 @@ class OLY implements IOLY {
 	 */
 	weeks: { [key: string]: [number, string?] } = {};
 
+// TODO #3 - Требуется пополнить Пасхалию.
 	easterDates: { [key: string]: [number, number] } = {
 		2015: [3, 12],
 		2016: [4, 1],
@@ -167,8 +168,6 @@ class OLY implements IOLY {
 		2032: [4, 2],
 		2033: [3, 24],
 	};
-
-	//S:S - НЕ РАБОТАЮТ ССЫЛКИ НА ДВУНАДЕСЯТЫЕ ПРАЗНЕСТВА  и неправильный формат вызова функций в ДОМ - apr.func()
 
 	NINEHOLIDAYS: { [key: string]: { [key: string]: number | string } } = {
 		rojdestvoBogorodici: {
@@ -406,7 +405,7 @@ class OLY implements IOLY {
 	 */
 	controlDates(userYear: [number, number?, number?] | undefined): Date {
 		let currentDate = this.theMomentTime;
-		// TODO - нужен лучший алгоритм проверки года в колекции easterDates{}
+		// Action - нужен лучший алгоритм проверки года в колекции easterDates{}
 		let sStorageDate = sessionStorage.getItem('userDate')
 		if (sessionStorage.userDate != null && userYear == undefined) {
 
@@ -438,7 +437,8 @@ class OLY implements IOLY {
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		if (currentDate.getFullYear() != this.theMomentTime.getFullYear()) {
-			document.querySelector('body')!.innerHTML += `<div class='userdate'><a id='a-visited-userdate' href="#" onclick="apr.deleteUserDateFromSessionStorage()">${currentDate.toLocaleDateString()}</a></div>`
+			document.querySelector('body')!.innerHTML +=
+				`<div class='userdate'><a id='a-visited-userdate' href="#" onclick="apr.deleteUserDateFromSessionStorage()">${currentDate.toLocaleDateString()}</a></div>`
 		}
 		///////////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////// end ////////////////////////////////////////////////
@@ -801,11 +801,6 @@ class OLY implements IOLY {
 	}
 
 	//====================	end modalView	========================//
-
-
-	//====================		========================//
-
-
 
 
 	/** Метод первого показа модального окна при первой загрузке. */
