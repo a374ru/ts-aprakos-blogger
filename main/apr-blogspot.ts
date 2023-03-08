@@ -145,7 +145,7 @@ class OLY implements IOLY {
 	 */
 	weeks: { [key: string]: [number, string?] } = {};
 
-	// Closes #3 - Требуется пополнить Пасхалию.
+
 	easterDates: { [key: string]: [number, number] } = {
 		2015: [3, 12],
 		2016: [4, 1],
@@ -235,7 +235,6 @@ class OLY implements IOLY {
 		2100: [4, 2],
 	};
 
-	//TODO #5 @a374ru - Проверить формат вызова функций в ДОМ - apr.func(). Вызываетчерез экземпляр…
 
 	NINEHOLIDAYS: { [key: string]: { [key: string]: number | string } } = {
 		rojdestvoBogorodici: {
@@ -302,6 +301,7 @@ class OLY implements IOLY {
 		},
 	};
 
+
 	datesOLY: { [key: string]: [Date, string?] } = {};
 
 	initOLY(): boolean {
@@ -314,7 +314,7 @@ class OLY implements IOLY {
 				this.easterDates[yearNumber][1]
 			)
 		) {
-			// Если Пасха была то она и будет oldEaster (это 1 часть ПБГ)
+			// Если Пасха была то она и будет oldEaster (это oly_1 часть ПБГ)
 			this.oldEaster = new Date(
 				this.theMomentTime.getFullYear(),
 				this.easterDates[yearNumber][0],
@@ -473,7 +473,7 @@ class OLY implements IOLY {
 	 */
 	controlDates(userYear: [number, number?, number?] | undefined): Date {
 		let currentDate = this.theMomentTime;
-		// Action - нужен лучший алгоритм проверки года в колекции easterDates{}
+		//  Нужен лучший алгоритм проверки года в колекции easterDates{}
 		let sStorageDate = sessionStorage.getItem('userDate')
 		if (sessionStorage.userDate != null && userYear == undefined) {
 
@@ -481,14 +481,13 @@ class OLY implements IOLY {
 
 		}
 		else if (userYear != undefined && userYear[0] < 2100 && userYear[0] > 2016) {
-			// currentDate = new Date(userYear, Number(currentDate.getMonth()), Number(currentDate.getDate()))
+
 			currentDate = new Date(
 				userYear[0],
 				userYear[1] ?? currentDate.getMonth(),
 				Number(userYear[2] ?? currentDate.getDate())
 			);
 			sessionStorage.setItem('userDate', String(currentDate))
-
 
 		} else {
 			console.warn(
@@ -503,6 +502,9 @@ class OLY implements IOLY {
 		///////////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////// FOR DEV… ////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////
+		
+		// TODO #6 a374ru Требуется подключить форму инпута для приема пользовательских дат.
+		
 
 		if (currentDate.getFullYear() != this.theMomentTime.getFullYear()) {
 			document.querySelector('body')!.innerHTML +=
