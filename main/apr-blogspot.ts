@@ -236,6 +236,7 @@ class OLY implements IOLY {
 	};
 
 	//TODO #5 @a374ru - Проверить формат вызова функций в ДОМ - apr.func(). Вызываетчерез экземпляр…
+	// done!
 
 	NINEHOLIDAYS: { [key: string]: { [key: string]: number | string } } = {
 		rojdestvoBogorodici: {
