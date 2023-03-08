@@ -712,7 +712,7 @@ class OLY implements IOLY {
 	/**
 	 *  Возращает гласс по Октоиху для текущей седмицы.
 	 *
-	 * @param {*} sedmica
+	 * @param {} sedmica
 	 * @returns string
 	 */
 	glas(sedmica: number): string {
