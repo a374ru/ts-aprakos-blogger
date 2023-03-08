@@ -119,7 +119,7 @@ class OLY implements IOLY {
 		this.initWeeks()
 		this.linkToAprakos = "/" + this.yearMonthID() + ".html" // с учетом ступок
 		this.anchorElemID = "" + this.weeks.elemID[0]
-		this.linkToHolydays = this.holydays_9()
+		this.linkToHolydays = this.holydays_9() ?? this.linkToAprakos
 		this.info()
 		this.initElementsDOM()
 		this.firstViewModal()
@@ -672,7 +672,7 @@ class OLY implements IOLY {
 	}
 
 	/**
-	 * Метод проверяет текущий день на Двунадясятый праздник
+	 * ### Метод проверяет текущий день на Двунадясятый праздник
 	 * Возвращает сегмент URL для случившегося праздника
 	 * 
 	 * @returns string
@@ -712,7 +712,7 @@ class OLY implements IOLY {
 	}
 
 	/**
-	 * ## Метод инициализации элементов `DOM`
+	 * ### Метод инициализации элементов `DOM`
 	 *
 	 */
 	initElementsDOM() {
