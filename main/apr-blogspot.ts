@@ -671,7 +671,8 @@ class OLY implements IOLY {
 		if (stvol != "stvol.html") { return }
 
 		// инит ссылкой на текущий момент
-		document.getElementById('name')?.children[0].setAttribute('href', this.linkToAprakos)
+		document.getElementById('name')?.children[0].setAttribute('href', this.linkToHolydays ?? this.linkToAprakos)
+
 
 		// ID-список инициируемых элементов
 		let elemsID: { [key: string]: string } = {

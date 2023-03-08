@@ -364,12 +364,12 @@ var OLY = (function () {
         return undefined;
     };
     OLY.prototype.initElementsDOM = function () {
-        var _a;
+        var _a, _b;
         var stvol = document.location.pathname.split('/').pop();
         if (stvol != "stvol.html") {
             return;
         }
-        (_a = document.getElementById('name')) === null || _a === void 0 ? void 0 : _a.children[0].setAttribute('href', this.linkToAprakos);
+        (_a = document.getElementById('name')) === null || _a === void 0 ? void 0 : _a.children[0].setAttribute('href', (_b = this.linkToHolydays) !== null && _b !== void 0 ? _b : this.linkToAprakos);
         var elemsID = {
             cweek: "" + this.weeks.current[0],
             title50: "\u041F\u043E \u043F\u044F\u0442\u044C\u0434\u0435\u0441\u044F\u0442\u043D\u0438\u0446\u0435",
