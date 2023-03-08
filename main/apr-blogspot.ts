@@ -11,8 +11,6 @@
 */
 
 // var url = "https://" + location.host + "/currentday/APRAKOS/";
-
-
 interface IOLY {
 	/**
 	 * Ссылка на элемент в стволе `Древа жизни`.
