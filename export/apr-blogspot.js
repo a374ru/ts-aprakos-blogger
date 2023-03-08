@@ -354,6 +354,7 @@ var OLY = (function () {
         (_a = document.getElementById('name')) === null || _a === void 0 ? void 0 : _a.children[0].setAttribute('href', this.linkToAprakos);
         var elemsID = {
             cweek: "" + this.weeks.current[0],
+            title50: "\u041F\u043E \u043F\u044F\u0442\u044C\u0434\u0435\u0441\u044F\u0442\u043D\u0438\u0446\u0435",
             week50: "" + (this.weeks.current[0] - 7),
             glass: "Глаc: " + this.glas(+this.weeks.current[0]),
         };
@@ -362,8 +363,9 @@ var OLY = (function () {
                 if (eid === "cweek" || eid === "week50") {
                     document.getElementById(eid).innerHTML = "<a href=\"#week" + this.anchorElemID + "\">" + elemsID[eid] + "</a>";
                 }
-                else if (eid == "title50" && Number(elemsID.week50) < 1) {
-                    document.getElementById("id50").className += " hidden";
+                else if (eid == "title50" && Number(elemsID.week50) < 7) {
+                    document.getElementById('id50').setAttribute("style", "display:none");
+                    console.log(elemsID.week50, eid);
                 }
                 else {
                     document.getElementById(eid).innerHTML = elemsID[eid];

@@ -168,7 +168,7 @@ class OLY implements IOLY {
 		2033: [3, 24],
 	};
 
-	//S:S - НЕ РАБОТАЮТ ССЫЛКИ НА ДВУНАДЕСЯТЫЕ ПРАЗНЕСТВА  и неправильный формат вызова функций в ДОМ - apr.func()
+	//TODO #5 @a374ru - Проверить формат вызова функций в ДОМ - apr.func(). Вызываетчерез экземпляр…
 
 	NINEHOLIDAYS: { [key: string]: { [key: string]: number | string } } = {
 		rojdestvoBogorodici: {
@@ -650,12 +650,14 @@ class OLY implements IOLY {
 		const stvol = document.location.pathname.split('/').pop()
 		if (stvol != "stvol.html") { return }
 
-		// ID-список инициируемых элементов
+		// инит ссылкой на текущий момент
 		document.getElementById('name')?.children[0].setAttribute('href', this.linkToAprakos)
+
+		// ID-список инициируемых элементов
 		let elemsID: { [key: string]: string } = {
 			// link_apr: this.linkToAprakos,
 			cweek: `${this.weeks.current[0]}`,
-			// title50: ``,
+			title50: `По пятьдесятнице`,
 			week50: `${this.weeks.current[0] - 7}`,
 
 			// Гласс текущей седмицы
@@ -672,10 +674,13 @@ class OLY implements IOLY {
 					// throw new ReferenceError(eid)
 				}
 
-				else if (eid == "title50" && Number(elemsID.week50) < 1) {
+				else if (eid == "title50" && Number(elemsID.week50) < 7) {
 
-					// document.getElementById(eid)!.className += " hidden"
-					document.getElementById("id50")!.className += " hidden";
+					document.getElementById('id50')!.setAttribute("style", "display:none")
+					console.log(elemsID.week50, eid);
+
+					// document.getElementById("id50")!.className += " hidden";
+
 
 				}
 
@@ -686,6 +691,8 @@ class OLY implements IOLY {
 
 			}
 		}
+
+		// выделение цветом текущей седмицы и дня
 		document.getElementById("week" + this.weeks.elemID[0])!.className += " colorBlock"
 		document.getElementById("weekday" + this.weeks.aprID[0])!.className += " seeddayON"
 	}
