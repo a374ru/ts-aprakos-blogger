@@ -145,7 +145,7 @@ class OLY implements IOLY {
 	 */
 	weeks: { [key: string]: [number, string?] } = {};
 
-	// TODO #10 - Расширить Пасхалию до 1900 года 
+	// TODO #12 a374ru  Расширить Пасхалию до 1900 года 
 
 	easterDates: { [key: string]: [number, number] } = {
 		2015: [3, 12],
