@@ -684,7 +684,7 @@ class OLY implements IOLY {
 		for (const eid in elemsID) {
 			if (Object.prototype.hasOwnProperty.call(elemsID, eid)) {
 				// const element = mmm[element];
-// Done!
+// Closses #4 
 				if (eid === "cweek" || eid === "week50") {
 					document.getElementById(eid)!.innerHTML = `<a href="#week${this.anchorElemID}">${elemsID[eid]}</a>`
 
