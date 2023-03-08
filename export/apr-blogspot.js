@@ -51,7 +51,57 @@ var OLY = (function () {
             2047: [3, 21],
             2048: [3, 5],
             2049: [3, 25],
-            2050: [3, 17]
+            2050: [3, 17],
+            2051: [4, 7],
+            2052: [4, 21],
+            2053: [3, 13],
+            2054: [4, 3],
+            2055: [4, 18],
+            2056: [3, 9],
+            2057: [3, 29],
+            2058: [3, 14],
+            2059: [4, 4],
+            2060: [3, 25],
+            2061: [3, 10],
+            2062: [3, 30],
+            2063: [3, 22],
+            2064: [3, 13],
+            2065: [3, 26],
+            2066: [3, 18],
+            2067: [3, 10],
+            2068: [3, 29],
+            2069: [3, 14],
+            2070: [4, 4],
+            2071: [3, 19],
+            2072: [3, 10],
+            2073: [3, 30],
+            2074: [3, 22],
+            2075: [3, 7],
+            2076: [3, 26],
+            2077: [3, 18],
+            2078: [4, 8],
+            2079: [3, 23],
+            2080: [3, 14],
+            2081: [4, 4],
+            2082: [3, 19],
+            2083: [3, 11],
+            2084: [3, 30],
+            2085: [3, 15],
+            2086: [3, 7],
+            2087: [3, 27],
+            2088: [3, 18],
+            2089: [4, 1],
+            2090: [3, 23],
+            2091: [3, 8],
+            2092: [3, 27],
+            2093: [3, 19],
+            2094: [3, 11],
+            2095: [3, 24],
+            2096: [3, 15],
+            2097: [4, 5],
+            2098: [3, 27],
+            2099: [3, 12],
+            2100: [4, 2],
         };
         this.NINEHOLIDAYS = {
             rojdestvoBogorodici: {
@@ -219,7 +269,7 @@ var OLY = (function () {
         if (sessionStorage.userDate != null && userYear == undefined) {
             currentDate = new Date(String(sStorageDate));
         }
-        else if (userYear != undefined && userYear[0] < 2034 && userYear[0] > 2016) {
+        else if (userYear != undefined && userYear[0] < 2100 && userYear[0] > 2016) {
             currentDate = new Date(userYear[0], (_a = userYear[1]) !== null && _a !== void 0 ? _a : currentDate.getMonth(), Number((_b = userYear[2]) !== null && _b !== void 0 ? _b : currentDate.getDate()));
             sessionStorage.setItem('userDate', String(currentDate));
         }
@@ -383,7 +433,6 @@ var OLY = (function () {
                 }
                 else if (eid == "title50" && Number(elemsID.week50) < 7) {
                     document.getElementById('id50').setAttribute("style", "display:none");
-                    console.log(elemsID.week50, eid);
                 }
                 else {
                     document.getElementById(eid).innerHTML = elemsID[eid];
