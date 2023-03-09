@@ -112,6 +112,7 @@ class OLY implements IOLY {
 	stateModalView = false
 	// userLoc: any
 
+//DONE
 
 	constructor(public year?: [number, number?, number?]) {
 		this.theMomentTime = this.controlDates(year)
