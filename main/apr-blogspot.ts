@@ -108,7 +108,7 @@ class OLY implements IOLY {
 	anchorElemID = "#11"
 	linkToAprakos: string
 	linkToHolydays?: string
-	linkToRedirect?: string 
+	linkToRedirect?: string  
 	stateModalView = false
 	// userLoc: any
 
