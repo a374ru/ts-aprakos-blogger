@@ -1,6 +1,7 @@
 "use strict";
 var OLY = (function () {
     function OLY(year) {
+        var _a;
         this.year = year;
         this.theMomentTime = new Date();
         this.anchorElemID = "#11";
@@ -166,7 +167,7 @@ var OLY = (function () {
         this.initWeeks();
         this.linkToAprakos = "/" + this.yearMonthID() + ".html";
         this.anchorElemID = "" + this.weeks.elemID[0];
-        this.linkToHolydays = this.holydays_9();
+        this.linkToHolydays = (_a = this.holydays_9()) !== null && _a !== void 0 ? _a : this.linkToAprakos;
         this.info();
         this.initElementsDOM();
         this.firstViewModal();
@@ -263,7 +264,7 @@ var OLY = (function () {
         return this.datesOLY;
     };
     OLY.prototype.controlDates = function (userYear) {
-        var _a, _b;
+        var _a, _b, _c;
         var currentDate = this.theMomentTime;
         var sStorageDate = sessionStorage.getItem('userDate');
         if (sessionStorage.userDate != null && userYear == undefined) {
@@ -279,8 +280,9 @@ var OLY = (function () {
                 : "Год пользователем не предоставлен") + ".\n\u0411\u0443\u0434\u0435\u0442 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D \u0442\u0435\u043A\u0443\u0449\u0438\u0439 \u0433\u043E\u0434.\n\u0421\u041F\u0410\u0421\u0418\u0411\u041E \u0417\u0410 \u0412\u041D\u0418\u041C\u0410\u041D\u0418\u0415!");
         }
         if (currentDate.getFullYear() != this.theMomentTime.getFullYear()) {
+            (_c = document.querySelector('#userdate')) === null || _c === void 0 ? void 0 : _c.remove();
             document.querySelector('body').innerHTML +=
-                "<div class='userdate'><a id='a-visited-userdate' href=\"#\" onclick=\"apr.deleteUserDateFromSessionStorage()\">" + currentDate.toLocaleDateString() + "</a></div>";
+                "<div id=\"userdate\" class='userdate'><a id='a-visited-userdate' href=\"#\" onclick=\"apr.deleteUserDateFromSessionStorage()\">" + currentDate.toLocaleDateString() + "</a></div>";
         }
         return currentDate;
     };

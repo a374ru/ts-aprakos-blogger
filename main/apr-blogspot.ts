@@ -1,4 +1,4 @@
-// среда, 9 марта 2023 г. 06: 24: 37(MSK)
+// Вскрс., 26 марта 2023 г.
 
 /*
 	--- APRAKOS.BLOGSPOT.COM VERSION ---
@@ -112,7 +112,6 @@ class OLY implements IOLY {
 	stateModalView = false
 	// userLoc: any
 
-//DONE
 
 	constructor(public year?: [number, number?, number?]) {
 		this.theMomentTime = this.controlDates(year)
@@ -509,8 +508,9 @@ class OLY implements IOLY {
 		///////////////////////////////////////////////////////////////////////////////////////
 
 		if (currentDate.getFullYear() != this.theMomentTime.getFullYear()) {
+			document.querySelector('#userdate')?.remove()
 			document.querySelector('body')!.innerHTML +=
-				`<div class='userdate'><a id='a-visited-userdate' href="#" onclick="apr.deleteUserDateFromSessionStorage()">${currentDate.toLocaleDateString()}</a></div>`
+				`<div id="userdate" class='userdate'><a id='a-visited-userdate' href="#" onclick="apr.deleteUserDateFromSessionStorage()">${currentDate.toLocaleDateString()}</a></div>`
 		}
 		///////////////////////////////////////////////////////////////////////////////////////
 		////////////////////////////////// end ////////////////////////////////////////////////
@@ -952,10 +952,10 @@ let apr = new OLY();
 /**  
 * [[include:namelist.md]]
 */
-let NAMELIST: {}
+// let NAMELIST: {}
 
 /**  
 * [[include:problems.md]]
 */
-let PROBLEMS: {}
+// let PROBLEMS: {}
 
