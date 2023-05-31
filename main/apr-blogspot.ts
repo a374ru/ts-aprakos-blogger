@@ -377,20 +377,15 @@ class OLY implements IOLY {
 			"Протяженность ПБГ",
 		]);
 
-		var rrr: any;
+		// FIXME: @a374ru решена проблема с подсчетом текущей седмицы для метода `ceil`!!!
+		// смотри в проблемах – `a812023`
 
-		if (sessionStorage.getItem('userDate')) {
-			rrr = this.theMomentTime.getTime() + 0.001
-		} else {
-			rrr = this.theMomentTime.getTime()
-
-		}
+		// Добавление миллисекунды к пользовательскому вводу для избежания целочисленного значения.
+		let addMLS = sessionStorage.getItem('userDate') ? 0.001 : 0
 		const current = (this.weeks["current"] = [
 			Math.ceil(
-				(rrr - this.oldEasterMLS) / 864e5 / 7
+				(this.theMomentTime.getTime() + addMLS - this.oldEasterMLS) / 864e5 / 7
 			),
-			// FIXME: @a374ru проблема с подсчетом текущей седмицы для метода `ceil`!!!
-			// смотри в проблемах – `a812023`
 
 			"Текущая седмица",
 		]);
