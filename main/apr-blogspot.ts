@@ -376,10 +376,22 @@ class OLY implements IOLY {
 			Math.ceil((this.newEasterMLS - this.oldEasterMLS) / 864e5 / 7),
 			"Протяженность ПБГ",
 		]);
+
+		var rrr: any;
+
+		if (sessionStorage.getItem('userDate')) {
+			rrr = this.theMomentTime.getTime() + 0.001
+		} else {
+			rrr = this.theMomentTime.getTime()
+
+		}
 		const current = (this.weeks["current"] = [
 			Math.ceil(
-				(this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 7
+				(rrr - this.oldEasterMLS) / 864e5 / 7
 			),
+			// FIXME: @a374ru проблема с подсчетом текущей седмицы для метода `ceil`!!!
+			// смотри в проблемах – `a812023`
+
 			"Текущая седмица",
 		]);
 
@@ -508,6 +520,7 @@ class OLY implements IOLY {
 				userYear[1] ?? currentDate.getMonth(),
 				Number(userYear[2] ?? currentDate.getDate())
 			);
+			// Добавка секунды к пользовательскому вводу даты
 			sessionStorage.setItem('userDate', String(currentDate))
 
 

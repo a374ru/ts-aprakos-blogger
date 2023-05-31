@@ -1,6 +1,4 @@
 "use strict";
-// среда, 31 мая 2023 г. 09: 00: 06(MSK)
-
 var OLY = (function () {
     function OLY(year) {
         var _a;
@@ -205,8 +203,15 @@ var OLY = (function () {
             Math.ceil((this.newEasterMLS - this.oldEasterMLS) / 864e5 / 7),
             "Протяженность ПБГ",
         ]);
+        var rrr;
+        if (sessionStorage.getItem('userDate')) {
+            rrr = this.theMomentTime.getTime() + 0.001;
+        }
+        else {
+            rrr = this.theMomentTime.getTime();
+        }
         var current = (this.weeks["current"] = [
-            Math.ceil((this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 7),
+            Math.ceil((rrr - this.oldEasterMLS) / 864e5 / 7),
             "Текущая седмица",
         ]);
         if (current[0] == 0) {
@@ -556,4 +561,4 @@ var OLY = (function () {
     };
     return OLY;
 }());
-var apr = new OLY(); 
+var apr = new OLY();
