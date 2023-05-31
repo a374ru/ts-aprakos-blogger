@@ -100,6 +100,7 @@ interface IOLY {
 }
 
 class OLY implements IOLY {
+
 	theMomentTime = new Date();
 	oldEaster: any
 	newEaster: any
@@ -113,7 +114,7 @@ class OLY implements IOLY {
 	// userLoc: any
 
 
-	constructor(public year?: [number, number?, number?]) {
+	constructor(public year?: [number, number?]) {
 		this.theMomentTime = this.controlDates(year)
 		this.initOLY()
 		this.initDatesOLY()
@@ -139,12 +140,14 @@ class OLY implements IOLY {
 	];
 
 	/**
-	*  Коллекция значений для ряда седмиц всего ПБГ.
-	*  Пример результата: `vozdvizgenie = 23`. Такой литерал показывает то,
-	что праздник Воздвижения Креста Господня приходится на `23` седмицу по Пасхе,
-	что сответствует `16` седмице по Пятьдесятнице.
+	 *  Коллекция значений для ряда седмиц всего ПБГ.
+	 *
+	 * [0] - число седмицы
+	 * [1] - description
+	 * [2] - отокрректированное значение [0]
+	 *
 	 */
-	weeks: { [key: string]: [number, string?] } = {};
+	weeks: { [key: string]: [number, string?, any?] } = {};
 
 	// TODO #12 a374ru  Расширить Пасхалию до 1900 года 
 
@@ -375,15 +378,30 @@ class OLY implements IOLY {
 		]);
 		const current = (this.weeks["current"] = [
 			Math.ceil(
-				(this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 7 + 0.1
+				(this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 7
 			),
 			"Текущая седмица",
 		]);
+
+		// Переопределения значения дня Пасхи с нуля на единицу, так как нулевой седмицы не бывает.
+		///////////////////////////////////
+		if (current[0] == 0) { this.weeks["current"][0] = 1 }
+		//////////////////////////////////
+
 		const mif = (this.weeks["mif"] = [all[0] - 10, "Седмица МиФ"]);
 		const zakhey = (this.weeks["zakhey"] = [mif[0] - 1, "Седмица Закхея"]);
 		const stupkaK = (this.weeks["stupkaK"] = [
 			all[0] - 50,
 			"Крещенская отступка",
+			//S:S корректировка времени для вычисления крещенской ступки
+			() => {
+				if (current[0] > 40) {
+					return stupkaK[0]
+				} else {
+					return 0
+				}
+
+			}
 		]);
 		const vozdvizgenie = (this.weeks["vozdvizgenie"] = [
 			Math.ceil(
@@ -540,8 +558,8 @@ class OLY implements IOLY {
 
 		console.warn(`
 Сегодня: ${this.theMomentTime.toDateString()}
-Ссылка на Апракос: https://aprakos.blogspot.com/${this.linkToAprakos}
-Ссылка на праздник: https://aprakos.blogspot.com/${this.linkToHolydays ?? ""}
+Ссылка на Апракос: https://aprakos.blogspot.com${this.linkToAprakos}
+Ссылка на праздник: https://aprakos.blogspot.com${this.linkToHolydays ?? ""}
 		`);
 
 		// return
@@ -565,7 +583,7 @@ class OLY implements IOLY {
 			case aprID <= 25:
 				partURL = "2020/04/" + aprID;
 				break;
-			case aprID <= 72:
+			case aprID <= 71:
 				partURL = "2020/05/" + aprID;
 				break;
 			case aprID <= 113:
@@ -686,13 +704,13 @@ class OLY implements IOLY {
 			this.theMomentTime.getMonth() + "/" + this.theMomentTime.getDate();
 		for (let item in this.NINEHOLIDAYS) {
 
-			let f =
+			let pathToHollliday =
 				this.NINEHOLIDAYS[item].year +
-				"." +
+				"/" +
 				this.NINEHOLIDAYS[item].monthRU +
-				"." +
+				"/" +
 				this.NINEHOLIDAYS[item].day;
-			let date_9 = new Date(f);
+			let date_9 = new Date(pathToHollliday);
 			// console.log(date_9);
 			// console.log(tmt);
 
@@ -715,6 +733,47 @@ class OLY implements IOLY {
 	}
 
 	/**
+	 * Метод всплывающего окна с указанием читаемой седмицы.
+	 * На определенных страницах показывает отступку.
+	 * @returns description
+	 */
+	initModalView() {
+		let lastSegment = document.location.pathname.split('/').pop()
+		const closeClick = '<span id="close" class="close" onclick="apr.closeModalView()"></span>';
+		const commentStvol =
+			"<span class='comment-stvol'>В стволе указаны числа текущих седмиц.<br> Подробнее<a class='a-href' href='https://www.aprakos.ru/p/blog-page.html'> здесь</a>.</div>";
+
+		let str = `
+        <section id="fp-content" class="fp-content">
+        <b>Читаемая седмица:</b>
+        <div id="modal-cweek">по Пасхе&nbsp; <span class="red bold">${this.weeks.current[0] - this.stupka()},</span></div>
+        <div id="modal-cweek50">по Пять&shy;десят&shy;нице <span class="red bold">${this.weeks.current[0] > 7 ? this.weeks.current[0] - 7 - this.stupka() : "нет"}.</span>
+        <div>${lastSegment === "stvol.html" ? commentStvol : ""}</div></div>
+        <div>${lastSegment === "blog-post.html" ? `Отступка <span class="red bold">${this.weeks.stupkaK[0]}</span> седм.` : ""}</div></div>
+        ${closeClick}
+        </section>
+        `;
+
+		document.getElementById("first-preview")!.innerHTML = str;
+		document.querySelector("#fp00")!.classList.add("fp00");
+		document.querySelector("#first-preview")!.classList.add("fp01");
+		const rpack = this.reversePack(); rpack()
+
+		// reversePack = false;
+
+		let timerOff = setTimeout(() => {
+			this.closeModalView(timerOff);
+			alert(
+				"\n Долгое отсутствие увеличивает расстояние разлуки."
+			);
+		}, 3600000);
+
+		// return true;
+
+
+	}
+
+	/**
 	 * ### Метод инициализации элементов `DOM`
 	 *
 	 */
@@ -729,9 +788,9 @@ class OLY implements IOLY {
 		// ID-список инициируемых элементов
 		let elemsID: { [key: string]: string } = {
 			// link_apr: this.linkToAprakos,
-			cweek: `${this.weeks.current[0]}`,
-			title50: `По пятьдесятнице`,
-			week50: `${this.weeks.current[0] - 7}`,
+			curweek: `${this.weeks.current[0]}`,
+			// title50: `По пятьдесятнице`,
+			curweek50: `${this.weeks.current[0] < 8 ? "*" : this.weeks.current[0] - 7}`,
 
 			// Гласс текущей седмицы
 			glass: "Глаc: " + this.glas(+this.weeks.current[0]),
@@ -741,30 +800,29 @@ class OLY implements IOLY {
 			if (Object.prototype.hasOwnProperty.call(elemsID, eid)) {
 				// const element = mmm[element];
 
-				if (eid === "cweek" || eid === "week50") {
+				if (eid === "curweek" || eid === "curweek50") {
 					document.getElementById(eid)!.innerHTML = `<a href="#week${this.anchorElemID}">${elemsID[eid]}</a>`
 
 					// throw new ReferenceError(eid)
 				}
 
-				else if (eid == "title50" && Number(elemsID.week50) < 7) {
-
-					document.getElementById('id50')!.setAttribute("style", "display:none")
-
-					// document.getElementById("id50")!.className += " hidden";
-
-
+				else {
+					document.getElementById(eid)!.innerHTML = elemsID[eid]
 				}
 
-				else {
-					document.getElementById(eid)!.innerHTML = elemsID[eid];
-
+				if (eid == "glass") {
+					document.querySelector('#glass')!.innerHTML = elemsID[eid]
 				}
 
 			}
 		}
 
-		// выделение цветом текущей седмицы и дня
+		// Удаление элемента со страницы если Пятьдесятницы еще не было.
+		if (Number(elemsID.curweek) < 8) {
+			document.getElementById("id50")?.remove()
+			// document.getElementById("id50")!.className += " hidden";
+		}
+		// выделение цветом блока текущей седмицы и  дня в ней
 		document.getElementById("week" + this.weeks.elemID[0])!.className += " colorBlock"
 		document.getElementById("weekday" + this.weeks.aprID[0])!.className += " seeddayON"
 	}
@@ -812,48 +870,7 @@ class OLY implements IOLY {
 		return reverseP
 	}
 
-	/**
-	 * Метод всплывающего окна с указанием читаемой седмицы.
-	 * На определенных страницах показывает отступку.
-	 * @returns description
-	 */
-	initModalView() {
-		let lastSegment = document.location.pathname.split('/').pop()
-		const closeClick = '<span id="close" class="close" onclick="apr.closeModalView()"></span>';
-		const commentStvol =
-			"<span class='comment-stvol'>В стволе указаны числа текущих седмиц.<br> Подробнее<a class='a-href' href='https://www.aprakos.ru/p/blog-page.html'> здесь</a>.</div>";
 
-		let str = `
-        <section id="fp-content" class="fp-content">
-        <b>Читаемая седмица:</b>
-        <div>по Пасхе&nbsp; <span class="red bold">${this.weeks.current[0] - this.weeks.stupkaK[0]
-			},</span></div>
-        <div>по Пять&shy;десят&shy;нице <span class="red bold">
-        ${this.weeks.current[0] - 7 - this.weeks.stupkaK[0]}.</span>
-        <div>${lastSegment === "stvol.html" ? commentStvol : ""}</div></div>
-        <div>${lastSegment === "blog-post.html" ? `Отступка <span class="red bold">${this.weeks.stupkaK[0]}</span> седм.` : ""}</div></div>
-        ${closeClick}
-        </section>
-        `;
-
-		document.getElementById("first-preview")!.innerHTML = str;
-		document.querySelector("#fp00")!.classList.add("fp00");
-		document.querySelector("#first-preview")!.classList.add("fp01");
-		const rpack = this.reversePack(); rpack()
-
-		// reversePack = false;
-
-		let timerOff = setTimeout(() => {
-			this.closeModalView(timerOff);
-			alert(
-				"\n Долгое отсутствие увеличивает расстояние разлуки."
-			);
-		}, 3600000);
-
-		// return true;
-
-
-	}
 	/**
 	* Метод закрывает всплавющее окно. 
 	* Удаляет стили элемента.
@@ -911,7 +928,7 @@ class OLY implements IOLY {
 
 				else if (oneClickInfo == "F2F2" && this.stateModalView == true) {
 					oneClickInfo = ""
-					apr.closeModalView();
+					this.closeModalView();
 				}
 
 				if (event.code == "Escape") {
@@ -921,6 +938,7 @@ class OLY implements IOLY {
 				if (oneClickInfo == "EscapeEscape") {
 					sessionStorage.removeItem('userDate');
 					oneClickInfo = "";
+					document.location.replace("")
 				}
 			})
 	}
@@ -932,7 +950,7 @@ class OLY implements IOLY {
 	 */
 	deleteUserDateFromSessionStorage() {
 		sessionStorage.removeItem('userDate')
-		location.replace(document.documentURI)
+		document.location.replace(document.documentURI)
 	}
 }
 
