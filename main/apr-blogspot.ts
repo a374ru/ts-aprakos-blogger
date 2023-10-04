@@ -522,8 +522,8 @@ class OLY implements IOLY {
 		} else {
 			console.warn(
 				`${userYear
-					? "Год введенный пользователем не подходит (2016-2033)"
-					: "Год пользователем не предоставлен"
+					? "Формат введенный пользователем не подходит… попробуйте ([2099,00,7])"
+					: "Год пользователем не предоставлен…"
 				}.\nБудет использован текущий год.\nСПАСИБО ЗА ВНИМАНИЕ!`
 			);
 
@@ -533,7 +533,7 @@ class OLY implements IOLY {
 		////////////////////////////////// FOR DEV… ////////////////////////////////////////////////
 		///////////////////////////////////////////////////////////////////////////////////////
 
-		if (currentDate.getFullYear() != this.theMomentTime.getFullYear()) {
+		if (currentDate.getDate() != this.theMomentTime.getDate()) {
 			document.querySelector('#userdate')?.remove()
 			document.querySelector('body')!.innerHTML +=
 				`<div id="userdate" class='userdate'><a id='a-visited-userdate' href="#" onclick="apr.deleteUserDateFromSessionStorage()">${currentDate.toLocaleDateString()}</a></div>`
@@ -568,6 +568,7 @@ class OLY implements IOLY {
 Сегодня: ${this.theMomentTime.toDateString()}
 Ссылка на Апракос: https://aprakos.blogspot.com${this.linkToAprakos}
 Ссылка на праздник: https://aprakos.blogspot.com${this.linkToHolydays ?? ""}
+Справка здесь: https://aprakos.blogspot.com/p/blog-page_4.html
 		`);
 
 		// return
@@ -958,7 +959,7 @@ class OLY implements IOLY {
 	 */
 	deleteUserDateFromSessionStorage() {
 		sessionStorage.removeItem('userDate')
-		document.location.replace(document.documentURI)
+		document.location.replace(document.location.origin)
 	}
 }
 

@@ -287,14 +287,14 @@ var OLY = (function () {
             sessionStorage.setItem('userDate', String(currentDate));
         }
         else {
-            console.warn((userYear
-                ? "Год введенный пользователем не подходит (2016-2033)"
-                : "Год пользователем не предоставлен") + ".\n\u0411\u0443\u0434\u0435\u0442 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D \u0442\u0435\u043A\u0443\u0449\u0438\u0439 \u0433\u043E\u0434.\n\u0421\u041F\u0410\u0421\u0418\u0411\u041E \u0417\u0410 \u0412\u041D\u0418\u041C\u0410\u041D\u0418\u0415!");
+            console.warn("".concat(userYear
+                ? "Формат введенный пользователем не подходит… попробуйте ([2099,00,7])"
+                : "Год пользователем не предоставлен…", ".\n\u0411\u0443\u0434\u0435\u0442 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D \u0442\u0435\u043A\u0443\u0449\u0438\u0439 \u0433\u043E\u0434.\n\u0421\u041F\u0410\u0421\u0418\u0411\u041E \u0417\u0410 \u0412\u041D\u0418\u041C\u0410\u041D\u0418\u0415!"));
         }
-        if (currentDate.getFullYear() != this.theMomentTime.getFullYear()) {
+        if (currentDate.getDate() != this.theMomentTime.getDate()) {
             (_c = document.querySelector('#userdate')) === null || _c === void 0 ? void 0 : _c.remove();
             document.querySelector('body').innerHTML +=
-                "<div id=\"userdate\" class='userdate'><a id='a-visited-userdate' href=\"#\" onclick=\"apr.deleteUserDateFromSessionStorage()\">" + currentDate.toLocaleDateString() + "</a></div>";
+                "<div id=\"userdate\" class='userdate'><a id='a-visited-userdate' href=\"#\" onclick=\"apr.deleteUserDateFromSessionStorage()\">".concat(currentDate.toLocaleDateString(), "</a></div>");
         }
         return currentDate;
     };
@@ -312,7 +312,7 @@ var OLY = (function () {
                 console.log(element[1] + " : " + element[0]);
             }
         }
-        console.warn("\n\u0421\u0435\u0433\u043E\u0434\u043D\u044F: " + this.theMomentTime.toDateString() + "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u0410\u043F\u0440\u0430\u043A\u043E\u0441: https://aprakos.blogspot.com" + this.linkToAprakos + "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u043F\u0440\u0430\u0437\u0434\u043D\u0438\u043A: https://aprakos.blogspot.com" + ((_a = this.linkToHolydays) !== null && _a !== void 0 ? _a : "") + "\n\t\t");
+        console.warn("\n\u0421\u0435\u0433\u043E\u0434\u043D\u044F: ".concat(this.theMomentTime.toDateString(), "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u0410\u043F\u0440\u0430\u043A\u043E\u0441: https://aprakos.blogspot.com").concat(this.linkToAprakos, "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u043F\u0440\u0430\u0437\u0434\u043D\u0438\u043A: https://aprakos.blogspot.com").concat((_a = this.linkToHolydays) !== null && _a !== void 0 ? _a : "", "\n\u0421\u043F\u0440\u0430\u0432\u043A\u0430 \u0437\u0434\u0435\u0441\u044C: https://aprakos.blogspot.com/p/blog-page_4.html\n\t\t"));
     };
     OLY.prototype.yearMonthID = function () {
         var otstupka = this.stupka();
@@ -432,7 +432,7 @@ var OLY = (function () {
         var lastSegment = document.location.pathname.split('/').pop();
         var closeClick = '<span id="close" class="close" onclick="apr.closeModalView()"></span>';
         var commentStvol = "<span class='comment-stvol'>В стволе указаны числа текущих седмиц.<br> Подробнее<a class='a-href' href='https://www.aprakos.ru/p/blog-page.html'> здесь</a>.</div>";
-        var str = "\n        <section id=\"fp-content\" class=\"fp-content\">\n        <b>\u0427\u0438\u0442\u0430\u0435\u043C\u0430\u044F \u0441\u0435\u0434\u043C\u0438\u0446\u0430:</b>\n        <div id=\"modal-cweek\">\u043F\u043E \u041F\u0430\u0441\u0445\u0435&nbsp; <span class=\"red bold\">" + (this.weeks.current[0] - this.stupka()) + ",</span></div>\n        <div id=\"modal-cweek50\">\u043F\u043E \u041F\u044F\u0442\u044C&shy;\u0434\u0435\u0441\u044F\u0442&shy;\u043D\u0438\u0446\u0435 <span class=\"red bold\">" + (this.weeks.current[0] > 7 ? this.weeks.current[0] - 7 - this.stupka() : "нет") + ".</span>\n        <div>" + (lastSegment === "stvol.html" ? commentStvol : "") + "</div></div>\n        <div>" + (lastSegment === "blog-post.html" ? "\u041E\u0442\u0441\u0442\u0443\u043F\u043A\u0430 <span class=\"red bold\">" + this.weeks.stupkaK[0] + "</span> \u0441\u0435\u0434\u043C." : "") + "</div></div>\n        " + closeClick + "\n        </section>\n        ";
+        var str = "\n        <section id=\"fp-content\" class=\"fp-content\">\n        <b>\u0427\u0438\u0442\u0430\u0435\u043C\u0430\u044F \u0441\u0435\u0434\u043C\u0438\u0446\u0430:</b>\n        <div id=\"modal-cweek\">\u043F\u043E \u041F\u0430\u0441\u0445\u0435&nbsp; <span class=\"red bold\">".concat(this.weeks.current[0] - this.stupka(), ",</span></div>\n        <div id=\"modal-cweek50\">\u043F\u043E \u041F\u044F\u0442\u044C&shy;\u0434\u0435\u0441\u044F\u0442&shy;\u043D\u0438\u0446\u0435 <span class=\"red bold\">").concat(this.weeks.current[0] > 7 ? this.weeks.current[0] - 7 - this.stupka() : "нет", ".</span>\n        <div>").concat(lastSegment === "stvol.html" ? commentStvol : "", "</div></div>\n        <div>").concat(lastSegment === "blog-post.html" ? "\u041E\u0442\u0441\u0442\u0443\u043F\u043A\u0430 <span class=\"red bold\">".concat(this.weeks.stupkaK[0], "</span> \u0441\u0435\u0434\u043C.") : "", "</div></div>\n        ").concat(closeClick, "\n        </section>\n        ");
         document.getElementById("first-preview").innerHTML = str;
         document.querySelector("#fp00").classList.add("fp00");
         document.querySelector("#first-preview").classList.add("fp01");
@@ -451,14 +451,14 @@ var OLY = (function () {
         }
         (_a = document.getElementById('name')) === null || _a === void 0 ? void 0 : _a.children[0].setAttribute('href', (_b = this.linkToHolydays) !== null && _b !== void 0 ? _b : this.linkToAprakos);
         var elemsID = {
-            curweek: "" + this.weeks.current[0],
-            curweek50: "" + (this.weeks.current[0] < 8 ? "*" : this.weeks.current[0] - 7),
+            curweek: "".concat(this.weeks.current[0]),
+            curweek50: "".concat(this.weeks.current[0] < 8 ? "*" : this.weeks.current[0] - 7),
             glass: "Глаc: " + this.glas(+this.weeks.current[0]),
         };
         for (var eid in elemsID) {
             if (Object.prototype.hasOwnProperty.call(elemsID, eid)) {
                 if (eid === "curweek" || eid === "curweek50") {
-                    document.getElementById(eid).innerHTML = "<a href=\"#week" + this.anchorElemID + "\">" + elemsID[eid] + "</a>";
+                    document.getElementById(eid).innerHTML = "<a href=\"#week".concat(this.anchorElemID, "\">").concat(elemsID[eid], "</a>");
                 }
                 else {
                     document.getElementById(eid).innerHTML = elemsID[eid];
@@ -551,7 +551,7 @@ var OLY = (function () {
     };
     OLY.prototype.deleteUserDateFromSessionStorage = function () {
         sessionStorage.removeItem('userDate');
-        document.location.replace(document.documentURI);
+        document.location.replace(document.location.origin);
     };
     return OLY;
 }());
