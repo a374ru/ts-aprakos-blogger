@@ -411,6 +411,7 @@ class OLY implements IOLY {
 
 			}
 		]);
+    
 		const vozdvizgenie = (this.weeks["vozdvizgenie"] = [
 			Math.ceil(
 				(this.datesOLY.vozdvizgenieKresta[0].getTime() - this.oldEasterMLS) /
@@ -481,6 +482,14 @@ class OLY implements IOLY {
 		this.datesOLY["aboutTheLastJudgment"] = [
 			new Date(this.newEasterMLS - 864e5 * 56),
 			"Неделя о страшном суде",
+		];
+		this.datesOLY["aboutTheAdamsExile"] = [
+			new Date(this.newEasterMLS - 864e5 * 49),
+			"Неделя Адамова изгнания",
+		];
+		this.datesOLY["theBeginningOfLent"] = [
+			new Date(this.newEasterMLS - 864e5 * 48),
+			"Начало Великого Поста",
 		];
 
 		// Дата 17 седмицы по Пятьдес[ятнице.
@@ -555,13 +564,13 @@ class OLY implements IOLY {
 		for (const key in this.datesOLY) {
 			if (Object.prototype.hasOwnProperty.call(this.datesOLY, key)) {
 				const element = this.datesOLY[key];
-				console.log(element[1] + " : " + element[0].toDateString());
+				console.log(element[1] + " | " + element[0].toDateString());
 			}
 		}
 		for (const key in this.weeks) {
 			if (Object.prototype.hasOwnProperty.call(this.weeks, key)) {
 				const element = this.weeks[key];
-				console.log(element[1] + " : " + element[0]);
+				console.log(element[1] + " | " + element[0]);
 			}
 		}
 
@@ -672,12 +681,20 @@ class OLY implements IOLY {
 	 */
 	stupkaN(): number {
 		let stpka = 0;
+
 		if (this.weeks.current[0] >= this.weeks.mif[0]) {
-			// возвращаем число отступки для промежуточных седмиц
-			stpka = this.weeks.stupkaK[0];
-		} else if (this.weeks.current[0] < this.weeks.mif[0]) {
+		
+      // возвращаем число отступки для промежуточных седмиц
+			return stpka;
+		}
+
+    if (this.weeks.current[0] < 40) {
 			stpka = this.weeks.stupkaV[0];
 		}
+
+    if (this.weeks.current[0] >= 40 && (this.weeks.current[0] < this.weeks.mif[0])){
+			stpka = this.weeks.stupkaK[0];
+    }
 		// FIXME -  нужны тесты во времени для проверки ступки до МиФ
 		return stpka;
 	}
@@ -699,6 +716,8 @@ class OLY implements IOLY {
 	 * @returns number
 	 */
 	stupkaK(): number {
+    // TODO @a374ru S:S Требуется добавить вычисление отступки для вычисления промежуточных седмиц!!! 
+    // смотри в проблемах a4012024 
 		return 0;
 	}
 

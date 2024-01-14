@@ -269,6 +269,14 @@ var OLY = (function () {
             new Date(this.newEasterMLS - 864e5 * 56),
             "Неделя о страшном суде",
         ];
+        this.datesOLY["aboutTheAdamsExile"] = [
+            new Date(this.newEasterMLS - 864e5 * 49),
+            "Неделя Адамова изгнания",
+        ];
+        this.datesOLY["theBeginningOfLent"] = [
+            new Date(this.newEasterMLS - 864e5 * 48),
+            "Начало Великого Поста",
+        ];
         this.datesOLY["week24"] = [
             new Date(this.oldEasterMLS + 864e5 * 168),
             "17 седмица по Пятьдесятнице",
@@ -303,13 +311,13 @@ var OLY = (function () {
         for (var key in this.datesOLY) {
             if (Object.prototype.hasOwnProperty.call(this.datesOLY, key)) {
                 var element = this.datesOLY[key];
-                console.log(element[1] + " : " + element[0].toDateString());
+                console.log(element[1] + " | " + element[0].toDateString());
             }
         }
         for (var key in this.weeks) {
             if (Object.prototype.hasOwnProperty.call(this.weeks, key)) {
                 var element = this.weeks[key];
-                console.log(element[1] + " : " + element[0]);
+                console.log(element[1] + " | " + element[0]);
             }
         }
         console.warn("\n\u0421\u0435\u0433\u043E\u0434\u043D\u044F: ".concat(this.theMomentTime.toDateString(), "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u0410\u043F\u0440\u0430\u043A\u043E\u0441: https://aprakos.blogspot.com").concat(this.linkToAprakos, "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u043F\u0440\u0430\u0437\u0434\u043D\u0438\u043A: https://aprakos.blogspot.com").concat((_a = this.linkToHolydays) !== null && _a !== void 0 ? _a : "", "\n\u0421\u043F\u0440\u0430\u0432\u043A\u0430 \u0437\u0434\u0435\u0441\u044C: https://aprakos.blogspot.com/p/blog-page_4.html\n\t\t"));
@@ -388,10 +396,13 @@ var OLY = (function () {
     OLY.prototype.stupkaN = function () {
         var stpka = 0;
         if (this.weeks.current[0] >= this.weeks.mif[0]) {
-            stpka = this.weeks.stupkaK[0];
+            return stpka;
         }
-        else if (this.weeks.current[0] < this.weeks.mif[0]) {
+        if (this.weeks.current[0] < 40) {
             stpka = this.weeks.stupkaV[0];
+        }
+        if (this.weeks.current[0] >= 40 && (this.weeks.current[0] < this.weeks.mif[0])) {
+            stpka = this.weeks.stupkaK[0];
         }
         return stpka;
     };
