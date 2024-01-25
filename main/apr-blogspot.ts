@@ -1,5 +1,5 @@
-// Вскрс., 26 марта 2023 г.
 
+// четверг, 25 января 2024 г. 06:55:02 (MSK)
 /*
 	--- APRAKOS.BLOGSPOT.COM VERSION ---
 
@@ -399,7 +399,7 @@ class OLY implements IOLY {
 		const mif = (this.weeks["mif"] = [all[0] - 10, "Седмица МиФ"]);
 		const zakhey = (this.weeks["zakhey"] = [mif[0] - 1, "Седмица Закхея"]);
 		const stupkaK = (this.weeks["stupkaK"] = [
-			all[0] - 50,
+			all[0] - 51,
 			"Крещенская отступка",
 			//S:S корректировка времени для вычисления крещенской ступки
 			() => {
@@ -681,7 +681,6 @@ class OLY implements IOLY {
 	 */
 	stupkaN(): number {
 		let stpka = 0;
-
 		if (this.weeks.current[0] >= this.weeks.mif[0]) {
 		
       // возвращаем число отступки для промежуточных седмиц
