@@ -229,7 +229,7 @@ var OLY = (function () {
         var mif = (this.weeks["mif"] = [all[0] - 10, "Седмица МиФ"]);
         var zakhey = (this.weeks["zakhey"] = [mif[0] - 1, "Седмица Закхея"]);
         var stupkaK = (this.weeks["stupkaK"] = [
-            all[0] - 51,
+            all[0] - 50,
             "Крещенская отступка",
             function () {
                 if (current[0] > 40) {

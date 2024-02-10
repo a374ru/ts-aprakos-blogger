@@ -414,7 +414,7 @@ class OLY implements IOLY {
 		const mif = (this.weeks["mif"] = [all[0] - 10, "Седмица МиФ"]);
 		const zakhey = (this.weeks["zakhey"] = [mif[0] - 1, "Седмица Закхея"]);
 		const stupkaK = (this.weeks["stupkaK"] = [
-			all[0] - 51,
+			all[0] - 50,
 			"Крещенская отступка",
 			//S:S корректировка времени для вычисления крещенской ступки
 			() => {
