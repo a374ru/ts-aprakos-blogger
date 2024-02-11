@@ -411,8 +411,8 @@ class OLY implements IOLY {
 		if (current[0] == 0) { this.weeks["current"][0] = 1 }
 		//////////////////////////////////
 
-		const mif = (this.weeks["mif"] = [all[0] - 10, "Седмица МиФ"]);
-		const zakhey = (this.weeks["zakhey"] = [mif[0] - 1, "Седмица Закхея"]);
+		const mif = (this.weeks["mif"] = [all[0] - 9, "Седмица МиФ по Пасхе"]);
+		const zakhey = (this.weeks["zakhey"] = [mif[0] - 1, "Седмица Закхея по Пасхе"]);
 		const stupkaK = (this.weeks["stupkaK"] = [
 			all[0] - 50,
 			"Крещенская отступка",

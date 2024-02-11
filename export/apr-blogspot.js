@@ -226,8 +226,8 @@ var OLY = (function () {
         if (current[0] == 0) {
             this.weeks["current"][0] = 1;
         }
-        var mif = (this.weeks["mif"] = [all[0] - 10, "Седмица МиФ"]);
-        var zakhey = (this.weeks["zakhey"] = [mif[0] - 1, "Седмица Закхея"]);
+        var mif = (this.weeks["mif"] = [all[0] - 9, "Седмица МиФ по Пасхе"]);
+        var zakhey = (this.weeks["zakhey"] = [mif[0] - 1, "Седмица Закхея по Пасхе"]);
         var stupkaK = (this.weeks["stupkaK"] = [
             all[0] - 50,
             "Крещенская отступка",
