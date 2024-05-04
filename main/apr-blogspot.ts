@@ -650,7 +650,7 @@ class OLY implements IOLY {
 			case aprID <= 472:
 				partURL = "2021/03/" + aprID;
 				break;
-			case aprID <= 506:
+			case aprID <= 507:
 				partURL = "2021/04/" + aprID;
 				break;
 			case aprID <= 517:
