@@ -13,7 +13,7 @@ var OLY = (function () {
             "СРЕДА",
             "ЧЕТВЕРГ",
             "ПЯТНИЦА",
-            "СУББОТА2",
+            "СУББОТА",
         ];
         this.weeks = {};
         this.easterDates = {
@@ -399,7 +399,7 @@ var OLY = (function () {
                 stupka = this.stupkaN();
                 break;
             case false:
-                stupka = this.stupkaV();
+                stupka = this.stupkaVozdvizjenia();
                 break;
             default:
                 stupka = 0;
@@ -420,7 +420,7 @@ var OLY = (function () {
         }
         return stpka;
     };
-    OLY.prototype.stupkaV = function (week) {
+    OLY.prototype.stupkaVozdvizjenia = function (week) {
         return 0;
     };
     OLY.prototype.stupkaK = function () {
