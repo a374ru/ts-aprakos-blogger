@@ -1,5 +1,5 @@
 
-// 28
+// пятница, 27 сентября 2024 г. 13:05:59 (MSK)
 /*
 	--- APRAKOS.BLOGSPOT.COM VERSION ---
 
@@ -136,7 +136,7 @@ class OLY implements IOLY {
 		"СРЕДА",
 		"ЧЕТВЕРГ",
 		"ПЯТНИЦА",
-		"СУББОТА2",
+		"СУББОТА",
 	];
 
 	/**
@@ -679,13 +679,12 @@ class OLY implements IOLY {
 		// Прверяет текщую седмицу.
 		let stupka: number;
 
-
 		switch (this.mondayAfterVozdvizgenie()) {
 			case true:
 				stupka = this.stupkaN(); // нормализация ссылки до MiF
 				break;
 			case false:
-				stupka = this.stupkaV(); // передаем сюда текущую седмицу
+				stupka = this.stupkaVozdvizjenia(); // передаем сюда текущую седмицу
 				break;
 
 			default:
@@ -710,8 +709,6 @@ class OLY implements IOLY {
 		}
 
     if (this.weeks.current[0] < 40) {
-	// S:S  Здесь нужен код проверки, который будет определять или отступку или преступку с помощью положительного или отрицательного знака числа 
-	// this.stupkaV(this.weeks.current[0])
 			stpka = this.weeks.stupkaV[0];
 		}
 
@@ -729,7 +726,7 @@ class OLY implements IOLY {
 	 * @param week
 	 * @returns
 	 */
-	stupkaV(week?: number) {
+	stupkaVozdvizjenia(week?: number) {
 		return 0;
 	}
 
