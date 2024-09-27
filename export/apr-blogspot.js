@@ -13,7 +13,7 @@ var OLY = (function () {
             "СРЕДА",
             "ЧЕТВЕРГ",
             "ПЯТНИЦА",
-            "СУББОТА",
+            "СУББОТА2",
         ];
         this.weeks = {};
         this.easterDates = {
@@ -246,18 +246,17 @@ var OLY = (function () {
                 7),
             "Седмица Воздвижения",
         ]);
-        var stupkaV = (this.weeks["stupkaV"] = [
+        this.weeks["stupkaV"] = [
             Math.ceil((this.datesOLY.week24[0].getTime() - this.oldEasterMLS) / 864e5 / 7) - vozdvizgenie[0],
             "Воздвиженская преступка",
-        ]);
+        ];
         return this.weeks;
     };
     OLY.prototype.mondayAfterVozdvizgenie = function () {
-        var mondayPoVozdvizgene = 1 + 7 - (this.datesOLY.vozdvizgenieKresta[0].getDay() % 7);
-        var updateTheDate = this.datesOLY.vozdvizgenieKresta[0].getDate() + mondayPoVozdvizgene;
-        this.datesOLY.vozdvizgenieKresta[0].setDate(updateTheDate);
-        this.datesOLY.vozdvizgenieKresta[1] = "Понедельник по Воздвижении";
-        return this.theMomentTime >= this.datesOLY.vozdvizgenieKresta[0];
+        var daysUntilMonday = 1 + 7 - (this.datesOLY.vozdvizgenieKresta[0].getDay() % 7);
+        var dateMonday = new Date(this.datesOLY.vozdvizgenieKresta[0].getTime() + 864e5 * daysUntilMonday);
+        console.log("-=-=-=-=-=-=-=-=-\n\n \u0414\u043D\u0435\u0439 \u0434\u043E \u043F\u043E\u043D\u0435\u0434\u0435\u043B\u044C\u043D\u0438\u043A\u0430: ".concat(daysUntilMonday), dateMonday, "\n\n");
+        return this.theMomentTime >= dateMonday;
     };
     OLY.prototype.initDatesOLY = function () {
         this.datesOLY["pentecost"] = [
@@ -339,7 +338,7 @@ var OLY = (function () {
     };
     OLY.prototype.yearMonthID = function () {
         var otstupka = this.stupka();
-        var elemID = this.weeks.current[0] - otstupka;
+        var elemID = this.weeks.current[0] + this.stupka();
         var aprID = Number("" + elemID + this.weeks.day[0]);
         var partURL;
         switch (true) {
@@ -458,7 +457,7 @@ var OLY = (function () {
         var lastSegment = document.location.pathname.split('/').pop();
         var closeClick = '<span id="close" class="close" onclick="apr.closeModalView()"></span>';
         var commentStvol = "<span class='comment-stvol'>В стволе указаны числа текущих седмиц.<br> Подробнее<a class='a-href' href='https://www.aprakos.ru/p/blog-page.html'> здесь</a>.</div>";
-        var str = "\n        <section id=\"fp-content\" class=\"fp-content\">\n        <b>\u0427\u0438\u0442\u0430\u0435\u043C\u0430\u044F \u0441\u0435\u0434\u043C\u0438\u0446\u0430:</b>\n        <div id=\"modal-cweek\">\u043F\u043E \u041F\u0430\u0441\u0445\u0435&nbsp; <span class=\"red bold\">".concat(this.weeks.current[0] - this.stupka(), ",</span></div>\n        <div id=\"modal-cweek50\">\u043F\u043E \u041F\u044F\u0442\u044C&shy;\u0434\u0435\u0441\u044F\u0442&shy;\u043D\u0438\u0446\u0435 <span class=\"red bold\">").concat(this.weeks.current[0] > 7 ? this.weeks.current[0] - 7 - this.stupka() : "нет", ".</span>\n        <div>").concat(lastSegment === "stvol.html" ? commentStvol : "", "</div></div>\n        <div>").concat(lastSegment === "blog-post.html" ? "\u041E\u0442\u0441\u0442\u0443\u043F\u043A\u0430 <span class=\"red bold\">".concat(this.weeks.stupkaK[0], "</span> \u0441\u0435\u0434\u043C.") : "", "</div></div>\n        ").concat(closeClick, "\n        </section>\n        ");
+        var str = "\n        <section id=\"fp-content\" class=\"fp-content\">\n        <b>\u0427\u0438\u0442\u0430\u0435\u043C\u0430\u044F \u0441\u0435\u0434\u043C\u0438\u0446\u0430:</b>\n        <div id=\"modal-cweek\">\u043F\u043E \u041F\u0430\u0441\u0445\u0435&nbsp; <span class=\"red bold\">".concat(this.anchorElemID, ",</span></div>\n        <div id=\"modal-cweek50\">\u043F\u043E \u041F\u044F\u0442\u044C&shy;\u0434\u0435\u0441\u044F\u0442&shy;\u043D\u0438\u0446\u0435 <span class=\"red bold\">").concat(this.weeks.current[0] > 7 ? Number(this.anchorElemID) - 7 : "нет", ".</span>\n        <div>").concat(lastSegment === "stvol.html" ? commentStvol : "", "</div></div>\n        <div>").concat(lastSegment === "blog-post.html" ? "\u041E\u0442\u0441\u0442\u0443\u043F\u043A\u0430 <span class=\"red bold\">".concat(this.weeks.stupkaK[0], "</span> \u0441\u0435\u0434\u043C.") : "", "</div></div>\n        ").concat(closeClick, "\n        </section>\n        ");
         document.getElementById("first-preview").innerHTML = str;
         document.querySelector("#fp00").classList.add("fp00");
         document.querySelector("#first-preview").classList.add("fp01");
@@ -582,3 +581,4 @@ var OLY = (function () {
     return OLY;
 }());
 var apr = new OLY();
+//# sourceMappingURL=apr-blogspot.js.map

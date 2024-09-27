@@ -1,5 +1,5 @@
 
-// четверг, 25 января 2024 г. 06:55:02 (MSK)
+// 28
 /*
 	--- APRAKOS.BLOGSPOT.COM VERSION ---
 
@@ -136,7 +136,7 @@ class OLY implements IOLY {
 		"СРЕДА",
 		"ЧЕТВЕРГ",
 		"ПЯТНИЦА",
-		"СУББОТА",
+		"СУББОТА2",
 	];
 
 	/**
@@ -416,7 +416,7 @@ class OLY implements IOLY {
 		const stupkaK = (this.weeks["stupkaK"] = [
 			all[0] - 50,
 			"Крещенская отступка",
-			//S:S корректировка времени для вычисления крещенской ступки
+			//TODO: корректировка времени для вычисления крещенской ступки
 			() => {
 				if (current[0] > 40) {
 					return stupkaK[0]
@@ -435,12 +435,12 @@ class OLY implements IOLY {
 			),
 			"Седмица Воздвижения",
 		]);
-		const stupkaV = (this.weeks["stupkaV"] = [
+		this.weeks["stupkaV"] = [ // S:S Воздвиженское преступка
 			Math.ceil(
 				(this.datesOLY.week24[0].getTime() - this.oldEasterMLS) / 864e5 / 7
 			) - vozdvizgenie[0],
 			"Воздвиженская преступка",
-		]);
+		];
 
 		return this.weeks; // вернуть словарь седмиц
 	}
@@ -458,15 +458,20 @@ class OLY implements IOLY {
 	mondayAfterVozdvizgenie(): boolean {
 		// Дата Воздвижения Креста
 
-		const mondayPoVozdvizgene =
+		// Возвращает количество дней до понедельника от воздвижения
+		const daysUntilMonday =
 			1 + 7 - (this.datesOLY.vozdvizgenieKresta[0].getDay() % 7);
-		let updateTheDate =
-			this.datesOLY.vozdvizgenieKresta[0].getDate() + mondayPoVozdvizgene;
-		// Изменение даты Воздвижение на дату понедельника
-		this.datesOLY.vozdvizgenieKresta[0].setDate(updateTheDate);
-		this.datesOLY.vozdvizgenieKresta[1] = "Понедельник по Воздвижении";
 
-		return this.theMomentTime >= this.datesOLY.vozdvizgenieKresta[0];
+		//
+		let dateMonday = new Date(
+			this.datesOLY.vozdvizgenieKresta[0].getTime() + 864e5  * daysUntilMonday);	
+		console.log(`-=-=-=-=-=-=-=-=-\n\n Дней до понедельника: ${daysUntilMonday}`, dateMonday,"\n\n")
+		// Изменение даты Воздвижение на дату понедельника
+		// this.datesOLY.vozdvizgenieKresta[0].setDate(daysUntilMonday);    // EROR: Этот метод обновляется при каждом вызове любой строке кода и меняет каждый раз дату воздвижения.
+		// this.datesOLY.vozdvizgenieKresta[0] = new Date(this.datesOLY.vozdvizgenie[0].getTime());
+		// this.datesOLY.vozdvizgenieKresta[1] = "Понедельник по Воздвижении";
+
+		return this.theMomentTime >= dateMonday;
 	}
 
 	/**
@@ -482,6 +487,7 @@ class OLY implements IOLY {
 			new Date(this.oldEaster.getFullYear() + "-09-27T00:00:00"),
 			"Воздвижение Креста Господня",
 		];
+		
 		this.datesOLY["zakhey"] = [
 			new Date(this.newEasterMLS - 864e5 * 77),
 			"Неделя Закхея",
@@ -608,7 +614,7 @@ class OLY implements IOLY {
 	 */
 	yearMonthID() {
 		let otstupka = this.stupka();
-		const elemID = this.weeks.current[0] - otstupka
+		const elemID = this.weeks.current[0] + this.stupka();
 		let aprID = Number(
 			"" + elemID + this.weeks.day[0]
 		); // конкатенация двух чисел
@@ -673,6 +679,7 @@ class OLY implements IOLY {
 		// Прверяет текщую седмицу.
 		let stupka: number;
 
+
 		switch (this.mondayAfterVozdvizgenie()) {
 			case true:
 				stupka = this.stupkaN(); // нормализация ссылки до MiF
@@ -703,6 +710,8 @@ class OLY implements IOLY {
 		}
 
     if (this.weeks.current[0] < 40) {
+	// S:S  Здесь нужен код проверки, который будет определять или отступку или преступку с помощью положительного или отрицательного знака числа 
+	// this.stupkaV(this.weeks.current[0])
 			stpka = this.weeks.stupkaV[0];
 		}
 
@@ -789,8 +798,8 @@ class OLY implements IOLY {
 		let str = `
         <section id="fp-content" class="fp-content">
         <b>Читаемая седмица:</b>
-        <div id="modal-cweek">по Пасхе&nbsp; <span class="red bold">${this.weeks.current[0] - this.stupka()},</span></div>
-        <div id="modal-cweek50">по Пять&shy;десят&shy;нице <span class="red bold">${this.weeks.current[0] > 7 ? this.weeks.current[0] - 7 - this.stupka() : "нет"}.</span>
+        <div id="modal-cweek">по Пасхе&nbsp; <span class="red bold">${this.anchorElemID},</span></div>
+        <div id="modal-cweek50">по Пять&shy;десят&shy;нице <span class="red bold">${this.weeks.current[0] > 7 ? Number(this.anchorElemID) - 7 : "нет"}.</span>
         <div>${lastSegment === "stvol.html" ? commentStvol : ""}</div></div>
         <div>${lastSegment === "blog-post.html" ? `Отступка <span class="red bold">${this.weeks.stupkaK[0]}</span> седм.` : ""}</div></div>
         ${closeClick}
