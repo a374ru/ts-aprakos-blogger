@@ -6,6 +6,6 @@
     "main": "apr-blogspot.ts"
   },
     "scripts": {
-    "build": "npx tsc; cp ~/dev/ts-aprakos-blogger/export/apr-blogspot.js ~/Downloads/apracos-blogger-xxx.js"
+    "build": "npx tsc; cp ~/dev/ts-aprakos-blogger/export/apr-blogspot.js ~/Downloads/apracos-blogger-xxx.js; cp ~/dev/ts-aprakos-blogger/export/apr-blogspot.js ~/web/aprakos.ru/js/apracos-blogger.js "
 }
 }

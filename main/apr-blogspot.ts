@@ -1,5 +1,5 @@
 
-// пятница, 27 сентября 2024 г. 13:05:59 (MSK)
+// пятница, 30 сентября 2024 г. 13:05:59 (MSK)
 /*
 	--- APRAKOS.BLOGSPOT.COM VERSION ---
 
@@ -119,6 +119,7 @@ class OLY implements IOLY {
 		this.initOLY()
 		this.initDatesOLY()
 		this.initWeeks()
+		this.correctorStupka()
 		this.linkToAprakos = "/" + this.yearMonthID() + ".html" // с учетом ступок
 		this.anchorElemID = "" + this.weeks.elemID[0]
 		this.linkToHolydays = this.holydays_9() ?? this.linkToAprakos
@@ -402,7 +403,7 @@ class OLY implements IOLY {
 			Math.ceil(
 				(this.theMomentTime.getTime() + addMLS - this.oldEasterMLS) / 864e5 / 7
 			),
-
+			
 			"Текущая седмица",
 		]);
 
@@ -413,19 +414,6 @@ class OLY implements IOLY {
 
 		const mif = (this.weeks["mif"] = [all[0] - 9, "Седмица МиФ по Пасхе"]);
 		const zakhey = (this.weeks["zakhey"] = [mif[0] - 1, "Седмица Закхея по Пасхе"]);
-		const stupkaK = (this.weeks["stupkaK"] = [
-			all[0] - 50,
-			"Крещенская отступка",
-			//TODO: корректировка времени для вычисления крещенской ступки
-			() => {
-				if (current[0] > 40) {
-					return stupkaK[0]
-				} else {
-					return 0
-				}
-
-			}
-		]);
     
 		const vozdvizgenie = (this.weeks["vozdvizgenie"] = [
 			Math.ceil(
@@ -435,13 +423,19 @@ class OLY implements IOLY {
 			),
 			"Седмица Воздвижения",
 		]);
-		this.weeks["stupkaV"] = [ // S:S Воздвиженское преступка
+		let stupkaV = this.weeks["stupkaV"] = [ 
 			Math.ceil(
 				(this.datesOLY.week24[0].getTime() - this.oldEasterMLS) / 864e5 / 7
 			) - vozdvizgenie[0],
-			"Воздвиженская преступка",
+			"Воздвиженская ступка",
 		];
 
+		let stupkaK = (this.weeks["stupkaK"] = [
+			all[0] - 50 - ( stupkaV[0] ),
+			"Крещенская ступка"
+		]);
+
+		this.correctorStupka()
 		return this.weeks; // вернуть словарь седмиц
 	}
 
@@ -449,27 +443,20 @@ class OLY implements IOLY {
 	 * Метод вычисляет первый понедельник по Воздвижении Креста. 
 	 * Начало чтения зачал от Луки, зачало 10-е.
 	 *
-	 * >Метод обновляет дату Воздвижения Креста в коллекции `datesOLY` на дату Понедельника по Воздвижении.
-	 *
-	 * Возвращает результат проверки данного дня. Наступил это день, или еще нет для ПБГ.
+	 * Возвращает результат сравнения для данного понедельника и текущего момента времени.
 	 *
 	 * @returns {boolean}
 	 */
 	mondayAfterVozdvizgenie(): boolean {
-		// Дата Воздвижения Креста
 
-		// Возвращает количество дней до понедельника от воздвижения
+		// Возвращает количество дней до понедельника от даты воздвижения
 		const daysUntilMonday =
 			1 + 7 - (this.datesOLY.vozdvizgenieKresta[0].getDay() % 7);
 
-		//
+		// Вычисление даты для данного понедельника
 		let dateMonday = new Date(
 			this.datesOLY.vozdvizgenieKresta[0].getTime() + 864e5  * daysUntilMonday);	
-		console.log(`-=-=-=-=-=-=-=-=-\n\n Дней до понедельника: ${daysUntilMonday}`, dateMonday,"\n\n")
-		// Изменение даты Воздвижение на дату понедельника
-		// this.datesOLY.vozdvizgenieKresta[0].setDate(daysUntilMonday);    // EROR: Этот метод обновляется при каждом вызове любой строке кода и меняет каждый раз дату воздвижения.
-		// this.datesOLY.vozdvizgenieKresta[0] = new Date(this.datesOLY.vozdvizgenie[0].getTime());
-		// this.datesOLY.vozdvizgenieKresta[1] = "Понедельник по Воздвижении";
+		// console.log(`-=-=-=-=-=-=-=-=-\n\n Дней до понедельника:\n ${daysUntilMonday}`, dateMonday,"\n\n")
 
 		return this.theMomentTime >= dateMonday;
 	}
@@ -798,7 +785,7 @@ class OLY implements IOLY {
         <div id="modal-cweek">по Пасхе&nbsp; <span class="red bold">${this.anchorElemID},</span></div>
         <div id="modal-cweek50">по Пять&shy;десят&shy;нице <span class="red bold">${this.weeks.current[0] > 7 ? Number(this.anchorElemID) - 7 : "нет"}.</span>
         <div>${lastSegment === "stvol.html" ? commentStvol : ""}</div></div>
-        <div>${lastSegment === "blog-post.html" ? `Отступка <span class="red bold">${this.weeks.stupkaK[0]}</span> седм.` : ""}</div></div>
+        <div>${lastSegment === "blog-post.html" ? `${this.weeks.stupkaK[1]} <span class="red bold">${Math.abs(this.weeks.stupkaK[0])}</span> седм.` : ""}</div></div>
         ${closeClick}
         </section>
         `;
@@ -819,6 +806,13 @@ class OLY implements IOLY {
 
 		// return true;
 
+
+	}
+
+	correctorStupka() {
+
+		this.weeks.stupkaV[1] = String(this.weeks.stupkaV[0] <= 0 ? "Воздвиженская отступка" : "Воздвиженская преступка")
+this.weeks.stupkaK[1] = this.weeks.stupkaK[0] < 0 ? "Крещенская отступка": "Крещенская преступка";
 
 	}
 
@@ -1025,4 +1019,3 @@ let apr = new OLY();
 * [[include:problems.md]]
 */
 // let PROBLEMS: {}
-
