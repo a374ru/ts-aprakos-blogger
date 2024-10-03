@@ -3,9 +3,9 @@
     "ts-node": "^10.9.1",
     "typedoc": "^0.23.24",
     "typescript": "^5.6.2",
-    "main": "apr-blogspot.ts"
+    "main": "main/apr-blogspot.ts"
   },
     "scripts": {
-    "build": "npx tsc; cp ~/dev/ts-aprakos-blogger/export/apr-blogspot.js ~/Downloads/apracos-blogger-xxx.js; cp ~/dev/ts-aprakos-blogger/export/apr-blogspot.js ~/web/aprakos.ru/js/apracos-blogger.js "
+    "build": "npx tsc; cp ~/dev/ts-aprakos-blogger/export/apr-blogspot.js ~/web/aprakos.ru/js/apracos-blogger.js"
 }
 }
