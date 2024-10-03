@@ -1,4 +1,3 @@
-
 // пятница, 30 сентября 2024 г. 13:05:59 (MSK)
 /*
 	--- APRAKOS.BLOGSPOT.COM VERSION ---
