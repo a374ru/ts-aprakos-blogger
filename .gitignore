@@ -2,3 +2,4 @@
 /.vscode
 /Icon
 /node_modules
+*.*.map
