@@ -5,5 +5,5 @@
 	"out": "docs/generated",
 	"name": "Aprakos.blogspot.com",
 	"theme": "default",
-	"includes": "ss/"
+	"projectDocuments": ["ss/note.md"]
 }
