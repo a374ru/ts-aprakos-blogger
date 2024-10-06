@@ -478,19 +478,19 @@ var OLY = (function () {
             curweek50: "".concat(this.weeks.current[0] < 8 ? "*" : this.weeks.current[0] - 7),
             glass: "Глаc: " + this.glas(+this.weeks.current[0])
         };
-        for (var eid in elemsID) {
-            if (Object.prototype.hasOwnProperty.call(elemsID, eid)) {
-                if (eid === "curweek") {
-                    document.getElementById(eid).innerHTML = "<a href=\"#week".concat(this.weeks.apstlElemID[0], "\">").concat(elemsID[eid], "</a>");
+        for (var atrubuteID in elemsID) {
+            if (Object.prototype.hasOwnProperty.call(elemsID, atrubuteID)) {
+                if (atrubuteID === "curweek") {
+                    document.getElementById(atrubuteID).innerHTML = "<a href=\"#week".concat(this.weeks.apstlElemID[0], "\">").concat(elemsID[atrubuteID], "</a>");
                 }
-                else if (eid === "curweek50") {
-                    document.getElementById(eid).innerHTML = "<a href=\"#week".concat(this.anchorElemID, "\">").concat(elemsID[eid], "</a>");
+                else if (atrubuteID === "curweek50") {
+                    document.getElementById(atrubuteID).innerHTML = "<a href=\"#week".concat(this.anchorElemID, "\">").concat(elemsID[atrubuteID], "</a>");
                 }
                 else {
-                    document.getElementById(eid).innerHTML = elemsID[eid];
+                    document.getElementById(atrubuteID).innerHTML = elemsID[atrubuteID];
                 }
-                if (eid == "glass") {
-                    document.querySelector('#glass').innerHTML = elemsID[eid];
+                if (atrubuteID == "glass") {
+                    document.querySelector('#glass').innerHTML = elemsID[atrubuteID];
                 }
             }
         }
@@ -498,13 +498,16 @@ var OLY = (function () {
             (_c = document.getElementById("id50")) === null || _c === void 0 ? void 0 : _c.remove();
         }
         document.getElementById("weekday" + this.weeks.apstlElemID[0] + this.weeks.day[0]).className += " apstl-day";
+        document.getElementById("weekday" + this.weeks.apstlElemID[0] + this.weeks.day[0]).style.lineHeight = "3.5rem";
+        document.getElementById("week" + this.weeks.apstlElemID[0]).className += " color-block-apstl-stupka";
         if (this.weeks.evnglElemID[0] != this.weeks.apstlElemID[0]) {
             document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0]).className += " evngl-day";
+            document.getElementById("week" + this.weeks.evnglElemID[0]).className += " color-block-evngl-stupka";
+            document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0]).style.lineHeight = "3.5rem";
         }
         else {
             document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0]).className += " evngl-day";
             document.getElementById("weekday" + this.weeks.aprID[0]).className += " seedday-week-on";
-            document.getElementById("week" + this.weeks.apstlElemID[0]).className += " color-block";
         }
         if (this.weeks.evnglElemID[0] == 50) {
             document.querySelector("#week50").setAttribute("style", "border: solid 4rem #fedede; background-color: #fedede;");

@@ -394,9 +394,6 @@ class OLY implements IOLY {
 			"Протяженность ПБГ",
 		]);
 
-		// FIXME: @a374ru решена проблема с подсчетом текущей седмицы для метода `ceil`!!!
-		// смотри в проблемах – `a812023`
-
 		// Добавление миллисекунды к пользовательскому вводу для избежания целочисленного значения.
 		let addMLS = sessionStorage.getItem('userDate') ? 0.001 : 0
 		const current = (this.weeks["current"] = [
@@ -842,26 +839,26 @@ class OLY implements IOLY {
 			glass: "Глаc: " + this.glas(+this.weeks.current[0])
 		};
 
-		for (const eid in elemsID) {
-			if (Object.prototype.hasOwnProperty.call(elemsID, eid)) {
+		for (const atrubuteID in elemsID) {
+			if (Object.prototype.hasOwnProperty.call(elemsID, atrubuteID)) {
 
-				if (eid === "curweek") {
-					document.getElementById(eid)!.innerHTML = `<a href="#week${this.weeks.apstlElemID[0]}">${elemsID[eid]}</a>`
+				if (atrubuteID === "curweek") {
+					document.getElementById(atrubuteID)!.innerHTML = `<a href="#week${this.weeks.apstlElemID[0]}">${elemsID[atrubuteID]}</a>`
 					// throw new ReferenceError(eid)
 				}
 
-				else if (eid === "curweek50") {
-					document.getElementById(eid)!.innerHTML = `<a href="#week${this.anchorElemID}">${elemsID[eid]}</a>`
+				else if (atrubuteID === "curweek50") {
+					document.getElementById(atrubuteID)!.innerHTML = `<a href="#week${this.anchorElemID}">${elemsID[atrubuteID]}</a>`
 
 					// throw new ReferenceError(eid)
 				}
 
 				else {
-					document.getElementById(eid)!.innerHTML = elemsID[eid]
+					document.getElementById(atrubuteID)!.innerHTML = elemsID[atrubuteID]
 				}
 
-				if (eid == "glass") {
-					document.querySelector('#glass')!.innerHTML = elemsID[eid]
+				if (atrubuteID == "glass") {
+					document.querySelector('#glass')!.innerHTML = elemsID[atrubuteID]
 				}
 
 			}
@@ -877,17 +874,19 @@ class OLY implements IOLY {
 		// выделение цветом блока текущей седмицы и  дня в ней
 
 		document.getElementById("weekday" + this.weeks.apstlElemID[0] + this.weeks.day[0])!.className += " apstl-day"
+        document.getElementById("weekday" + this.weeks.apstlElemID[0] + this.weeks.day[0])!.style.lineHeight = "3.5rem"
+		document.getElementById("week" + this.weeks.apstlElemID[0])!.className += " color-block-apstl-stupka"
 
-// S:S не совпадение дат в одну седмицу на крещенской отступке
 		if (this.weeks.evnglElemID[0] != this.weeks.apstlElemID[0]) {
 
 		document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.className += " evngl-day"
+		document.getElementById("week" + this.weeks.evnglElemID[0])!.className += " color-block-evngl-stupka"
+        document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.style.lineHeight = "3.5rem"
 
 		} else {
 
 		document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.className += " evngl-day"
 		document.getElementById("weekday" + this.weeks.aprID[0])!.className += " seedday-week-on"
-		document.getElementById("week" + this.weeks.apstlElemID[0])!.className += " color-block"
 			}
 
 		if (this.weeks.evnglElemID[0] == 50){
