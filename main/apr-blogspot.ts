@@ -1,13 +1,9 @@
-<<<<<<< HEAD
-// пятница, 4 г. 13:05:59 (MSK)
+// среда, 3 октября 2024 г. 09:43:06 (MSK)
 
-=======
-// пятница, 30 сентября 2024 г. 13:05:59 (MSK)
->>>>>>> d355e26f61010caf0d68e7dde55699df09792380
+
 /*
 	--- APRAKOS.BLOGSPOT.COM VERSION ---
 
-	СКРИПТ ВЫЧИСЛЕНИЯ ДАТЫ ПАСХИ ТЕКУЩЕГО ГОДА И РАЗНИЦЫ МЕЖДУ ДАТАМИ ПРАЗДНЕСТВ.
 	Разница – это количество седмиц, прошедших от Пасхи до текущего момента.
 	Подробное описание смотри в ./doc.
 
@@ -113,7 +109,7 @@ class OLY implements IOLY {
 	anchorElemID = "#11"
 	linkToAprakos: string
 	linkToHolydays?: string
-	linkToRedirect?: string  
+	linkToRedirect?: string
 	stateModalView = false
 	// userLoc: any
 
@@ -125,7 +121,7 @@ class OLY implements IOLY {
 		this.initWeeks()
 		this.correctorStupka()
 		this.linkToAprakos = "/" + this.yearMonthID() + ".html" // с учетом ступок
-		this.anchorElemID = "" + this.weeks.elemID[0]
+		this.anchorElemID = "" + this.weeks.evnglElemID[0]
 		this.linkToHolydays = this.holydays_9() ?? this.linkToAprakos
 		this.info()
 		this.initElementsDOM()
@@ -157,21 +153,21 @@ class OLY implements IOLY {
 	// TODO #12 a374ru  Расширить Пасхалию до 1900 года 
 
 	easterDates: { [key: string]: [number, number] } = {
-    2000: [3, 30],
-    2001: [3, 15],
-    2002: [4, 5],
-    2003: [3, 27],
-    2004: [3, 11],
-    2005: [4, 1],
-    2006: [3, 23],
-    2007: [3, 8],
-    2008: [3, 27],
-    2009: [3, 19],
-    2010: [3, 4],
-    2011: [3, 24],
-    2012: [3, 15],
-    2013: [4, 5],
-    2014: [3, 20],
+		2000: [3, 30],
+		2001: [3, 15],
+		2002: [4, 5],
+		2003: [3, 27],
+		2004: [3, 11],
+		2005: [4, 1],
+		2006: [3, 23],
+		2007: [3, 8],
+		2008: [3, 27],
+		2009: [3, 19],
+		2010: [3, 4],
+		2011: [3, 24],
+		2012: [3, 15],
+		2013: [4, 5],
+		2014: [3, 20],
 		2015: [3, 12],
 		2016: [4, 1],
 		2017: [3, 16],
@@ -370,7 +366,7 @@ class OLY implements IOLY {
 			"Прошедшая Пасха: " +
 			this.oldEaster.toString().slice(0, 15) +
 			"\n" +
-			"Ожидаемая Пасха: " +
+			"ОЖИДАЕМАЯ ПАСХА: " +
 			this.newEaster.toString().slice(0, 16)
 		);
 
@@ -398,16 +394,13 @@ class OLY implements IOLY {
 			"Протяженность ПБГ",
 		]);
 
-		// FIXME: @a374ru решена проблема с подсчетом текущей седмицы для метода `ceil`!!!
-		// смотри в проблемах – `a812023`
-
 		// Добавление миллисекунды к пользовательскому вводу для избежания целочисленного значения.
 		let addMLS = sessionStorage.getItem('userDate') ? 0.001 : 0
 		const current = (this.weeks["current"] = [
 			Math.ceil(
 				(this.theMomentTime.getTime() + addMLS - this.oldEasterMLS) / 864e5 / 7
 			),
-			
+
 			"Текущая седмица",
 		]);
 
@@ -418,16 +411,16 @@ class OLY implements IOLY {
 
 		const mif = (this.weeks["mif"] = [all[0] - 9, "Седмица МиФ по Пасхе"]);
 		const zakhey = (this.weeks["zakhey"] = [mif[0] - 1, "Седмица Закхея по Пасхе"]);
-    
+
 		const vozdvizgenie = (this.weeks["vozdvizgenie"] = [
 			Math.ceil(
 				(this.datesOLY.vozdvizgenieKresta[0].getTime() - this.oldEasterMLS) /
 				864e5 /
 				7
 			),
-			"Седмица Воздвижения",
+			"Седмица Воздвижения по Пятьдесятнице",
 		]);
-		let stupkaV = this.weeks["stupkaV"] = [ 
+		let stupkaV = this.weeks["stupkaV"] = [
 			Math.ceil(
 				(this.datesOLY.week24[0].getTime() - this.oldEasterMLS) / 864e5 / 7
 			) - vozdvizgenie[0],
@@ -435,8 +428,8 @@ class OLY implements IOLY {
 		];
 
 		let stupkaK = (this.weeks["stupkaK"] = [
-			all[0] - 50 - ( stupkaV[0] ),
-			"Крещенская ступка"
+			Math.abs(all[0] - 50 - (- stupkaV[0])),
+			"Крещенская отступка"
 		]);
 
 		this.correctorStupka()
@@ -459,7 +452,7 @@ class OLY implements IOLY {
 
 		// Вычисление даты для данного понедельника
 		let dateMonday = new Date(
-			this.datesOLY.vozdvizgenieKresta[0].getTime() + 864e5  * daysUntilMonday);	
+			this.datesOLY.vozdvizgenieKresta[0].getTime() + 864e5 * daysUntilMonday);
 		// console.log(`-=-=-=-=-=-=-=-=-\n\n Дней до понедельника:\n ${daysUntilMonday}`, dateMonday,"\n\n")
 
 		return this.theMomentTime >= dateMonday;
@@ -478,7 +471,7 @@ class OLY implements IOLY {
 			new Date(this.oldEaster.getFullYear() + "-09-27T00:00:00"),
 			"Воздвижение Креста Господня",
 		];
-		
+
 		this.datesOLY["zakhey"] = [
 			new Date(this.newEasterMLS - 864e5 * 77),
 			"Неделя Закхея",
@@ -508,7 +501,7 @@ class OLY implements IOLY {
 		// После Пасхи это 24 седмица и число 168 указывает на количество дней в 24 седмицах.
 		this.datesOLY["week24"] = [
 			new Date(this.oldEasterMLS + 864e5 * 168),
-			"17 седмица по Пятьдесятнице",
+			"17/24 седмица по Пасхе",
 		];
 
 		return this.datesOLY;
@@ -530,7 +523,7 @@ class OLY implements IOLY {
 			currentDate = new Date(String(sStorageDate))
 
 		}
-		else if (userYear != undefined && userYear[0] < 2100 && userYear[0] > 2016) {
+		else if (userYear != undefined && userYear[0] < 2100 && userYear[0] > 2001) {
 			// currentDate = new Date(userYear, Number(currentDate.getMonth()), Number(currentDate.getDate()))
 			currentDate = new Date(
 				userYear[0],
@@ -605,9 +598,10 @@ class OLY implements IOLY {
 	 */
 	yearMonthID() {
 		let otstupka = this.stupka();
-		const elemID = this.weeks.current[0] + this.stupka();
+		const evangelieElemID = this.weeks.current[0] - this.stupka();
+		const apostolElemID = this.weeks.current[0] > 40 ? this.weeks.current[0] - this.stupka() : this.weeks.current[0];
 		let aprID = Number(
-			"" + elemID + this.weeks.day[0]
+			"" + evangelieElemID + this.weeks.day[0]
 		); // конкатенация двух чисел
 		let partURL: string;
 		switch (true) {
@@ -658,8 +652,9 @@ class OLY implements IOLY {
 				partURL = "search/";
 				break;
 		}
-		this.weeks["aprID"] = [aprID, "Апракос-ID"];
-		this.weeks["elemID"] = [elemID, "Элемент-ID"]
+		this.weeks["aprID"] = [aprID, "Апракос-ID"]
+		this.weeks["evnglElemID"] = [evangelieElemID, "Элемент-ID Евангельского зачала"]
+		this.weeks["apstlElemID"] = [apostolElemID, "Элемент-ID Апостольского зачала"]
 		// this.weeks["partURL"] = [partURL, "Часть URL"]
 		return partURL;
 	}
@@ -682,7 +677,6 @@ class OLY implements IOLY {
 				stupka = 0;
 				break;
 		}
-
 		return stupka;
 	}
 
@@ -692,22 +686,24 @@ class OLY implements IOLY {
 	 * @returns number
 	 */
 	stupkaN(): number {
-		let stpka = 0;
-		if (this.weeks.current[0] >= this.weeks.mif[0]) {
+
+		let stpka = this.weeks.stupkaK[0] - this.weeks.stupkaV[0];
 		
-      // возвращаем число отступки для промежуточных седмиц
+		if (this.weeks.current[0] >= this.weeks.mif[0]) {
+			// возвращаем число отступки для промежуточных седмиц
 			return stpka;
 		}
 
-    if (this.weeks.current[0] < 40) {
-			stpka = this.weeks.stupkaV[0];
+		if (this.weeks.current[0] < 40) {
+			stpka = -this.weeks.stupkaV[0];
 		}
 
-    if (this.weeks.current[0] >= 40 && (this.weeks.current[0] < this.weeks.mif[0])){
-			stpka = this.weeks.stupkaK[0];
-    }
+		if (this.weeks.current[0] >= 40 && (this.weeks.current[0] < this.weeks.mif[0])) {
+			return stpka;
+		}
 		// FIXME -  нужны тесты во времени для проверки ступки до МиФ
-		return stpka;
+
+		return stpka
 	}
 
 	/**
@@ -727,8 +723,8 @@ class OLY implements IOLY {
 	 * @returns number
 	 */
 	stupkaK(): number {
-    // TODO @a374ru S:S Требуется добавить вычисление отступки для вычисления промежуточных седмиц!!! 
-    // смотри в проблемах a4012024 
+		// TODO @a374ru S:S Требуется добавить вычисление отступки для вычисления промежуточных седмиц!!! 
+		// смотри в проблемах a4012024 
 		return 0;
 	}
 
@@ -785,7 +781,7 @@ class OLY implements IOLY {
 
 		let str = `
         <section id="fp-content" class="fp-content">
-        <b>Читаемая седмица:</b>
+        <b>Седмица Евангелия: </b>
         <div id="modal-cweek">по Пасхе&nbsp; <span class="red bold">${this.anchorElemID},</span></div>
         <div id="modal-cweek50">по Пять&shy;десят&shy;нице <span class="red bold">${this.weeks.current[0] > 7 ? Number(this.anchorElemID) - 7 : "нет"}.</span>
         <div>${lastSegment === "stvol.html" ? commentStvol : ""}</div></div>
@@ -816,7 +812,7 @@ class OLY implements IOLY {
 	correctorStupka() {
 
 		this.weeks.stupkaV[1] = String(this.weeks.stupkaV[0] <= 0 ? "Воздвиженская отступка" : "Воздвиженская преступка")
-this.weeks.stupkaK[1] = this.weeks.stupkaK[0] < 0 ? "Крещенская отступка": "Крещенская преступка";
+		// this.weeks.stupkaK[1] = this.weeks.stupkaK[0] < 0 ? "Крещенская отступка": "Крещенская преступка";
 
 	}
 
@@ -840,25 +836,29 @@ this.weeks.stupkaK[1] = this.weeks.stupkaK[0] < 0 ? "Крещенская отс
 			curweek50: `${this.weeks.current[0] < 8 ? "*" : this.weeks.current[0] - 7}`,
 
 			// Гласс текущей седмицы
-			glass: "Глаc: " + this.glas(+this.weeks.current[0]),
+			glass: "Глаc: " + this.glas(+this.weeks.current[0])
 		};
 
-		for (const eid in elemsID) {
-			if (Object.prototype.hasOwnProperty.call(elemsID, eid)) {
-				// const element = mmm[element];
+		for (const atrubuteID in elemsID) {
+			if (Object.prototype.hasOwnProperty.call(elemsID, atrubuteID)) {
 
-				if (eid === "curweek" || eid === "curweek50") {
-					document.getElementById(eid)!.innerHTML = `<a href="#week${this.anchorElemID}">${elemsID[eid]}</a>`
+				if (atrubuteID === "curweek") {
+					document.getElementById(atrubuteID)!.innerHTML = `<a href="#week${this.weeks.apstlElemID[0]}">${elemsID[atrubuteID]}</a>`
+					// throw new ReferenceError(eid)
+				}
+
+				else if (atrubuteID === "curweek50") {
+					document.getElementById(atrubuteID)!.innerHTML = `<a href="#week${this.anchorElemID}">${elemsID[atrubuteID]}</a>`
 
 					// throw new ReferenceError(eid)
 				}
 
 				else {
-					document.getElementById(eid)!.innerHTML = elemsID[eid]
+					document.getElementById(atrubuteID)!.innerHTML = elemsID[atrubuteID]
 				}
 
-				if (eid == "glass") {
-					document.querySelector('#glass')!.innerHTML = elemsID[eid]
+				if (atrubuteID == "glass") {
+					document.querySelector('#glass')!.innerHTML = elemsID[atrubuteID]
 				}
 
 			}
@@ -869,9 +869,30 @@ this.weeks.stupkaK[1] = this.weeks.stupkaK[0] < 0 ? "Крещенская отс
 			document.getElementById("id50")?.remove()
 			// document.getElementById("id50")!.className += " hidden";
 		}
+
+
 		// выделение цветом блока текущей седмицы и  дня в ней
-		document.getElementById("week" + this.weeks.elemID[0])!.className += " colorBlock"
-		document.getElementById("weekday" + this.weeks.aprID[0])!.className += " seeddayON"
+
+		document.getElementById("weekday" + this.weeks.apstlElemID[0] + this.weeks.day[0])!.className += " apstl-day"
+        document.getElementById("weekday" + this.weeks.apstlElemID[0] + this.weeks.day[0])!.style.lineHeight = "3.5rem"
+		document.getElementById("week" + this.weeks.apstlElemID[0])!.className += " color-block-apstl-stupka"
+
+		if (this.weeks.evnglElemID[0] != this.weeks.apstlElemID[0]) {
+
+		document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.className += " evngl-day"
+		document.getElementById("week" + this.weeks.evnglElemID[0])!.className += " color-block-evngl-stupka"
+        document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.style.lineHeight = "3.5rem"
+
+		} else {
+
+		document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.className += " evngl-day"
+		document.getElementById("weekday" + this.weeks.aprID[0])!.className += " seedday-week-on"
+			}
+
+		if (this.weeks.evnglElemID[0] == 50){
+			document.querySelector("#week50")!.setAttribute("style","border: solid 4rem #fedede; background-color: #fedede;")
+		}
+
 	}
 
 	/**
@@ -945,7 +966,6 @@ this.weeks.stupkaK[1] = this.weeks.stupkaK[0] < 0 ? "Крещенская отс
 
 	//====================	end modalView	========================//
 
-
 	/** Метод первого показа модального окна при первой загрузке. */
 	firstViewModal() {
 		const aaa = localStorage.ystm
@@ -1014,12 +1034,12 @@ this.weeks.stupkaK[1] = this.weeks.stupkaK[0] < 0 ? "Крещенская отс
  */
 let apr = new OLY();
 
-/**  
+/**
 * [[include:namelist.md]]
 */
 // let NAMELIST: {}
 
-/**  
+/**
 * [[include:problems.md]]
 */
 // let PROBLEMS: {}
