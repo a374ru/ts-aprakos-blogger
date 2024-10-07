@@ -2485,8 +2485,6 @@
 		</span>
 	</p>
 
-	<!-- FIXME: stvol.html &#8212; конец редактирования ствола.  -->
-
 	<hr>
 	<p class="abzac apracos" style="padding: auto">
 		Конeцъ и3 бGу слaва.
