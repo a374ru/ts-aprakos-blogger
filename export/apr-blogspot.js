@@ -302,7 +302,7 @@ var OLY = (function () {
         if (sessionStorage.userDate != null && userYear == undefined) {
             currentDate = new Date(String(sStorageDate));
         }
-        else if (userYear != undefined && userYear[0] < 2100 && userYear[0] >= 199) {
+        else if (userYear != undefined && userYear[0] < 2100 && userYear[0] >= 1999) {
             currentDate = new Date(userYear[0], (_a = userYear[1]) !== null && _a !== void 0 ? _a : currentDate.getMonth(), Number((_b = userYear[2]) !== null && _b !== void 0 ? _b : currentDate.getDate()));
             sessionStorage.setItem('userDate', String(currentDate));
             location.reload();

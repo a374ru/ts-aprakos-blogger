@@ -536,7 +536,7 @@ class OLY implements IOLY {
             currentDate = new Date(String(sStorageDate))
 
         }
-        else if (userYear != undefined && userYear[0] < 2100 && userYear[0] >= 199) {
+        else if (userYear != undefined && userYear[0] < 2100 && userYear[0] >= 1999) {
             // currentDate = new Date(userYear, Number(currentDate.getMonth()), Number(currentDate.getDate()))
             currentDate = new Date(
                 userYear[0],
