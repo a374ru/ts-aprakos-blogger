@@ -363,10 +363,10 @@ class OLY implements IOLY {
         console.log(
             "\n" +
             "Прошедшая Пасха: " +
-            this.oldEaster.toString().slice(0, 15) +
+            this.oldEaster.toLocaleDateString() +
             "\n" +
             "ОЖИДАЕМАЯ ПАСХА: " +
-            this.newEaster.toString().slice(0, 16)
+            this.newEaster.toLocaleDateString()
         );
 
         this.oldEasterMLS = this.oldEaster.getTime();
@@ -462,6 +462,7 @@ class OLY implements IOLY {
      * @returns {object}
      */
     initDatesOLY(): {} {
+        // TODO: #26 Неправильное вычисление дат в 2011г. и менее 
         this.datesOLY["pentecost"] = [
             new Date(this.oldEasterMLS + 864e5 * 49),
             "Пятьдесятница",
@@ -470,7 +471,6 @@ class OLY implements IOLY {
             new Date(this.oldEaster.getFullYear() + "-09-27T00:00:00"),
             "Воздвижение Креста Господня",
         ];
-
         this.datesOLY["zakhey"] = [
             new Date(this.newEasterMLS - 864e5 * 77),
             "Неделя Закхея",
@@ -527,10 +527,10 @@ class OLY implements IOLY {
             currentDate = new Date(
                 userYear[0],
                 userYear[1] ?? currentDate.getMonth(),
-                Number(userYear[2] ?? currentDate.getDate())
+                Number(userYear[2] ?? currentDate.getDate()))
             );
             // Добавка секунды к пользовательскому вводу даты
-            sessionStorage.setItem('userDate', String(currentDate))
+            sessionStorage.setItem('userDate', String(currentDate)
 
 
         } else {
@@ -885,6 +885,9 @@ class OLY implements IOLY {
 
         document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.className += " evngl-day"
         document.getElementById("weekday" + this.weeks.aprID[0])!.className += " seedday-week-on"
+            document.getElementById("week" + this.weeks.apstlElemID[0])!.classList.remove("color-block-apstl-stupka");
+        document.getElementById("week" + this.weeks.apstlElemID[0])!.className += " color-block"
+
             }
 
         if (this.weeks.evnglElemID[0] == 50){
@@ -1040,4 +1043,4 @@ let apr = new OLY();
 /**
 * [[include:problems.md]]
 */
-// let PROBLEMS: {}
+// let PROBLEMS: {

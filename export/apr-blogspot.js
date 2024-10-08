@@ -118,6 +118,7 @@ var OLY = (function () {
             2098: [3, 27],
             2099: [3, 12],
             2100: [4, 2],
+            2101: [3, 24]
         };
         this.NINEHOLIDAYS = {
             rojdestvoBogorodici: {
@@ -202,10 +203,10 @@ var OLY = (function () {
         }
         console.log("\n" +
             "Прошедшая Пасха: " +
-            this.oldEaster.toString().slice(0, 15) +
+            this.oldEaster.toLocaleDateString() +
             "\n" +
             "ОЖИДАЕМАЯ ПАСХА: " +
-            this.newEaster.toString().slice(0, 16));
+            this.newEaster.toLocaleDateString());
         this.oldEasterMLS = this.oldEaster.getTime();
         this.newEasterMLS = this.newEaster.getTime();
         return true;
@@ -299,6 +300,7 @@ var OLY = (function () {
         }
         else if (userYear != undefined && userYear[0] < 2100 && userYear[0] > 2001) {
             currentDate = new Date(userYear[0], (_a = userYear[1]) !== null && _a !== void 0 ? _a : currentDate.getMonth(), Number((_b = userYear[2]) !== null && _b !== void 0 ? _b : currentDate.getDate()));
+            ;
             sessionStorage.setItem('userDate', String(currentDate));
         }
         else {
@@ -327,7 +329,7 @@ var OLY = (function () {
                 console.log(element[1] + " | " + element[0]);
             }
         }
-        console.warn("\n\u0421\u0435\u0433\u043E\u0434\u043D\u044F: ".concat(this.theMomentTime.toDateString(), "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u0410\u043F\u0440\u0430\u043A\u043E\u0441: https://aprakos.blogspot.com").concat(this.linkToAprakos, "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u043F\u0440\u0430\u0437\u0434\u043D\u0438\u043A: https://aprakos.blogspot.com").concat((_a = this.linkToHolydays) !== null && _a !== void 0 ? _a : "", "\n\u0421\u043F\u0440\u0430\u0432\u043A\u0430 \u0437\u0434\u0435\u0441\u044C: https://aprakos.blogspot.com/p/blog-page_4.html\n\t\t"));
+        console.warn("\n\u0421\u0435\u0433\u043E\u0434\u043D\u044F: ".concat(this.theMomentTime.toDateString(), "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u0410\u043F\u0440\u0430\u043A\u043E\u0441: https://aprakos.blogspot.com").concat(this.linkToAprakos, "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u043F\u0440\u0430\u0437\u0434\u043D\u0438\u043A: https://aprakos.blogspot.com").concat((_a = this.linkToHolydays) !== null && _a !== void 0 ? _a : "", "\n\u0421\u043F\u0440\u0430\u0432\u043A\u0430 \u0437\u0434\u0435\u0441\u044C: https://aprakos.blogspot.com/p/blog-page_4.html\n        "));
     };
     OLY.prototype.yearMonthID = function () {
         var otstupka = this.stupka();
@@ -508,6 +510,8 @@ var OLY = (function () {
         else {
             document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0]).className += " evngl-day";
             document.getElementById("weekday" + this.weeks.aprID[0]).className += " seedday-week-on";
+            document.getElementById("week" + this.weeks.apstlElemID[0]).classList.remove("color-block-apstl-stupka");
+            document.getElementById("week" + this.weeks.apstlElemID[0]).className += " color-block";
         }
         if (this.weeks.evnglElemID[0] == 50) {
             document.querySelector("#week50").setAttribute("style", "border: solid 4rem #fedede; background-color: #fedede;");
