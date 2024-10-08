@@ -527,11 +527,13 @@ class OLY implements IOLY {
             currentDate = new Date(
                 userYear[0],
                 userYear[1] ?? currentDate.getMonth(),
-                Number(userYear[2] ?? currentDate.getDate()))
+                Number(userYear[2] ?? currentDate.getDate())
             );
             // Добавка секунды к пользовательскому вводу даты
-            sessionStorage.setItem('userDate', String(currentDate)
+            sessionStorage.setItem('userDate', String(currentDate))
 
+            // здесь нужно перезагрузить страницу для очистки экземпляра `apr`
+            location.reload()
 
         } else {
             console.warn(
@@ -547,7 +549,7 @@ class OLY implements IOLY {
         ////////////////////////////////// FOR DEV… ////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////
 
-        if (currentDate.getDate() != this.theMomentTime.getDate()) {
+        if (currentDate != this.theMomentTime) {
             document.querySelector('#userdate')?.remove()
             document.querySelector('body')!.innerHTML +=
                 `<div id="userdate" class='userdate'><a id='a-visited-userdate' href="#" onclick="apr.deleteUserDateFromSessionStorage()">${currentDate.toLocaleDateString()}</a></div>`
