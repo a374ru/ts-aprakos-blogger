@@ -17,6 +17,8 @@ var OLY = (function () {
         ];
         this.weeks = {};
         this.easterDates = {
+            1998: [3, 19],
+            1999: [3, 11],
             2000: [3, 30],
             2001: [3, 15],
             2002: [4, 5],
@@ -212,7 +214,6 @@ var OLY = (function () {
             this.newEasterMLS = this.newEaster.getTime();
             return true;
         }
-        u;
     };
     OLY.prototype.initWeeks = function () {
         var day = (this.weeks["day"] = [
@@ -301,7 +302,7 @@ var OLY = (function () {
         if (sessionStorage.userDate != null && userYear == undefined) {
             currentDate = new Date(String(sStorageDate));
         }
-        else if (userYear != undefined && userYear[0] < 2100 && userYear[0] > 2001) {
+        else if (userYear != undefined && userYear[0] < 2100 && userYear[0] >= 199) {
             currentDate = new Date(userYear[0], (_a = userYear[1]) !== null && _a !== void 0 ? _a : currentDate.getMonth(), Number((_b = userYear[2]) !== null && _b !== void 0 ? _b : currentDate.getDate()));
             sessionStorage.setItem('userDate', String(currentDate));
             location.reload();

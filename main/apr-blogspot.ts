@@ -153,6 +153,8 @@ class OLY implements IOLY {
     // TODO Расширить Пасхалию до 1900 года 
 
     easterDates: { [key: string]: [number, number] } = {
+        1998: [3, 19],
+        1999: [3, 11],
         2000: [3, 30],
         2001: [3, 15],
         2002: [4, 5],
@@ -384,7 +386,7 @@ class OLY implements IOLY {
 * [[include:problems.md]]
 */
 // let PROBLEMS: {
-u
+
     }
 
     /**
@@ -534,7 +536,7 @@ u
             currentDate = new Date(String(sStorageDate))
 
         }
-        else if (userYear != undefined && userYear[0] < 2100 && userYear[0] > 2001) {
+        else if (userYear != undefined && userYear[0] < 2100 && userYear[0] >= 199) {
             // currentDate = new Date(userYear, Number(currentDate.getMonth()), Number(currentDate.getDate()))
             currentDate = new Date(
                 userYear[0],
