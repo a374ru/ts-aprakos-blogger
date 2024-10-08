@@ -1,6 +1,5 @@
 // вторник,  8 октября 2024 г. 13:20:49 (MSK)
 
-
 /*
     --- APRAKOS.BLOGSPOT.COM VERSION ---
 
@@ -326,65 +325,55 @@ class OLY implements IOLY {
     datesOLY: { [key: string]: [Date, string?] } = {};
 
     initOLY(): boolean {
-{
-        const yearNumber = this.theMomentTime.getFullYear();
-        if (
-            this.theMomentTime >=
-            new Date(Date.UTC(
-                this.theMomentTime.getFullYear(),
-                this.easterDates[yearNumber][0],
-                this.easterDates[yearNumber][1]
-           ) )
-        ) {
-            // Если Пасха была то она и будет oldEaster (это 1 часть ПБГ)
-            this.oldEaster = new Date(Date.UTC(
-                this.theMomentTime.getFullYear(),
-                this.easterDates[yearNumber][0],
-                this.easterDates[yearNumber][1]
-            ));
-            this.newEaster = new Date(Date.UTC(
-                this.theMomentTime.getFullYear() + 1,
-                this.easterDates[yearNumber + 1][0],
-                this.easterDates[yearNumber + 1][1]
-            ));
-        } else {
-            // Если Пасхи еще не было в текущем году (это 2 часть ПБГ)
-            this.oldEaster = new Date(Date.UTC(
-                this.theMomentTime.getFullYear() - 1,
-                this.easterDates[yearNumber - 1][0],
-                this.easterDates[yearNumber - 1][1]
-            ));
+        {
+            const yearNumber = this.theMomentTime.getFullYear();
+            if (
+                this.theMomentTime >=
+                new Date(Date.UTC(
+                    this.theMomentTime.getFullYear(),
+                    this.easterDates[yearNumber][0],
+                    this.easterDates[yearNumber][1]
+                ))
+            ) {
+                // Если Пасха была то она и будет oldEaster (это 1 часть ПБГ)
+                this.oldEaster = new Date(Date.UTC(
+                    this.theMomentTime.getFullYear(),
+                    this.easterDates[yearNumber][0],
+                    this.easterDates[yearNumber][1]
+                ));
+                this.newEaster = new Date(Date.UTC(
+                    this.theMomentTime.getFullYear() + 1,
+                    this.easterDates[yearNumber + 1][0],
+                    this.easterDates[yearNumber + 1][1]
+                ));
+            } else {
+                // Если Пасхи еще не было в текущем году (это 2 часть ПБГ)
+                this.oldEaster = new Date(Date.UTC(
+                    this.theMomentTime.getFullYear() - 1,
+                    this.easterDates[yearNumber - 1][0],
+                    this.easterDates[yearNumber - 1][1]
+                ));
 
-            this.newEaster = new Date(Date.UTC(
-                this.theMomentTime.getFullYear(),
-                this.easterDates[yearNumber][0],
-                this.easterDates[yearNumber][1]
-            ));
+                this.newEaster = new Date(Date.UTC(
+                    this.theMomentTime.getFullYear(),
+                    this.easterDates[yearNumber][0],
+                    this.easterDates[yearNumber][1]
+                ));
+            }
+            console.log(
+                "\n" +
+                "Прошедшая Пасха: " +
+                this.oldEaster.toLocaleDateString() +
+                "\n" +
+                "ОЖИДАЕМАЯ ПАСХА: " +
+                this.newEaster.toLocaleDateString()
+            );
+
+            this.oldEasterMLS = this.oldEaster.getTime();
+            this.newEasterMLS = this.newEaster.getTime();
+
+            return true;
         }
-        console.log(
-            "\n" +
-            "Прошедшая Пасха: " +
-            this.oldEaster.toLocaleDateString() +
-            "\n" +
-            "ОЖИДАЕМАЯ ПАСХА: " +
-            this.newEaster.toLocaleDateString()
-        );
-
-        this.oldEasterMLS = this.oldEaster.getTime();
-        this.newEasterMLS = this.newEaster.getTime();
-
-        return true;
-    }
-/**
-* [[include:namelist.md]]
-*/
-// let NAMELIST: {}
-
-/**
-* [[include:problems.md]]
-*/
-// let PROBLEMS: {
-u
     }
 
     /**
@@ -539,11 +528,10 @@ u
             currentDate = new Date(
                 userYear[0],
                 userYear[1] ?? currentDate.getMonth(),
-                Number(userYear[2] ?? currentDate.getDate()))
-            );
+                Number(userYear[2] ?? currentDate.getDate())
+            )
             // Добавка секунды к пользовательскому вводу даты
-            sessionStorage.setItem('userDate', String(currentDate)
-
+            sessionStorage.setItem('userDate', String(currentDate))
 
         } else {
             console.warn(
@@ -699,7 +687,7 @@ u
     stupkaN(): number {
 
         let stpka = this.weeks.stupkaK[0] - this.weeks.stupkaV[0];
-        
+
         if (this.weeks.current[0] >= this.weeks.mif[0]) {
             // возвращаем число отступки для промежуточных седмиц
             return stpka;
@@ -889,21 +877,21 @@ u
 
         if (this.weeks.evnglElemID[0] != this.weeks.apstlElemID[0]) {
 
-        document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.className += " evngl-day"
-        document.getElementById("week" + this.weeks.evnglElemID[0])!.className += " color-block-evngl-stupka"
-        document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.style.lineHeight = "3.5rem"
+            document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.className += " evngl-day"
+            document.getElementById("week" + this.weeks.evnglElemID[0])!.className += " color-block-evngl-stupka"
+            document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.style.lineHeight = "3.5rem"
 
         } else {
 
-        document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.className += " evngl-day"
-        document.getElementById("weekday" + this.weeks.aprID[0])!.className += " seedday-week-on"
+            document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.className += " evngl-day"
+            document.getElementById("weekday" + this.weeks.aprID[0])!.className += " seedday-week-on"
             document.getElementById("week" + this.weeks.apstlElemID[0])!.classList.remove("color-block-apstl-stupka");
-        document.getElementById("week" + this.weeks.apstlElemID[0])!.className += " color-block"
+            document.getElementById("week" + this.weeks.apstlElemID[0])!.className += " color-block"
 
-            }
+        }
 
-        if (this.weeks.evnglElemID[0] == 50){
-            document.querySelector("#week50")!.setAttribute("style","border: solid 4rem #fedede; background-color: #fedede;")
+        if (this.weeks.evnglElemID[0] == 50) {
+            document.querySelector("#week50")!.setAttribute("style", "border: solid 4rem #fedede; background-color: #fedede;")
         }
 
     }
