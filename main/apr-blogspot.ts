@@ -1,4 +1,4 @@
-// понедельник,  7 октября 2024 г. 16:28:53 (MSK)
+// вторник,  8 октября 2024 г. 13:20:49 (MSK)
 
 
 /*
@@ -326,39 +326,40 @@ class OLY implements IOLY {
     datesOLY: { [key: string]: [Date, string?] } = {};
 
     initOLY(): boolean {
+{
         const yearNumber = this.theMomentTime.getFullYear();
         if (
             this.theMomentTime >=
-            new Date(
+            new Date(Date.UTC(
                 this.theMomentTime.getFullYear(),
                 this.easterDates[yearNumber][0],
                 this.easterDates[yearNumber][1]
-            )
+           ) )
         ) {
             // Если Пасха была то она и будет oldEaster (это 1 часть ПБГ)
-            this.oldEaster = new Date(
+            this.oldEaster = new Date(Date.UTC(
                 this.theMomentTime.getFullYear(),
                 this.easterDates[yearNumber][0],
                 this.easterDates[yearNumber][1]
-            );
-            this.newEaster = new Date(
+            ));
+            this.newEaster = new Date(Date.UTC(
                 this.theMomentTime.getFullYear() + 1,
                 this.easterDates[yearNumber + 1][0],
                 this.easterDates[yearNumber + 1][1]
-            );
+            ));
         } else {
             // Если Пасхи еще не было в текущем году (это 2 часть ПБГ)
-            this.oldEaster = new Date(
+            this.oldEaster = new Date(Date.UTC(
                 this.theMomentTime.getFullYear() - 1,
                 this.easterDates[yearNumber - 1][0],
                 this.easterDates[yearNumber - 1][1]
-            );
+            ));
 
-            this.newEaster = new Date(
+            this.newEaster = new Date(Date.UTC(
                 this.theMomentTime.getFullYear(),
                 this.easterDates[yearNumber][0],
                 this.easterDates[yearNumber][1]
-            );
+            ));
         }
         console.log(
             "\n" +
@@ -373,6 +374,17 @@ class OLY implements IOLY {
         this.newEasterMLS = this.newEaster.getTime();
 
         return true;
+    }
+/**
+* [[include:namelist.md]]
+*/
+// let NAMELIST: {}
+
+/**
+* [[include:problems.md]]
+*/
+// let PROBLEMS: {
+u
     }
 
     /**

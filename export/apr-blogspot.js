@@ -191,25 +191,28 @@ var OLY = (function () {
         this.eventKeys();
     }
     OLY.prototype.initOLY = function () {
-        var yearNumber = this.theMomentTime.getFullYear();
-        if (this.theMomentTime >=
-            new Date(this.theMomentTime.getFullYear(), this.easterDates[yearNumber][0], this.easterDates[yearNumber][1])) {
-            this.oldEaster = new Date(this.theMomentTime.getFullYear(), this.easterDates[yearNumber][0], this.easterDates[yearNumber][1]);
-            this.newEaster = new Date(this.theMomentTime.getFullYear() + 1, this.easterDates[yearNumber + 1][0], this.easterDates[yearNumber + 1][1]);
+        {
+            var yearNumber = this.theMomentTime.getFullYear();
+            if (this.theMomentTime >=
+                new Date(Date.UTC(this.theMomentTime.getFullYear(), this.easterDates[yearNumber][0], this.easterDates[yearNumber][1]))) {
+                this.oldEaster = new Date(Date.UTC(this.theMomentTime.getFullYear(), this.easterDates[yearNumber][0], this.easterDates[yearNumber][1]));
+                this.newEaster = new Date(Date.UTC(this.theMomentTime.getFullYear() + 1, this.easterDates[yearNumber + 1][0], this.easterDates[yearNumber + 1][1]));
+            }
+            else {
+                this.oldEaster = new Date(Date.UTC(this.theMomentTime.getFullYear() - 1, this.easterDates[yearNumber - 1][0], this.easterDates[yearNumber - 1][1]));
+                this.newEaster = new Date(Date.UTC(this.theMomentTime.getFullYear(), this.easterDates[yearNumber][0], this.easterDates[yearNumber][1]));
+            }
+            console.log("\n" +
+                "Прошедшая Пасха: " +
+                this.oldEaster.toLocaleDateString() +
+                "\n" +
+                "ОЖИДАЕМАЯ ПАСХА: " +
+                this.newEaster.toLocaleDateString());
+            this.oldEasterMLS = this.oldEaster.getTime();
+            this.newEasterMLS = this.newEaster.getTime();
+            return true;
         }
-        else {
-            this.oldEaster = new Date(this.theMomentTime.getFullYear() - 1, this.easterDates[yearNumber - 1][0], this.easterDates[yearNumber - 1][1]);
-            this.newEaster = new Date(this.theMomentTime.getFullYear(), this.easterDates[yearNumber][0], this.easterDates[yearNumber][1]);
-        }
-        console.log("\n" +
-            "Прошедшая Пасха: " +
-            this.oldEaster.toLocaleDateString() +
-            "\n" +
-            "ОЖИДАЕМАЯ ПАСХА: " +
-            this.newEaster.toLocaleDateString());
-        this.oldEasterMLS = this.oldEaster.getTime();
-        this.newEasterMLS = this.newEaster.getTime();
-        return true;
+        u;
     };
     OLY.prototype.initWeeks = function () {
         var day = (this.weeks["day"] = [
