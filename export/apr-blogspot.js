@@ -237,7 +237,7 @@ var OLY = (function () {
         var vozdvizgenie = (this.weeks["vozdvizgenie"] = [
             Math.ceil((this.datesOLY.vozdvizgenieKresta[0].getTime() - this.oldEasterMLS) /
                 864e5 /
-                7),
+                7 - 6),
             "Седмица Воздвижения по Пятьдесятнице",
         ]);
         var stupkaV = this.weeks["stupkaV"] = [

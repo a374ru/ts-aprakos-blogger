@@ -1,14 +1,10 @@
-// вторник,  8 октября 2024 г. 13:20:49 (MSK)
+// среда,  9 октября 2024 г. 10:43:40 (MSK)
 
 /*
     --- APRAKOS.BLOGSPOT.COM VERSION ---
-
-    Разница – это количество седмиц, прошедших от Пасхи до текущего момента.
-    Подробное описание смотри в ./doc.
-
 */
 
-// var url = "https://" + location.host + "/currentday/APRAKOS/";
+// var url = "https://" + location.host + "/currentday/APRAKOS/". Также указано до какого дня их читать, или с какого дня начинать читать определённые начало.;
 
 interface IOLY {
     /**
@@ -428,7 +424,7 @@ class OLY implements IOLY {
             Math.ceil(
                 (this.datesOLY.vozdvizgenieKresta[0].getTime() - this.oldEasterMLS) /
                 864e5 /
-                7
+                7 - 6 
             ),
             "Седмица Воздвижения по Пятьдесятнице",
         ]);
