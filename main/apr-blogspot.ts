@@ -114,7 +114,6 @@ class OLY implements IOLY {
         this.initOLY()
         this.initDatesOLY()
         this.initWeeks()
-        this.correctorStupka()
         this.linkToAprakos = "/" + this.yearMonthID() + ".html" // с учетом ступок
         this.anchorElemID = "" + this.weeks.evnglElemID[0]
         this.linkToHolydays = this.holydays_9() ?? this.linkToAprakos
@@ -403,10 +402,12 @@ class OLY implements IOLY {
         ]);
 
         // Добавление миллисекунды к пользовательскому вводу для избежания целочисленного значения.
-        let addMLS = sessionStorage.getItem('userDate') ? 0.001 : 0
+        // let addMLS = sessionStorage.getItem('userDate') ? 0.001 : 0
+
         const current = (this.weeks["current"] = [
             Math.ceil(
-                (this.theMomentTime.getTime() + addMLS - this.oldEasterMLS) / 864e5 / 7
+                (this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 6.99
+
             ),
 
             "Текущая седмица",
@@ -424,9 +425,9 @@ class OLY implements IOLY {
             Math.ceil(
                 (this.datesOLY.vozdvizgenieKresta[0].getTime() - this.oldEasterMLS) /
                 864e5 /
-                7 - 6 
+                7
             ),
-            "Седмица Воздвижения по Пятьдесятнице",
+            "Седмица Воздвижения по Пасхе",
         ]);
         let stupkaV = this.weeks["stupkaV"] = [
             Math.ceil(
@@ -528,18 +529,18 @@ class OLY implements IOLY {
         let sStorageDate = sessionStorage.getItem('userDate')
         if (sessionStorage.userDate != null && userYear == undefined) {
 
-            currentDate = new Date(String(sStorageDate))
+            currentDate = new Date(Number(sessionStorage.getItem('userDate')))
 
         }
         else if (userYear != undefined && userYear[0] < 2100 && userYear[0] >= 1999) {
             // currentDate = new Date(userYear, Number(currentDate.getMonth()), Number(currentDate.getDate()))
-            currentDate = new Date(
+            currentDate = new Date(Date.UTC(
                 userYear[0],
                 userYear[1] ?? currentDate.getMonth(),
                 Number(userYear[2] ?? currentDate.getDate())
-            );
+            ));
             // Добавка секунды к пользовательскому вводу даты
-            sessionStorage.setItem('userDate', String(currentDate))
+            sessionStorage.setItem('userDate', String(currentDate.getTime()))
 
             // здесь нужно перезагрузить страницу для очистки экземпляра `apr`
             location.reload()
@@ -547,7 +548,7 @@ class OLY implements IOLY {
         } else {
             console.warn(
                 `${userYear
-                    ? "Формат введенный пользователем не подходит… попробуйте ([2099,00,7])"
+                    ? "Формат введенный пользователем не подходит… попробуйте ([2099,0,7])"
                     : "Год пользователем не предоставлен…"
                 }.\nБудет использован текущий год.\nСПАСИБО ЗА ВНИМАНИЕ!`
             );
@@ -701,17 +702,17 @@ class OLY implements IOLY {
         
         if (this.weeks.current[0] >= this.weeks.mif[0]) {
             // возвращаем число отступки для промежуточных седмиц
-            return stpka;
+            return 0;
         }
 
-        if (this.weeks.current[0] < 40) {
+        if (this.weeks.current[0] < this.weeks.mif[0] - this.weeks.stupkaV[0]) {
             stpka = -this.weeks.stupkaV[0];
         }
 
-        if (this.weeks.current[0] >= 40 && (this.weeks.current[0] < this.weeks.mif[0])) {
-            return stpka;
+        if (this.weeks.current[0] >= this.weeks.mif[0] - this.weeks.stupkaV[0] && (this.weeks.current[0] < this.weeks.mif[0])) {
+        // S:S -  нужны тесты во времени для проверки ступки до МиФ
+            return stpka; 
         }
-        // FIXME -  нужны тесты во времени для проверки ступки до МиФ
 
         return stpka
     }
