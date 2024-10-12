@@ -334,7 +334,7 @@ var OLY = (function () {
         console.warn("\n\u0421\u0435\u0433\u043E\u0434\u043D\u044F: ".concat(this.theMomentTime.toDateString(), "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u0410\u043F\u0440\u0430\u043A\u043E\u0441: https://aprakos.blogspot.com").concat(this.linkToAprakos, "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u043F\u0440\u0430\u0437\u0434\u043D\u0438\u043A: https://aprakos.blogspot.com").concat((_a = this.linkToHolydays) !== null && _a !== void 0 ? _a : "", "\n\u0421\u043F\u0440\u0430\u0432\u043A\u0430 \u0437\u0434\u0435\u0441\u044C: https://aprakos.blogspot.com/p/blog-page_4.html\n        "));
     };
     OLY.prototype.yearMonthID = function () {
-        var apostolElemID = this.weeks.current[0];
+        var apostolElemID = (this.weeks.current[0] > 40 && this.weeks.current[0] < 46) ? this.weeks.current[0] + this.stupka() : this.weeks.current[0];
         var evangelieElemID = this.weeks.current[0] + this.stupka();
         var aprID = Number("" + evangelieElemID + this.weeks.day[0]);
         var partURL;

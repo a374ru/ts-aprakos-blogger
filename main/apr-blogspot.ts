@@ -608,7 +608,7 @@ class OLY implements IOLY {
      * @returns string
      */
     yearMonthID() {
-        var apostolElemID = this.weeks.current[0]
+        var apostolElemID = (this.weeks.current[0] > 40 && this.weeks.current[0] < 46) ? this.weeks.current[0] + this.stupka() : this.weeks.current[0]
         var evangelieElemID = this.weeks.current[0] + this.stupka()
         let aprID = Number(
             "" + evangelieElemID + this.weeks.day[0]
