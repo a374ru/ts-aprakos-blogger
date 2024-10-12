@@ -3,7 +3,7 @@ var OLY = (function () {
     function OLY(year) {
         var _a;
         this.year = year;
-        this.theMomentTime = new Date(2024, 4, 5);
+        this.theMomentTime = new Date();
         this.anchorElemID = "#11";
         this.stateModalView = false;
         this.arrayDaysRu = [
@@ -224,7 +224,7 @@ var OLY = (function () {
             "Протяженность ПБГ",
         ]);
         var current = (this.weeks["current"] = [
-            Math.ceil((this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 6.99),
+            Math.ceil((this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 6.9),
             "Текущая седмица",
         ]);
         if (current[0] == 0) {
@@ -334,9 +334,8 @@ var OLY = (function () {
         console.warn("\n\u0421\u0435\u0433\u043E\u0434\u043D\u044F: ".concat(this.theMomentTime.toDateString(), "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u0410\u043F\u0440\u0430\u043A\u043E\u0441: https://aprakos.blogspot.com").concat(this.linkToAprakos, "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u043F\u0440\u0430\u0437\u0434\u043D\u0438\u043A: https://aprakos.blogspot.com").concat((_a = this.linkToHolydays) !== null && _a !== void 0 ? _a : "", "\n\u0421\u043F\u0440\u0430\u0432\u043A\u0430 \u0437\u0434\u0435\u0441\u044C: https://aprakos.blogspot.com/p/blog-page_4.html\n        "));
     };
     OLY.prototype.yearMonthID = function () {
-        var otstupka = this.stupka();
-        var apostolElemID = this.weeks.current[0] < this.weeks.mif[0] ? this.weeks.current[0] : this.weeks.current[0];
-        var evangelieElemID = this.weeks.current[0] < this.weeks.mif[0] ? this.weeks.current[0] - otstupka + this.weeks.stupkaV[0] : this.weeks.current[0];
+        var apostolElemID = this.weeks.current[0];
+        var evangelieElemID = this.weeks.current[0] + this.stupka();
         var aprID = Number("" + evangelieElemID + this.weeks.day[0]);
         var partURL;
         switch (true) {
@@ -407,19 +406,25 @@ var OLY = (function () {
         return stupka;
     };
     OLY.prototype.stupkaN = function () {
-        var stpka = this.weeks.stupkaK[0] - this.weeks.stupkaV[0];
         if (this.weeks.current[0] >= this.weeks.mif[0]) {
             return 0;
         }
         if (this.weeks.current[0] < this.weeks.mif[0]) {
-            return stpka;
+            var stepStupka = this.weeks.current[0] + this.weeks.stupkaV[0];
+            var per = -this.weeks.stupkaK[0] + this.weeks.stupkaV[0];
+            if (stepStupka > 39 && stepStupka < 46) {
+                return per;
+            }
+            return this.weeks.stupkaV[0];
         }
         if (this.weeks.current[0] >= this.weeks.mif[0] - this.weeks.stupkaV[0] && (this.weeks.current[0] < this.weeks.mif[0])) {
-            return stpka;
+            return this.weeks.stupkaK[0] - this.weeks.stupkaV[0];
+            ;
         }
-        return stpka;
+        return 0;
     };
     OLY.prototype.stupkaVozdvizjenia = function (week) {
+        this.weeks.evnglElemID = this.weeks.apstlElemID;
         return 0;
     };
     OLY.prototype.stupkaK = function () {
@@ -488,7 +493,7 @@ var OLY = (function () {
                     document.getElementById(atrubuteID).innerHTML = "<a href=\"#week".concat(this.weeks.apstlElemID[0], "\">").concat(elemsID[atrubuteID], "</a>");
                 }
                 else if (atrubuteID === "curweek50") {
-                    document.getElementById(atrubuteID).innerHTML = "<a href=\"#week".concat(this.anchorElemID, "\">").concat(elemsID[atrubuteID], "</a>");
+                    document.getElementById(atrubuteID).innerHTML = "<a href=\"#week".concat(this.weeks.evnglElemID[0], "\">").concat(elemsID[atrubuteID], "</a>");
                 }
                 else {
                     document.getElementById(atrubuteID).innerHTML = elemsID[atrubuteID];

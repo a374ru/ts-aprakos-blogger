@@ -96,7 +96,7 @@ interface IOLY {
 
 class OLY implements IOLY {
 
-    theMomentTime = new Date(2024,4,5);
+    theMomentTime = new Date();
     oldEaster: any
     newEaster: any
     oldEasterMLS: any
@@ -322,64 +322,64 @@ class OLY implements IOLY {
     datesOLY: { [key: string]: [Date, string?] } = {};
 
     initOLY(): boolean {
-{
-        const yearNumber = this.theMomentTime.getFullYear();
-        if (
-            this.theMomentTime >=
-            new Date(Date.UTC(
-                this.theMomentTime.getFullYear(),
-                this.easterDates[yearNumber][0],
-                this.easterDates[yearNumber][1]
-           ) )
-        ) {
-            // Если Пасха была то она и будет oldEaster (это 1 часть ПБГ)
-            this.oldEaster = new Date(Date.UTC(
-                this.theMomentTime.getFullYear(),
-                this.easterDates[yearNumber][0],
-                this.easterDates[yearNumber][1]
-            ));
-            this.newEaster = new Date(Date.UTC(
-                this.theMomentTime.getFullYear() + 1,
-                this.easterDates[yearNumber + 1][0],
-                this.easterDates[yearNumber + 1][1]
-            ));
-        } else {
-            // Если Пасхи еще не было в текущем году (это 2 часть ПБГ)
-            this.oldEaster = new Date(Date.UTC(
-                this.theMomentTime.getFullYear() - 1,
-                this.easterDates[yearNumber - 1][0],
-                this.easterDates[yearNumber - 1][1]
-            ));
+        {
+            const yearNumber = this.theMomentTime.getFullYear();
+            if (
+                this.theMomentTime >=
+                new Date(Date.UTC(
+                    this.theMomentTime.getFullYear(),
+                    this.easterDates[yearNumber][0],
+                    this.easterDates[yearNumber][1]
+                ))
+            ) {
+                // Если Пасха была то она и будет oldEaster (это 1 часть ПБГ)
+                this.oldEaster = new Date(Date.UTC(
+                    this.theMomentTime.getFullYear(),
+                    this.easterDates[yearNumber][0],
+                    this.easterDates[yearNumber][1]
+                ));
+                this.newEaster = new Date(Date.UTC(
+                    this.theMomentTime.getFullYear() + 1,
+                    this.easterDates[yearNumber + 1][0],
+                    this.easterDates[yearNumber + 1][1]
+                ));
+            } else {
+                // Если Пасхи еще не было в текущем году (это 2 часть ПБГ)
+                this.oldEaster = new Date(Date.UTC(
+                    this.theMomentTime.getFullYear() - 1,
+                    this.easterDates[yearNumber - 1][0],
+                    this.easterDates[yearNumber - 1][1]
+                ));
 
-            this.newEaster = new Date(Date.UTC(
-                this.theMomentTime.getFullYear(),
-                this.easterDates[yearNumber][0],
-                this.easterDates[yearNumber][1]
-            ));
+                this.newEaster = new Date(Date.UTC(
+                    this.theMomentTime.getFullYear(),
+                    this.easterDates[yearNumber][0],
+                    this.easterDates[yearNumber][1]
+                ));
+            }
+            console.log(
+                "\n" +
+                "Прошедшая Пасха: " +
+                this.oldEaster.toLocaleDateString() +
+                "\n" +
+                "ОЖИДАЕМАЯ ПАСХА: " +
+                this.newEaster.toLocaleDateString()
+            );
+
+            this.oldEasterMLS = this.oldEaster.getTime();
+            this.newEasterMLS = this.newEaster.getTime();
+
+            return true;
         }
-        console.log(
-            "\n" +
-            "Прошедшая Пасха: " +
-            this.oldEaster.toLocaleDateString() +
-            "\n" +
-            "ОЖИДАЕМАЯ ПАСХА: " +
-            this.newEaster.toLocaleDateString()
-        );
+        /**
+        * [[include:namelist.md]]
+        */
+        // let NAMELIST: {}
 
-        this.oldEasterMLS = this.oldEaster.getTime();
-        this.newEasterMLS = this.newEaster.getTime();
-
-        return true;
-    }
-/**
-* [[include:namelist.md]]
-*/
-// let NAMELIST: {}
-
-/**
-* [[include:problems.md]]
-*/
-// let PROBLEMS: {
+        /**
+        * [[include:problems.md]]
+        */
+        // let PROBLEMS: {
 
     }
 
@@ -406,7 +406,7 @@ class OLY implements IOLY {
 
         const current = (this.weeks["current"] = [
             Math.ceil(
-                (this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 6.99
+                (this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 6.9
 
             ),
 
@@ -463,7 +463,7 @@ class OLY implements IOLY {
         let dateMonday = new Date(
             this.datesOLY.vozdvizgenieKresta[0].getTime() + 864e5 * daysUntilMonday);
         // console.log(`-=-=-=-=-=-=-=-=-\n\n Дней до понедельника:\n ${daysUntilMonday}`, dateMonday,"\n\n")
-//  FIXME: #31 @374ru FLOAT YEARS В данном месте сравнивются дата понедельника по воздвижении системной датой. Требуется сравнение с понедельником ПБГ.
+        //  FIXME: #31 @374ru FLOAT YEARS В данном месте сравнивются дата понедельника по воздвижении системной датой. Требуется сравнение с понедельником ПБГ.
         return this.theMomentTime >= dateMonday;
     }
 
@@ -472,7 +472,7 @@ class OLY implements IOLY {
      * @returns {object}
      */
     initDatesOLY(): {} {
-    // DONE: #26 Неправильное вычисление дат в 2011г. и менее 
+        // DONE: #26 Неправильное вычисление дат в 2011г. и менее 
         this.datesOLY["pentecost"] = [
             new Date(this.oldEasterMLS + 864e5 * 49),
             "Пятьдесятница",
@@ -608,9 +608,8 @@ class OLY implements IOLY {
      * @returns string
      */
     yearMonthID() {
-        let otstupka = this.stupka();
-       var apostolElemID = this.weeks.current[0] < this.weeks.mif[0] ? this.weeks.current[0]  : this.weeks.current[0];
-        var evangelieElemID = this.weeks.current[0] < this.weeks.mif[0] ? this.weeks.current[0] - otstupka + this.weeks.stupkaV[0] : this.weeks.current[0]  
+        var apostolElemID = this.weeks.current[0]
+        var evangelieElemID = this.weeks.current[0] + this.stupka()
         let aprID = Number(
             "" + evangelieElemID + this.weeks.day[0]
         ); // конкатенация двух чисел
@@ -698,17 +697,24 @@ class OLY implements IOLY {
      * @returns number
      */
     stupkaN(): number {
-        var stpka = this.weeks.stupkaK[0] - this.weeks.stupkaV[0];
         if (this.weeks.current[0] >= this.weeks.mif[0]) {
             return 0;
         }
         if (this.weeks.current[0] < this.weeks.mif[0]) {
-            return stpka;
+
+            var stepStupka = this.weeks.current[0] + this.weeks.stupkaV[0]
+            var per = -this.weeks.stupkaK[0] + this.weeks.stupkaV[0]
+
+            // этот if проверяет и нормализует отступку, которая возникают при Воздвиженской преступке Евангелия.
+            if (stepStupka > 39 && stepStupka < 46) {
+                return per
+            }
+            return this.weeks.stupkaV[0]
         }
         if (this.weeks.current[0] >= this.weeks.mif[0] - this.weeks.stupkaV[0] && (this.weeks.current[0] < this.weeks.mif[0])) {
-            return stpka;
+            return this.weeks.stupkaK[0] - this.weeks.stupkaV[0];;
         }
-        return stpka;
+        return 0
     }
 
     /**
@@ -719,6 +725,7 @@ class OLY implements IOLY {
      * @returns
      */
     stupkaVozdvizjenia(week?: number) {
+        this.weeks.evnglElemID = this.weeks.apstlElemID
         return 0;
     }
 
@@ -852,7 +859,7 @@ class OLY implements IOLY {
                 }
 
                 else if (atrubuteID === "curweek50") {
-                    document.getElementById(atrubuteID)!.innerHTML = `<a href="#week${this.anchorElemID}">${elemsID[atrubuteID]}</a>`
+                    document.getElementById(atrubuteID)!.innerHTML = `<a href="#week${this.weeks.evnglElemID[0]}">${elemsID[atrubuteID]}</a>`
 
                     // throw new ReferenceError(eid)
                 }
@@ -883,21 +890,21 @@ class OLY implements IOLY {
 
         if (this.weeks.evnglElemID[0] != this.weeks.apstlElemID[0]) {
 
-        document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.className += " evngl-day"
-        document.getElementById("week" + this.weeks.evnglElemID[0])!.className += " color-block-evngl-stupka"
-        document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.style.lineHeight = "3.5rem"
+            document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.className += " evngl-day"
+            document.getElementById("week" + this.weeks.evnglElemID[0])!.className += " color-block-evngl-stupka"
+            document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.style.lineHeight = "3.5rem"
 
         } else {
 
-        document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.className += " evngl-day"
-        document.getElementById("weekday" + this.weeks.aprID[0])!.className += " seedday-week-on"
+            document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0])!.className += " evngl-day"
+            document.getElementById("weekday" + this.weeks.aprID[0])!.className += " seedday-week-on"
             document.getElementById("week" + this.weeks.apstlElemID[0])!.classList.remove("color-block-apstl-stupka");
-        document.getElementById("week" + this.weeks.apstlElemID[0])!.className += " color-block"
+            document.getElementById("week" + this.weeks.apstlElemID[0])!.className += " color-block"
 
-            }
+        }
 
-        if (this.weeks.evnglElemID[0] == 50){
-            document.querySelector("#week50")!.setAttribute("style","border: solid 4rem #fedede; background-color: #fedede;")
+        if (this.weeks.evnglElemID[0] == 50) {
+            document.querySelector("#week50")!.setAttribute("style", "border: solid 4rem #fedede; background-color: #fedede;")
         }
 
     }
