@@ -1,4 +1,4 @@
-// среда,  9 октября 2024 г. 10:43:40 (MSK)
+// среда,  10 октября 2024 г. 10:43:40 (MSK)
 
 /*
     --- APRAKOS.BLOGSPOT.COM VERSION ---
@@ -96,7 +96,7 @@ interface IOLY {
 
 class OLY implements IOLY {
 
-    theMomentTime = new Date();
+    theMomentTime = new Date(2024,4,5);
     oldEaster: any
     newEaster: any
     oldEasterMLS: any
@@ -463,7 +463,7 @@ class OLY implements IOLY {
         let dateMonday = new Date(
             this.datesOLY.vozdvizgenieKresta[0].getTime() + 864e5 * daysUntilMonday);
         // console.log(`-=-=-=-=-=-=-=-=-\n\n Дней до понедельника:\n ${daysUntilMonday}`, dateMonday,"\n\n")
-
+//  FIXME: #31 @374ru FLOAT YEARS В данном месте сравнивются дата понедельника по воздвижении системной датой. Требуется сравнение с понедельником ПБГ.
         return this.theMomentTime >= dateMonday;
     }
 
@@ -472,7 +472,7 @@ class OLY implements IOLY {
      * @returns {object}
      */
     initDatesOLY(): {} {
-        // TODO: #26 Неправильное вычисление дат в 2011г. и менее 
+    // DONE: #26 Неправильное вычисление дат в 2011г. и менее 
         this.datesOLY["pentecost"] = [
             new Date(this.oldEasterMLS + 864e5 * 49),
             "Пятьдесятница",
@@ -609,11 +609,12 @@ class OLY implements IOLY {
      */
     yearMonthID() {
         let otstupka = this.stupka();
-        const evangelieElemID = this.weeks.current[0] - this.stupka();
-        const apostolElemID = this.weeks.current[0] > 40 ? this.weeks.current[0] - this.stupka() : this.weeks.current[0];
+       var apostolElemID = this.weeks.current[0] < this.weeks.mif[0] ? this.weeks.current[0]  : this.weeks.current[0];
+        var evangelieElemID = this.weeks.current[0] < this.weeks.mif[0] ? this.weeks.current[0] - otstupka + this.weeks.stupkaV[0] : this.weeks.current[0]  
         let aprID = Number(
             "" + evangelieElemID + this.weeks.day[0]
         ); // конкатенация двух чисел
+
         let partURL: string;
         switch (true) {
             case aprID <= 25:
@@ -697,24 +698,17 @@ class OLY implements IOLY {
      * @returns number
      */
     stupkaN(): number {
-
-        let stpka = this.weeks.stupkaK[0] - this.weeks.stupkaV[0];
-        
+        var stpka = this.weeks.stupkaK[0] - this.weeks.stupkaV[0];
         if (this.weeks.current[0] >= this.weeks.mif[0]) {
-            // возвращаем число отступки для промежуточных седмиц
             return 0;
         }
-
-        if (this.weeks.current[0] < this.weeks.mif[0] - this.weeks.stupkaV[0]) {
-            stpka = -this.weeks.stupkaV[0];
+        if (this.weeks.current[0] < this.weeks.mif[0]) {
+            return stpka;
         }
-
         if (this.weeks.current[0] >= this.weeks.mif[0] - this.weeks.stupkaV[0] && (this.weeks.current[0] < this.weeks.mif[0])) {
-        // S:S -  нужны тесты во времени для проверки ступки до МиФ
-            return stpka; 
+            return stpka;
         }
-
-        return stpka
+        return stpka;
     }
 
     /**

@@ -3,7 +3,7 @@ var OLY = (function () {
     function OLY(year) {
         var _a;
         this.year = year;
-        this.theMomentTime = new Date();
+        this.theMomentTime = new Date(2024, 4, 5);
         this.anchorElemID = "#11";
         this.stateModalView = false;
         this.arrayDaysRu = [
@@ -335,8 +335,8 @@ var OLY = (function () {
     };
     OLY.prototype.yearMonthID = function () {
         var otstupka = this.stupka();
-        var evangelieElemID = this.weeks.current[0] - this.stupka();
-        var apostolElemID = this.weeks.current[0] > 40 ? this.weeks.current[0] - this.stupka() : this.weeks.current[0];
+        var apostolElemID = this.weeks.current[0] < this.weeks.mif[0] ? this.weeks.current[0] : this.weeks.current[0];
+        var evangelieElemID = this.weeks.current[0] < this.weeks.mif[0] ? this.weeks.current[0] - otstupka + this.weeks.stupkaV[0] : this.weeks.current[0];
         var aprID = Number("" + evangelieElemID + this.weeks.day[0]);
         var partURL;
         switch (true) {
@@ -411,8 +411,8 @@ var OLY = (function () {
         if (this.weeks.current[0] >= this.weeks.mif[0]) {
             return 0;
         }
-        if (this.weeks.current[0] < this.weeks.mif[0] - this.weeks.stupkaV[0]) {
-            stpka = -this.weeks.stupkaV[0];
+        if (this.weeks.current[0] < this.weeks.mif[0]) {
+            return stpka;
         }
         if (this.weeks.current[0] >= this.weeks.mif[0] - this.weeks.stupkaV[0] && (this.weeks.current[0] < this.weeks.mif[0])) {
             return stpka;
