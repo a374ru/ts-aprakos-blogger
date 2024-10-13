@@ -608,7 +608,7 @@ class OLY implements IOLY {
      * @returns string
      */
     yearMonthID() {
-        var apostolElemID = (this.weeks.current[0] > 40 && this.weeks.current[0] < 46) ? this.weeks.current[0] + this.stupka() : this.weeks.current[0]
+        var apostolElemID = (this.weeks.current[0] > 40) ? this.weeks.current[0] + this.stupka() : this.weeks.current[0]
         var evangelieElemID = this.weeks.current[0] + this.stupka()
         let aprID = Number(
             "" + evangelieElemID + this.weeks.day[0]
@@ -698,7 +698,7 @@ class OLY implements IOLY {
      */
     stupkaN(): number {
         if (this.weeks.current[0] >= this.weeks.mif[0]) {
-            return 0;
+            return -(this.weeks.stupkaK[0] - this.weeks.stupkaV[0])
         }
         if (this.weeks.current[0] < this.weeks.mif[0]) {
 
@@ -711,9 +711,9 @@ class OLY implements IOLY {
             }
             return this.weeks.stupkaV[0]
         }
-        if (this.weeks.current[0] >= this.weeks.mif[0] - this.weeks.stupkaV[0] && (this.weeks.current[0] < this.weeks.mif[0])) {
-            return this.weeks.stupkaK[0] - this.weeks.stupkaV[0];;
-        }
+        // if (this.weeks.current[0] >= this.weeks.mif[0] - this.weeks.stupkaV[0] && (this.weeks.current[0] < this.weeks.mif[0])) {
+        //     return this.weeks.stupkaK[0] - this.weeks.stupkaV[0];
+        // }
         return 0
     }
 
