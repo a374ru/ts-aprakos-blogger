@@ -332,7 +332,7 @@ class OLY implements IOLY {
                     this.easterDates[yearNumber][1]
                 ))
             ) {
-                // Если Пасха была то она и будет oldEaster (это 1 часть ПБГ)
+                // oly_1 
                 this.oldEaster = new Date(Date.UTC(
                     this.theMomentTime.getFullYear(),
                     this.easterDates[yearNumber][0],
@@ -344,7 +344,7 @@ class OLY implements IOLY {
                     this.easterDates[yearNumber + 1][1]
                 ));
             } else {
-                // Если Пасхи еще не было в текущем году (это 2 часть ПБГ)
+                // oly_2 
                 this.oldEaster = new Date(Date.UTC(
                     this.theMomentTime.getFullYear() - 1,
                     this.easterDates[yearNumber - 1][0],
@@ -463,7 +463,7 @@ class OLY implements IOLY {
         let dateMonday = new Date(
             this.datesOLY.vozdvizgenieKresta[0].getTime() + 864e5 * daysUntilMonday);
         // console.log(`-=-=-=-=-=-=-=-=-\n\n Дней до понедельника:\n ${daysUntilMonday}`, dateMonday,"\n\n")
-        //  FIXME: #31 @374ru FLOAT YEARS В данном месте сравнивются дата понедельника по воздвижении системной датой. Требуется сравнение с понедельником ПБГ.
+        // DONE: #31 @374ru FLOAT YEARS В данном месте сравнивются дата понедельника по воздвижении системной датой. Требуется сравнение с понедельником ПБГ.
         return this.theMomentTime >= dateMonday;
     }
 
