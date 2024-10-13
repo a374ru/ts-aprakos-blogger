@@ -85,7 +85,7 @@ interface IOLY {
      *
      * Вычисление диапазона, проверка и корректировка дат Пасх для текущего ПБГ.
      *
-     * >ГНГ разделяет ПБГ на две части — `oly_1, oly_2`.
+     * >ГНГ разделяет ПБГ на две части — ` oly_1 ` и ` oly_2 `.
      *
      * 1. Метод вычисляет момент и в зависимости от полугодия и введеного пользователем года.
      * 2. Устанавливает даты прошедшей и ожидаемой Пасх для корректного расчета седмиц.
@@ -96,7 +96,7 @@ interface IOLY {
 
 class OLY implements IOLY {
 
-    theMomentTime = new Date();
+    theMomentTime = new Date(2024,4,5);
     oldEaster: any
     newEaster: any
     oldEasterMLS: any
@@ -405,17 +405,16 @@ class OLY implements IOLY {
         // let addMLS = sessionStorage.getItem('userDate') ? 0.001 : 0
 
         const current = (this.weeks["current"] = [
+        
             Math.ceil(
                 (this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 6.9
-
             ),
-
             "Текущая седмица",
         ]);
 
         // Переопределения значения дня Пасхи с нуля на единицу, так как нулевой седмицы не бывает.
         ///////////////////////////////////
-        if (current[0] == 0) { this.weeks["current"][0] = 1 }
+        if (current[0] == 0 || current[0] > 55) { this.weeks["current"][0] = 1 }
         //////////////////////////////////
 
         const mif = (this.weeks["mif"] = [all[0] - 9, "Седмица МиФ по Пасхе"]);

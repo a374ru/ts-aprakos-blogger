@@ -3,7 +3,7 @@ var OLY = (function () {
     function OLY(year) {
         var _a;
         this.year = year;
-        this.theMomentTime = new Date();
+        this.theMomentTime = new Date(2024, 4, 5);
         this.anchorElemID = "#11";
         this.stateModalView = false;
         this.arrayDaysRu = [
@@ -227,7 +227,7 @@ var OLY = (function () {
             Math.ceil((this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 6.9),
             "Текущая седмица",
         ]);
-        if (current[0] == 0) {
+        if (current[0] == 0 || current[0] > 55) {
             this.weeks["current"][0] = 1;
         }
         var mif = (this.weeks["mif"] = [all[0] - 9, "Седмица МиФ по Пасхе"]);
