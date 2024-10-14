@@ -3,7 +3,7 @@ var OLY = (function () {
     function OLY(year) {
         var _a;
         this.year = year;
-        this.theMomentTime = new Date();
+        this.theMomentTime = new Date(2099, 0, -35);
         this.anchorElemID = "#11";
         this.stateModalView = false;
         this.arrayDaysRu = [
