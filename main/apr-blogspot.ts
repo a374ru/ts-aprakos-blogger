@@ -96,7 +96,7 @@ interface IOLY {
 
 class OLY implements IOLY {
 
-    theMomentTime = new Date(2024,4,5);
+    theMomentTime = new Date();
     oldEaster: any
     newEaster: any
     oldEasterMLS: any
@@ -794,8 +794,12 @@ class OLY implements IOLY {
         <b>Седмица Евангелия: </b>
         <div id="modal-cweek">по Пасхе&nbsp; <span class="red bold">${this.anchorElemID},</span></div>
         <div id="modal-cweek50">по Пять&shy;десят&shy;нице <span class="red bold">${this.weeks.current[0] > 7 ? Number(this.anchorElemID) - 7 : "нет"}.</span>
+        <div>${lastSegment === "stvol.html" ? `${this.weeks.stupkaV[1]} <span class="red bold">${Math.abs(this.weeks.stupkaV[0])}</span> седм.` : ""}</div></div>
+        <div>${lastSegment === "stvol.html" ? `${this.weeks.stupkaK[1]} <span class="red bold">${Math.abs(this.weeks.stupkaK[0])}</span> седм.` : ""}</div></div>
+        <div>${lastSegment === "stvol.html" ? `${this.weeks.all[1]} <span class="red bold">${Math.abs(this.weeks.all[0])}</span> седм.` : ""}</div></div>
         <div>${lastSegment === "stvol.html" ? commentStvol : ""}</div></div>
         <div>${lastSegment === "blog-post.html" ? `${this.weeks.stupkaK[1]} <span class="red bold">${Math.abs(this.weeks.stupkaK[0])}</span> седм.` : ""}</div></div>
+        <div>${lastSegment === "blog-page_13.html" ? `${this.weeks.stupkaK[1]} <span class="red bold">${Math.abs(this.weeks.stupkaK[0])}</span> седм.` : ""}</div></div>
         ${closeClick}
         </section>
         `;
