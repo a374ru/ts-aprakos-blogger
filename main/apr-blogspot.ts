@@ -97,7 +97,7 @@ interface IOLY {
 class OLY implements IOLY {
 
     // theMomentTime = new Date(1999,0,31);
-    theMomentTime = new Date(2099,0,-35);
+    theMomentTime = new Date(2099,0,25);
     oldEaster: any
     newEaster: any
     oldEasterMLS: any
