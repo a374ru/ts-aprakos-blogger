@@ -1,10 +1,9 @@
-// среда,  10 октября 2024 г. 10:43:40 (MSK)
+// вторник, 15 октября 2024 г. 09:29:56 (MSK)
 
 /*
     --- APRAKOS.BLOGSPOT.COM VERSION ---
 */
 
-// var url = "https://" + location.host + "/currentday/APRAKOS/". Также указано до какого дня их читать, или с какого дня начинать читать определённые начало.;
 
 interface IOLY {
     /**
@@ -371,15 +370,6 @@ class OLY implements IOLY {
 
             return true;
         }
-        /**
-        * [[include:namelist.md]]
-        */
-        // let NAMELIST: {}
-
-        /**
-        * [[include:problems.md]]
-        */
-        // let PROBLEMS: {
 
     }
 
@@ -401,7 +391,7 @@ class OLY implements IOLY {
             "Протяженность ПБГ",
         ]);
 
-        // Добавление миллисекунды к пользовательскому вводу для избежания целочисленного значения.
+       // Добавление миллисекунды к пользовательскому вводу для избежания целочисленного значения.
         // let addMLS = sessionStorage.getItem('userDate') ? 0.001 : 0
 
         const current = (this.weeks["current"] = [
@@ -514,6 +504,7 @@ class OLY implements IOLY {
 
         return this.datesOLY;
     }
+
 
     /**
      * Проверяет введенный пользователем год на присутствие в Пасхалии.
@@ -1050,13 +1041,3 @@ class OLY implements IOLY {
  * ```
  */
 let apr = new OLY();
-
-/**
-* [[include:namelist.md]]
-*/
-// let NAMELIST: {}
-
-/**
-* [[include:problems.md]]
-*/
-// let PROBLEMS: {

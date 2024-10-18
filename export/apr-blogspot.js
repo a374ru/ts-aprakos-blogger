@@ -239,7 +239,7 @@ var OLY = (function () {
             "Седмица Воздвижения по Пасхе",
         ]);
         var stupkaV = this.weeks["stupkaV"] = [
-            Math.ceil((this.datesOLY.week24[0].getTime() - this.oldEasterMLS) / 864e5 / 7) - vozdvizgenie[0],
+            Math.ceil((this.datesOLY.week24[0].getTime() - this.oldEasterMLS) / 864e5 / 7) - vozdvizgenie[0] - 1,
             "Воздвиженская ступка",
         ];
         var stupkaK = (this.weeks["stupkaK"] = [
