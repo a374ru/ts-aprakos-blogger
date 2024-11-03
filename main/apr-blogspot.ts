@@ -96,6 +96,13 @@ interface IOLY {
 class OLY implements IOLY {
 
     theMomentTime = new Date();
+
+    // ??? Проба настроить точное соответствие часов в момент наступления воскресения.
+    theMomentTime0 = new Date(
+        this.theMomentTime.getUTCFullYear(),
+        this.theMomentTime.getUTCMonth(),
+        this.theMomentTime.getUTCDate()
+    )
     oldEaster: any
     newEaster: any
     oldEasterMLS: any
@@ -391,15 +398,17 @@ class OLY implements IOLY {
             "Протяженность ПБГ",
         ]);
 
-       // Добавление миллисекунды к пользовательскому вводу для избежания целочисленного значения.
+        // Добавление миллисекунды к пользовательскому вводу для избежания целочисленного значения.
         // let addMLS = sessionStorage.getItem('userDate') ? 0.001 : 0
 
         const current = (this.weeks["current"] = [
-        
+
+            // сделать конвертацию oldEastar в формат localDate
             Math.ceil(
-                (this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 6.9
-            ),
+                (this.theMomentTime0.getTime() - this.oldEasterMLS) / 864e5 / 6.999999999
+            ) + 1,
             "Текущая седмица",
+            "Здесь происходит вычисление текущей седмицы которая зависит от системных вычислений по миллисекундам и делителя седмиц. Делетель `6.999999999` при вычислениях дает совершенно иной результат – более точный. Если делитель равен семи, то в определённый момент вычисления возвращается неверный результат."
         ]);
 
         // Переопределения значения дня Пасхи с нуля на единицу, так как нулевой седмицы не бывает.
@@ -414,14 +423,14 @@ class OLY implements IOLY {
             Math.ceil(
                 (this.datesOLY.vozdvizgenieKresta[0].getTime() - this.oldEasterMLS) /
                 864e5 /
-                7
+                6.999999999
             ),
             "Седмица Воздвижения по Пасхе",
         ]);
         let stupkaV = this.weeks["stupkaV"] = [
             Math.ceil(
                 (this.datesOLY.week24[0].getTime() - this.oldEasterMLS) / 864e5 / 7
-            ) - vozdvizgenie[0] - 1,
+            ) - vozdvizgenie[0],
             "Воздвиженская ступка",
         ];
 
@@ -495,8 +504,9 @@ class OLY implements IOLY {
             "Начало Великого Поста",
         ];
 
-        // Дата 17 седмицы по Пятьдес[ятнице.
+        // Дата Воскресения 18 седмицы по Пятьдесятнице при условии что в воскресенье является первым днём седмицы.
         // После Пасхи это 24 седмица и число 168 указывает на количество дней в 24 седмицах.
+        // Это дата, после которой в понедельник, то есть завтра начинается чтение зачал от Луки.
         this.datesOLY["week24"] = [
             new Date(this.oldEasterMLS + 864e5 * 168),
             "17/24 седмица по Пасхе",
@@ -515,7 +525,7 @@ class OLY implements IOLY {
      */
     controlDates(userYear: [number, number?, number?] | undefined): Date {
         let currentDate = this.theMomentTime;
-        // Action - нужен лучший алгоритм проверки года в колекции easterDates{}
+
         let sStorageDate = sessionStorage.getItem('userDate')
         if (sessionStorage.userDate != null && userYear == undefined) {
 

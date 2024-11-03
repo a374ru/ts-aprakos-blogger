@@ -4,6 +4,7 @@ var OLY = (function () {
         var _a;
         this.year = year;
         this.theMomentTime = new Date();
+        this.theMomentTime0 = new Date(this.theMomentTime.getUTCFullYear(), this.theMomentTime.getUTCMonth(), this.theMomentTime.getUTCDate());
         this.anchorElemID = "#11";
         this.stateModalView = false;
         this.arrayDaysRu = [
@@ -224,8 +225,9 @@ var OLY = (function () {
             "Протяженность ПБГ",
         ]);
         var current = (this.weeks["current"] = [
-            Math.ceil((this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 6.9),
+            Math.ceil((this.theMomentTime0.getTime() - this.oldEasterMLS) / 864e5 / 6.999999999) + 1,
             "Текущая седмица",
+            "Здесь происходит вычисление текущей седмицы которая зависит от системных вычислений по миллисекундам и делителя седмиц. Делетель `6.999999999` при вычислениях дает совершенно иной результат – более точный. Если делитель равен семи, то в определённый момент вычисления возвращается неверный результат."
         ]);
         if (current[0] == 0 || current[0] > 55) {
             this.weeks["current"][0] = 1;
@@ -235,11 +237,11 @@ var OLY = (function () {
         var vozdvizgenie = (this.weeks["vozdvizgenie"] = [
             Math.ceil((this.datesOLY.vozdvizgenieKresta[0].getTime() - this.oldEasterMLS) /
                 864e5 /
-                7),
+                6.999999999),
             "Седмица Воздвижения по Пасхе",
         ]);
         var stupkaV = this.weeks["stupkaV"] = [
-            Math.ceil((this.datesOLY.week24[0].getTime() - this.oldEasterMLS) / 864e5 / 7) - vozdvizgenie[0] - 1,
+            Math.ceil((this.datesOLY.week24[0].getTime() - this.oldEasterMLS) / 864e5 / 7) - vozdvizgenie[0],
             "Воздвиженская ступка",
         ];
         var stupkaK = (this.weeks["stupkaK"] = [
