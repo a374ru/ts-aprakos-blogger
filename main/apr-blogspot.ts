@@ -95,13 +95,13 @@ interface IOLY {
 
 class OLY implements IOLY {
 
-    theMomentTime = new Date();
+    theMomentTime0 = new Date();
 
     // ??? Проба настроить точное соответствие часов в момент наступления воскресения.
-    theMomentTime0 = new Date(
-        this.theMomentTime.getUTCFullYear(),
-        this.theMomentTime.getUTCMonth(),
-        this.theMomentTime.getUTCDate()
+    theMomentTime = new Date(
+        this.theMomentTime0.getUTCFullYear(),
+        this.theMomentTime0.getUTCMonth(),
+        this.theMomentTime0.getUTCDate()
     )
     oldEaster: any
     newEaster: any
@@ -405,8 +405,8 @@ class OLY implements IOLY {
 
             // сделать конвертацию oldEastar в формат localDate
             Math.ceil(
-                (this.theMomentTime0.getTime() - this.oldEasterMLS) / 864e5 / 6.999999999
-            ) + 1,
+                (this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 6.85555555555555
+            ),
             "Текущая седмица",
             "Здесь происходит вычисление текущей седмицы которая зависит от системных вычислений по миллисекундам и делителя седмиц. Делетель `6.999999999` при вычислениях дает совершенно иной результат – более точный. Если делитель равен семи, то в определённый момент вычисления возвращается неверный результат."
         ]);
