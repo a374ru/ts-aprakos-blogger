@@ -3,8 +3,9 @@ var OLY = (function () {
     function OLY(year) {
         var _a;
         this.year = year;
-        this.theMomentTime0 = new Date();
-        this.theMomentTime = new Date(this.theMomentTime0.getUTCFullYear(), this.theMomentTime0.getUTCMonth(), this.theMomentTime0.getUTCDate());
+        this.theMoment = new Date();
+        this.offsetZone = this.theMoment.getTimezoneOffset() * 60000;
+        this.theMomentTime = new Date();
         this.anchorElemID = "#11";
         this.stateModalView = false;
         this.arrayDaysRu = [
@@ -75,7 +76,7 @@ var OLY = (function () {
             2052: [4, 21],
             2053: [3, 13],
             2054: [4, 3],
-            2055: [4, 18],
+            2055: [3, 18],
             2056: [3, 9],
             2057: [3, 29],
             2058: [3, 14],
@@ -191,6 +192,7 @@ var OLY = (function () {
         this.initElementsDOM();
         this.firstViewModal();
         this.eventKeys();
+        this.reloadAprakosPage();
     }
     OLY.prototype.initOLY = function () {
         {
@@ -225,9 +227,8 @@ var OLY = (function () {
             "Протяженность ПБГ",
         ]);
         var current = (this.weeks["current"] = [
-            Math.ceil((this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 6.85555555555555),
+            Math.ceil((this.theMomentTime.getTime() - this.offsetZone - this.oldEasterMLS) / 864e5 / 7),
             "Текущая седмица",
-            "Здесь происходит вычисление текущей седмицы которая зависит от системных вычислений по миллисекундам и делителя седмиц. Делетель `6.999999999` при вычислениях дает совершенно иной результат – более точный. Если делитель равен семи, то в определённый момент вычисления возвращается неверный результат."
         ]);
         if (current[0] == 0 || current[0] > 55) {
             this.weeks["current"][0] = 1;
@@ -237,7 +238,7 @@ var OLY = (function () {
         var vozdvizgenie = (this.weeks["vozdvizgenie"] = [
             Math.ceil((this.datesOLY.vozdvizgenieKresta[0].getTime() - this.oldEasterMLS) /
                 864e5 /
-                6.999999999),
+                7),
             "Седмица Воздвижения по Пасхе",
         ]);
         var stupkaV = this.weeks["stupkaV"] = [
@@ -324,7 +325,7 @@ var OLY = (function () {
         for (var key in this.datesOLY) {
             if (Object.prototype.hasOwnProperty.call(this.datesOLY, key)) {
                 var element = this.datesOLY[key];
-                console.log(element[1] + " | " + element[0].toDateString());
+                console.log(element[1] + " | " + element[0].toLocaleDateString());
             }
         }
         for (var key in this.weeks) {
@@ -414,7 +415,7 @@ var OLY = (function () {
         if (this.weeks.current[0] < this.weeks.mif[0]) {
             var stepStupka = this.weeks.current[0] + this.weeks.stupkaV[0];
             var per = -this.weeks.stupkaK[0] + this.weeks.stupkaV[0];
-            if (stepStupka > 39 && stepStupka < 46) {
+            if (stepStupka > 40 && stepStupka < 47) {
                 return per;
             }
             return this.weeks.stupkaV[0];
@@ -600,6 +601,14 @@ var OLY = (function () {
     OLY.prototype.deleteUserDateFromSessionStorage = function () {
         sessionStorage.removeItem('userDate');
         document.location.replace(document.location.origin);
+    };
+    OLY.prototype.reloadAprakosPage = function () {
+        var cd = new Date();
+        var nextDay = new Date(cd.getFullYear(), cd.getMonth(), cd.getDate() + 1);
+        var interval = nextDay.getTime() - cd.getTime();
+        setTimeout(function () {
+            document.location.reload();
+        }, interval);
     };
     return OLY;
 }());

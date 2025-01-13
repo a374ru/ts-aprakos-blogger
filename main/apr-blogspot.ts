@@ -39,12 +39,18 @@ interface IOLY {
      */
     readonly NINEHOLIDAYS: {};
 
-    // theMomentTime = new Date("2016") // min
-    // theMomentTime = new Date("2033") // max
+    // theMomentTime = new Date("2001") // min
+    // theMomentTime = new Date("2099") // max
     /**
      * Текущий момент времени.
      */
     theMomentTime: Date;
+
+    /**
+     * Отступ коррктировки для часовой зоны, так как все вычисления внутри компилятора ведутся по GMT
+     * 
+     */
+    offsetZone: Number;
 
     /**
      * Дата прошедшей Пасхи.
@@ -78,9 +84,11 @@ interface IOLY {
     datesOLY: {};
 
     /**
-     * ### Абревиатура ПБГ(OLY) – Православный Богослужебный Год.
-     * ### Абревиатура ГНГ(GNY) - Григорианский Новый Год.
-     * ### Абревиатура OLY - The Orthodox Liturgical Year.
+     * Абревиатура **ПБГ(OLY)** – Православный Богослужебный Год.
+
+     * Абревиатура **ГНГ(GNY)** - Григорианский Новый Год.
+
+     * Абревиатура **OLY** - The Orthodox Liturgical Year.
      *
      * Вычисление диапазона, проверка и корректировка дат Пасх для текущего ПБГ.
      *
@@ -90,18 +98,22 @@ interface IOLY {
      * 2. Устанавливает даты прошедшей и ожидаемой Пасх для корректного расчета седмиц.
      * Диапазон между двумя датами Пасх есть пасхальный размер.
      */
+
     initOLY(): void;
 }
 
 class OLY implements IOLY {
 
-    theMomentTime0 = new Date();
+    theMoment = new Date();
+
+    offsetZone = this.theMoment.getTimezoneOffset() * 60000
 
     // ??? Проба настроить точное соответствие часов в момент наступления воскресения.
     theMomentTime = new Date(
-        this.theMomentTime0.getUTCFullYear(),
-        this.theMomentTime0.getUTCMonth(),
-        this.theMomentTime0.getUTCDate()
+        // this.theMoment.getFullYear(),
+        // this.theMoment.getMonth(),
+        // this.theMoment.getDate(),
+        // this.theMoment.getHours()
     )
     oldEaster: any
     newEaster: any
@@ -127,6 +139,7 @@ class OLY implements IOLY {
         this.initElementsDOM()
         this.firstViewModal()
         this.eventKeys()
+        this.reloadAprakosPage()
 
     }
 
@@ -210,7 +223,7 @@ class OLY implements IOLY {
         2052: [4, 21],
         2053: [3, 13],
         2054: [4, 3],
-        2055: [4, 18],
+        2055: [3, 18],
         2056: [3, 9],
         2057: [3, 29],
         2058: [3, 14],
@@ -403,12 +416,12 @@ class OLY implements IOLY {
 
         const current = (this.weeks["current"] = [
 
-            // сделать конвертацию oldEastar в формат localDate
+            //  S:S  Неправильное вычисление седмицы в текущей строке, происходит сбой седмицы независимо от делителя.
             Math.ceil(
-                (this.theMomentTime.getTime() - this.oldEasterMLS) / 864e5 / 6.85555555555555
+                (this.theMomentTime.getTime() - this.offsetZone - this.oldEasterMLS) / 864e5 / 7
             ),
             "Текущая седмица",
-            "Здесь происходит вычисление текущей седмицы которая зависит от системных вычислений по миллисекундам и делителя седмиц. Делетель `6.999999999` при вычислениях дает совершенно иной результат – более точный. Если делитель равен семи, то в определённый момент вычисления возвращается неверный результат."
+            // "Здесь происходит вычисление текущей седмицы которая зависит от системных вычислений по миллисекундам и делителя седмиц. Делитель `6.999999999` при вычислениях дает совершенно иной результат – более точный. Если делитель равен семи, то в определённый момент вычисления возвращается неверный результат."
         ]);
 
         // Переопределения значения дня Пасхи с нуля на единицу, так как нулевой седмицы не бывает.
@@ -423,7 +436,7 @@ class OLY implements IOLY {
             Math.ceil(
                 (this.datesOLY.vozdvizgenieKresta[0].getTime() - this.oldEasterMLS) /
                 864e5 /
-                6.999999999
+                7
             ),
             "Седмица Воздвижения по Пасхе",
         ]);
@@ -524,9 +537,11 @@ class OLY implements IOLY {
      * @returns {Date}
      */
     controlDates(userYear: [number, number?, number?] | undefined): Date {
+
         let currentDate = this.theMomentTime;
 
         let sStorageDate = sessionStorage.getItem('userDate')
+
         if (sessionStorage.userDate != null && userYear == undefined) {
 
             currentDate = new Date(Number(sessionStorage.getItem('userDate')))
@@ -580,7 +595,7 @@ class OLY implements IOLY {
         for (const key in this.datesOLY) {
             if (Object.prototype.hasOwnProperty.call(this.datesOLY, key)) {
                 const element = this.datesOLY[key];
-                console.log(element[1] + " | " + element[0].toDateString());
+                console.log(element[1] + " | " + element[0].toLocaleDateString());
             }
         }
         for (const key in this.weeks) {
@@ -692,7 +707,7 @@ class OLY implements IOLY {
     }
 
     /**
-     * Метод возвращает шаг ступки для одной из двух (2 и 3) из трех возможных зон седмиц.
+     * Метод нормализации ступки возвращает шаг ступки для одной из двух или трех возможных зон седмиц.
      *
      * @returns number
      */
@@ -706,7 +721,7 @@ class OLY implements IOLY {
             var per = -this.weeks.stupkaK[0] + this.weeks.stupkaV[0]
 
             // этот if проверяет и нормализует отступку, которая возникают при Воздвиженской преступке Евангелия.
-            if (stepStupka > 39 && stepStupka < 46) {
+            if (stepStupka > 40 && stepStupka < 47) {
                 return per
             }
             return this.weeks.stupkaV[0]
@@ -740,7 +755,7 @@ class OLY implements IOLY {
     }
 
     /**
-     * ### Метод проверяет текущий день на Двунадясятый праздник
+     *  Метод проверяет текущий день на Двунадясятый праздник
      * Возвращает сегмент URL для случившегося праздника
      * 
      * @returns string
@@ -832,7 +847,7 @@ class OLY implements IOLY {
     }
 
     /**
-     * ### Метод инициализации элементов `DOM`
+     *  Метод инициализации элементов `DOM`
      *
      */
     initElementsDOM() {
@@ -1037,11 +1052,30 @@ class OLY implements IOLY {
         sessionStorage.removeItem('userDate')
         document.location.replace(document.location.origin)
     }
+
+    /**
+     * Метод обновляет страницу в **00:00** часов.
+     *
+     */
+    reloadAprakosPage() {
+        let cd = new Date()
+        let nextDay = new Date(cd.getFullYear(), cd.getMonth(), cd.getDate() + 1)
+        // let interval = nextDay.getTime()-cd.getTime()
+        let interval = nextDay.getTime() - cd.getTime()
+        setTimeout(function () {
+            // alert("\n Долгое отсутствие увеличивает расстояние разлуки.")
+            document.location.reload()
+        }, interval);
+    }
+
+
 }
 
 
+
+
 /**
- * ### Экземпляр класса `apr` можно инициализирровать параметрами в формате `[YYYY, m, d]`.
+ *  Экземпляр класса `apr` можно инициализирровать параметрами в формате `[YYYY, m, d]`.
  * Примеры
  * ```js
  * const apr = new OLY() // текущая дата
