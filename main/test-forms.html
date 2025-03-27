@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- <script src="../export/apr-blogspot.js"></script> -->
+		<title>Тест формы</title>
+	</head>
+
+	<body>
+		<style>
+			#submit {
+				background-color: chocolate;
+				color: azure;
+				padding: 0.4em;
+				border-radius: 7px;
+			}
+
+			#adate {
+				color: black;
+				background-color: white;
+			}
+
+			@media (max-width: 500px) {
+				#info {
+					min-width: 98%;
+				}
+
+				#d1 {
+					display: none;
+				}
+
+				#a2 {
+					flex-direction: column;
+				}
+			}
+		</style>
+		<div
+			id="input-date"
+			class="aprakos-date"
+			style="
+				font-size: 1.3em;
+				margin-right: 2%;
+				display: flex;
+				justify-content: center;
+				align-content: center;
+				flex-direction: row-reverse;
+			"
+		>
+			<button
+				id="button-date"
+				style="
+					border-radius: 7px;
+					color: white;
+					background-color: #ff6052c4;
+					padding: 0.5rem;
+				"
+				href="#"
+				onclick="reloadPage()"
+			>
+				Вернуться в реальность …
+			</button>
+			<form action="" id="form-date">
+				<label for="adate"></label>
+				<input
+					type="date"
+					id="adate"
+					name="adate"
+					min="2000-01-01"
+					max="2099-12-31"
+					required
+				/>
+				<input id="submit" type="submit" value="установить" />
+			</form>
+			<div
+				id="d1"
+				style="
+					font-size: 1.4em;
+					color: #e34234;
+					font-weight: 600;
+					text-align: center;
+					margin-right: 2em;
+					margin-top: 0.3em;
+				"
+			>
+				<a onclick="apr.initModalView()" style="cursor: pointer"
+					>Данные <span id="apr-year"></span
+				></a>
+			</div>
+		</div>
+		<div id="d">
+			<section
+				id="a1"
+				style="
+					display: flex;
+					justify-content: center;
+					margin-top: 3dvw;
+					margin-bottom: 1dvw;
+				"
+			>
+				<p id="easter"></p>
+			</section>
+			<section
+				id="a2"
+				style="font-size: 1rem; display: flex; justify-content: space-evenly"
+			>
+				<ul
+					id="listWeeks"
+					style="padding-left: 3dvw; list-style-type: circle"
+				></ul>
+				<ul
+					id="listDatesOly"
+					style="padding-left: 2.5dvw; list-style-type: disc"
+				></ul>
+			</section>
+		</div>
+		<section>
+			<p
+				id="info"
+				style="
+					font-size: 1.2em;
+					padding-top: 0.1em;
+					margin: auto;
+					margin-top: 5dvw;
+					max-width: 66%;
+				"
+			>
+				При любой установленной дате в диапазоне 2000 — 2099,
+				<b>в нижнем левом углу</b> будет отображен стикер с выбранной датой и
+				красная кнопка заменит выбор даты.<br />
+				<span id="on">Cайт настроен на выбранную дату, будьте внимательны.</span
+				><br />
+				Для возврата к текущей-сегодняшней дате Апракоса кликните по кнопке или
+				стикеру-дате.
+			</p>
+		</section>
+		<script>
+			const t = new Date(+sessionStorage.getItem('userDate'))
+			c = 0
+			function setUserData() {
+				color = sessionStorage.getItem('userDate')
+					? '<span style="color: #e34234">'
+					: '<span style="color: #000">'
+				color2 = sessionStorage.getItem('userDate')
+					? '<span style="color: #813bff">'
+					: '<span style="color: #000">'
+
+				if (c == 0) {
+					const easterData = document.querySelector('#easter')
+
+					easterData.innerHTML +=
+						'<span style="font-size: 1.5rem; opasity: .5;"><span style="color: #0005"> Прошедшая Пасха: ' +
+						apr.oldEaster.toLocaleDateString() +
+						'</span><br>' +
+						'ОЖИДАЕМАЯ ПАСХА: ' +
+						color +
+						apr.newEaster.toLocaleDateString() +
+						'</span></span>'
+
+					const obj = apr.weeks
+					const ul = document.getElementById('listWeeks')
+
+					for (var key in obj) {
+						if (Object.prototype.hasOwnProperty.call(obj, key)) {
+							var element = obj[key]
+							const li = document.createElement('li')
+							li.innerHTML += element[1] + ': ' + color2 + element[0]
+							ul.appendChild(li) + '</span>'
+						}
+					}
+
+					const obj2 = apr.datesOLY
+					const ul2 = document.getElementById('listDatesOly')
+
+					for (var key in obj2) {
+						if (Object.prototype.hasOwnProperty.call(obj2, key)) {
+							var element = obj2[key]
+							const li = document.createElement('li')
+							li.innerHTML +=
+								element[1] + ': ' + color + element[0].toLocaleDateString()
+							ul2.appendChild(li) + '</span>'
+						}
+					}
+				}
+				c = c + 1
+			}
+
+			function reloadPage() {
+				sessionStorage.removeItem('userDate')
+				document.location.reload()
+			}
+
+			const newDate = document.getElementById('form-date')
+			const avu = document.getElementById('a-visited-userdate')
+			const ss = sessionStorage.getItem('userDate')
+
+			v = 'visibility'
+			h = 'hidden'
+
+			if (ss != null) {
+				document.getElementById('form-date').classList.add(h)
+				document.getElementById('button-date').classList.add(v)
+				document.getElementById('on').style =
+					'color:red; font-wigth: bold, font-weight: bolder;'
+
+				document.getElementById('apr-year').innerHTML =
+					' для ' +
+					'<span style="padding-left: .4rem; color: #000"> ' +
+					t.toLocaleDateString() +
+					'</span>'
+			} else {
+				var dateControl = document.querySelector('input[type="date"]')
+				dateControl.value = 'none'
+
+				document.getElementById('form-date').classList.add(v)
+				document.getElementById('button-date').classList.add(h)
+
+				document.getElementById('apr-year').innerText = ' СЕГО ДНЯ.'
+			}
+
+			d = []
+
+			function serializeForm(formNode) {
+				//sessionStorage.removeItem('userDate') );
+				a = new FormData(formNode)
+
+				for (var pair of a.entries()) {
+					b = pair[1].split('-')
+
+					c = new Date(b)
+
+					d = [b[0], String(b[1] - 1), b[2]]
+
+					console.log('======== error ==========', d)
+				}
+
+				new OLY(d)
+
+				document.location.replase(document.location.origin)
+			}
+
+			function adate2(event) {
+				event.preventDefault()
+				serializeForm(newDate)
+			}
+
+			newDate.addEventListener('submit', adate2)
+			window.addEventListener('load', () => {
+				setUserData()
+				const ss = sessionStorage.getItem('userDate') ? setUserData() : undefined
+				document.getElementsByClassName(
+					'post-outer-container'
+				)[0].style.background = 'linear-gradient(#fff, 4%, #fff2e1)'
+			})
+		</script>
+	</body>
+</html>

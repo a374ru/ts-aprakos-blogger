@@ -1,21 +1,21 @@
 "use strict";
-var OLY = (function () {
-    function OLY(year) {
+class OLY {
+    constructor(year) {
         var _a;
         this.year = year;
         this.theMoment = new Date();
         this.offsetZone = this.theMoment.getTimezoneOffset() * 60000;
         this.theMomentTime = new Date();
-        this.anchorElemID = "#11";
+        this.anchorElemID = '#11';
         this.stateModalView = false;
         this.arrayDaysRu = [
-            "ВОСРЕСЕНЬЕ",
-            "ПОНЕДЕЛЬНИК",
-            "ВТОРНИК",
-            "СРЕДА",
-            "ЧЕТВЕРГ",
-            "ПЯТНИЦА",
-            "СУББОТА",
+            'ВОСРЕСЕНЬЕ',
+            'ПОНЕДЕЛЬНИК',
+            'ВТОРНИК',
+            'СРЕДА',
+            'ЧЕТВЕРГ',
+            'ПЯТНИЦА',
+            'СУББОТА',
         ];
         this.weeks = {};
         this.easterDates = {
@@ -122,62 +122,62 @@ var OLY = (function () {
             2098: [3, 27],
             2099: [3, 12],
             2100: [4, 2],
-            2101: [3, 24]
+            2101: [3, 24],
         };
         this.NINEHOLIDAYS = {
             rojdestvoBogorodici: {
                 year: 2021,
                 month: 8,
                 day: 21,
-                monthRU: "09",
+                monthRU: '09',
             },
             vozdvizgenieKresta: {
                 year: 2020,
                 month: 8,
                 day: 27,
-                monthRU: "09",
+                monthRU: '09',
             },
             vvedenieVoHram: {
                 year: 2020,
                 month: 11,
                 day: 4,
-                monthRU: "12",
+                monthRU: '12',
             },
             rojdestvoXristovo: {
                 year: 2021,
                 month: 0,
                 day: 7,
-                monthRU: "01",
+                monthRU: '01',
             },
             kreshenieGospodne: {
                 year: 2021,
                 month: 0,
                 day: 19,
-                monthRU: "01",
+                monthRU: '01',
             },
             sretenieGospodne: {
                 year: 2021,
                 month: 1,
                 day: 15,
-                monthRU: "02",
+                monthRU: '02',
             },
             blagoveshenieBogorodici: {
                 year: 2021,
                 month: 3,
                 day: 7,
-                monthRU: "04",
+                monthRU: '04',
             },
             preobrajjenieGospodne: {
                 year: 2021,
                 month: 7,
                 day: 19,
-                monthRU: "08",
+                monthRU: '08',
             },
             uspenieBogorodici: {
                 year: 2021,
                 month: 7,
                 day: 28,
-                monthRU: "08",
+                monthRU: '08',
             },
         };
         this.datesOLY = {};
@@ -185,8 +185,8 @@ var OLY = (function () {
         this.initOLY();
         this.initDatesOLY();
         this.initWeeks();
-        this.linkToAprakos = "/" + this.yearMonthID() + ".html";
-        this.anchorElemID = "" + this.weeks.evnglElemID[0];
+        this.linkToAprakos = '/' + this.yearMonthID() + '.html';
+        this.anchorElemID = '' + this.weeks.evnglElemID[0];
         this.linkToHolydays = (_a = this.holydays_9()) !== null && _a !== void 0 ? _a : this.linkToAprakos;
         this.info();
         this.initElementsDOM();
@@ -194,9 +194,9 @@ var OLY = (function () {
         this.eventKeys();
         this.reloadAprakosPage();
     }
-    OLY.prototype.initOLY = function () {
+    initOLY() {
         {
-            var yearNumber = this.theMomentTime.getFullYear();
+            const yearNumber = this.theMomentTime.getFullYear();
             if (this.theMomentTime >=
                 new Date(Date.UTC(this.theMomentTime.getFullYear(), this.easterDates[yearNumber][0], this.easterDates[yearNumber][1]))) {
                 this.oldEaster = new Date(Date.UTC(this.theMomentTime.getFullYear(), this.easterDates[yearNumber][0], this.easterDates[yearNumber][1]));
@@ -206,195 +206,214 @@ var OLY = (function () {
                 this.oldEaster = new Date(Date.UTC(this.theMomentTime.getFullYear() - 1, this.easterDates[yearNumber - 1][0], this.easterDates[yearNumber - 1][1]));
                 this.newEaster = new Date(Date.UTC(this.theMomentTime.getFullYear(), this.easterDates[yearNumber][0], this.easterDates[yearNumber][1]));
             }
-            console.log("\n" +
-                "Прошедшая Пасха: " +
+            console.log('\n' +
+                'Прошедшая Пасха: ' +
                 this.oldEaster.toLocaleDateString() +
-                "\n" +
-                "ОЖИДАЕМАЯ ПАСХА: " +
+                '\n' +
+                'ОЖИДАЕМАЯ ПАСХА: ' +
                 this.newEaster.toLocaleDateString());
             this.oldEasterMLS = this.oldEaster.getTime();
             this.newEasterMLS = this.newEaster.getTime();
             return true;
         }
-    };
-    OLY.prototype.initWeeks = function () {
-        var day = (this.weeks["day"] = [
+    }
+    initWeeks() {
+        const day = (this.weeks['day'] = [
             this.theMomentTime.getDay() + 1,
-            "День седмицы",
+            'День седмицы',
         ]);
-        var all = (this.weeks["all"] = [
+        const all = (this.weeks['all'] = [
             Math.ceil((this.newEasterMLS - this.oldEasterMLS) / 864e5 / 7),
-            "Протяженность ПБГ",
+            'Протяженность ПБГ',
         ]);
-        var current = (this.weeks["current"] = [
-            Math.ceil((this.theMomentTime.getTime() - this.offsetZone - this.oldEasterMLS) / 864e5 / 7),
-            "Текущая седмица",
+        const current = (this.weeks['current'] = [
+            Math.ceil((this.theMomentTime.getTime() - this.offsetZone - this.oldEasterMLS) /
+                864e5 /
+                7),
+            'Текущая седмица',
         ]);
         if (current[0] == 0 || current[0] > 55) {
-            this.weeks["current"][0] = 1;
+            this.weeks['current'][0] = 1;
         }
-        var mif = (this.weeks["mif"] = [all[0] - 9, "Седмица МиФ по Пасхе"]);
-        var zakhey = (this.weeks["zakhey"] = [mif[0] - 1, "Седмица Закхея по Пасхе"]);
-        var vozdvizgenie = (this.weeks["vozdvizgenie"] = [
+        const mif = (this.weeks['mif'] = [all[0] - 9, 'Седмица МиФ по Пасхе']);
+        const zakhey = (this.weeks['zakhey'] = [
+            mif[0] - 1,
+            'Седмица Закхея по Пасхе',
+        ]);
+        const vozdvizgenie = (this.weeks['vozdvizgenie'] = [
             Math.ceil((this.datesOLY.vozdvizgenieKresta[0].getTime() - this.oldEasterMLS) /
                 864e5 /
                 7),
-            "Седмица Воздвижения по Пасхе",
+            'Седмица Воздвижения по Пасхе',
         ]);
-        var stupkaV = this.weeks["stupkaV"] = [
+        let stupkaV = (this.weeks['stupkaV'] = [
             Math.ceil((this.datesOLY.week24[0].getTime() - this.oldEasterMLS) / 864e5 / 7) - vozdvizgenie[0],
-            "Воздвиженская ступка",
-        ];
-        var stupkaK = (this.weeks["stupkaK"] = [
-            Math.abs(all[0] - 50 - (-stupkaV[0])),
-            "Крещенская отступка"
+            'Воздвиженская ступка',
+        ]);
+        let stupkaK = (this.weeks['stupkaK'] = [
+            Math.abs(all[0] - 50 - -stupkaV[0]),
+            'Крещенская отступка',
         ]);
         this.correctorStupka();
         return this.weeks;
-    };
-    OLY.prototype.mondayAfterVozdvizgenie = function () {
-        var daysUntilMonday = 1 + 7 - (this.datesOLY.vozdvizgenieKresta[0].getDay() % 7);
-        var dateMonday = new Date(this.datesOLY.vozdvizgenieKresta[0].getTime() + 864e5 * daysUntilMonday);
+    }
+    mondayAfterVozdvizgenie() {
+        const daysUntilMonday = 1 + 7 - (this.datesOLY.vozdvizgenieKresta[0].getDay() % 7);
+        let dateMonday = new Date(this.datesOLY.vozdvizgenieKresta[0].getTime() + 864e5 * daysUntilMonday);
         return this.theMomentTime >= dateMonday;
-    };
-    OLY.prototype.initDatesOLY = function () {
-        this.datesOLY["pentecost"] = [
+    }
+    initDatesOLY() {
+        this.datesOLY['pentecost'] = [
             new Date(this.oldEasterMLS + 864e5 * 49),
-            "Пятьдесятница",
+            'Пятьдесятница',
         ];
-        this.datesOLY["vozdvizgenieKresta"] = [
-            new Date(this.oldEaster.getFullYear() + "-09-27T00:00:00"),
-            "Воздвижение Креста Господня",
+        this.datesOLY['vozdvizgenieKresta'] = [
+            new Date(this.oldEaster.getFullYear() + '-09-27T00:00:00'),
+            'Воздвижение Креста Господня',
         ];
-        this.datesOLY["zakhey"] = [
+        this.datesOLY['zakhey'] = [
             new Date(this.newEasterMLS - 864e5 * 77),
-            "Неделя Закхея",
+            'Неделя Закхея',
         ];
-        this.datesOLY["mif"] = [
+        this.datesOLY['mif'] = [
             new Date(this.newEasterMLS - 864e5 * 70),
-            "Неделя МиФ",
+            'Неделя МиФ',
         ];
-        this.datesOLY["aboutTheProdigalSon"] = [
+        this.datesOLY['aboutTheProdigalSon'] = [
             new Date(this.newEasterMLS - 864e5 * 63),
-            "Неделя о блудном сыне",
+            'Неделя о блудном сыне',
         ];
-        this.datesOLY["aboutTheLastJudgment"] = [
+        this.datesOLY['aboutTheLastJudgment'] = [
             new Date(this.newEasterMLS - 864e5 * 56),
-            "Неделя о страшном суде",
+            'Неделя о страшном суде',
         ];
-        this.datesOLY["aboutTheAdamsExile"] = [
+        this.datesOLY['aboutTheAdamsExile'] = [
             new Date(this.newEasterMLS - 864e5 * 49),
-            "Неделя Адамова изгнания",
+            'Неделя Адамова изгнания',
         ];
-        this.datesOLY["theBeginningOfLent"] = [
+        this.datesOLY['theBeginningOfLent'] = [
             new Date(this.newEasterMLS - 864e5 * 48),
-            "Начало Великого Поста",
+            'Начало Великого Поста',
         ];
-        this.datesOLY["week24"] = [
+        this.datesOLY['week24'] = [
             new Date(this.oldEasterMLS + 864e5 * 168),
-            "17/24 седмица по Пасхе",
+            '17/24 седмица по Пасхе',
         ];
         return this.datesOLY;
-    };
-    OLY.prototype.controlDates = function (userYear) {
+    }
+    controlDates(userYear) {
         var _a, _b, _c;
-        var currentDate = this.theMomentTime;
-        var sStorageDate = sessionStorage.getItem('userDate');
+        let currentDate = this.theMomentTime;
+        let sStorageDate = sessionStorage.getItem('userDate');
         if (sessionStorage.userDate != null && userYear == undefined) {
             currentDate = new Date(Number(sessionStorage.getItem('userDate')));
         }
-        else if (userYear != undefined && userYear[0] < 2100 && userYear[0] >= 1999) {
+        else if (userYear != undefined &&
+            userYear[0] < 2100 &&
+            userYear[0] >= 1999) {
             currentDate = new Date(Date.UTC(userYear[0], (_a = userYear[1]) !== null && _a !== void 0 ? _a : currentDate.getMonth(), Number((_b = userYear[2]) !== null && _b !== void 0 ? _b : currentDate.getDate())));
             sessionStorage.setItem('userDate', String(currentDate.getTime()));
             location.reload();
         }
         else {
-            console.warn("".concat(userYear
-                ? "Формат введенный пользователем не подходит… попробуйте ([2099,0,7])"
-                : "Год пользователем не предоставлен…", ".\n\u0411\u0443\u0434\u0435\u0442 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D \u0442\u0435\u043A\u0443\u0449\u0438\u0439 \u0433\u043E\u0434.\n\u0421\u041F\u0410\u0421\u0418\u0411\u041E \u0417\u0410 \u0412\u041D\u0418\u041C\u0410\u041D\u0418\u0415!"));
+            console.warn(`${userYear
+                ? 'Формат введенный пользователем не подходит… попробуйте ([2099,0,7])'
+                : 'Год пользователем не предоставлен…'}.\nБудет использован текущий год.\nСПАСИБО ЗА ВНИМАНИЕ!`);
         }
         if (currentDate != this.theMomentTime) {
             (_c = document.querySelector('#userdate')) === null || _c === void 0 ? void 0 : _c.remove();
-            document.querySelector('body').innerHTML +=
-                "<div id=\"userdate\" class='userdate'><a id='a-visited-userdate' href=\"#\" onclick=\"apr.deleteUserDateFromSessionStorage()\">".concat(currentDate.toLocaleDateString(), "</a></div>");
+            document.querySelector('body').innerHTML += `<div id="userdate" class='userdate'><a id='a-visited-userdate' href="#" onclick="apr.deleteUserDateFromSessionStorage()">${currentDate.toLocaleDateString()}</a></div>`;
         }
         return currentDate;
-    };
-    OLY.prototype.info = function () {
+    }
+    info() {
         var _a;
-        for (var key in this.datesOLY) {
+        for (const key in this.datesOLY) {
             if (Object.prototype.hasOwnProperty.call(this.datesOLY, key)) {
-                var element = this.datesOLY[key];
-                console.log(element[1] + " | " + element[0].toLocaleDateString());
+                const element = this.datesOLY[key];
+                console.log(element[1] + ' | ' + element[0].toLocaleDateString());
             }
         }
-        for (var key in this.weeks) {
+        for (const key in this.weeks) {
             if (Object.prototype.hasOwnProperty.call(this.weeks, key)) {
-                var element = this.weeks[key];
-                console.log(element[1] + " | " + element[0]);
+                const element = this.weeks[key];
+                console.log(element[1] + ' | ' + element[0]);
             }
         }
-        console.warn("\n\u0421\u0435\u0433\u043E\u0434\u043D\u044F: ".concat(this.theMomentTime.toDateString(), "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u0410\u043F\u0440\u0430\u043A\u043E\u0441: https://aprakos.blogspot.com").concat(this.linkToAprakos, "\n\u0421\u0441\u044B\u043B\u043A\u0430 \u043D\u0430 \u043F\u0440\u0430\u0437\u0434\u043D\u0438\u043A: https://aprakos.blogspot.com").concat((_a = this.linkToHolydays) !== null && _a !== void 0 ? _a : "", "\n\u0421\u043F\u0440\u0430\u0432\u043A\u0430 \u0437\u0434\u0435\u0441\u044C: https://aprakos.blogspot.com/p/blog-page_4.html\n        "));
-    };
-    OLY.prototype.yearMonthID = function () {
-        var apostolElemID = (this.weeks.current[0] > 40) ? this.weeks.current[0] + this.stupka() : this.weeks.current[0];
+        console.warn(`
+Сегодня: ${this.theMomentTime.toDateString()}
+Ссылка на Апракос: https://aprakos.blogspot.com${this.linkToAprakos}
+Ссылка на праздник: https://aprakos.blogspot.com${(_a = this.linkToHolydays) !== null && _a !== void 0 ? _a : ''}
+Справка здесь: https://aprakos.blogspot.com/p/blog-page_4.html
+        `);
+    }
+    yearMonthID() {
+        var apostolElemID = this.weeks.current[0] > 40
+            ? this.weeks.current[0] + this.stupka()
+            : this.weeks.current[0];
         var evangelieElemID = this.weeks.current[0] + this.stupka();
-        var aprID = Number("" + evangelieElemID + this.weeks.day[0]);
-        var partURL;
+        let aprID = Number('' + evangelieElemID + this.weeks.day[0]);
+        let partURL;
         switch (true) {
             case aprID <= 25:
-                partURL = "2020/04/" + aprID;
+                partURL = '2020/04/' + aprID;
                 break;
             case aprID <= 71:
-                partURL = "2020/05/" + aprID;
+                partURL = '2020/05/' + aprID;
                 break;
             case aprID <= 113:
-                partURL = "2020/06/" + aprID;
+                partURL = '2020/06/' + aprID;
                 break;
             case aprID <= 156:
-                partURL = "2020/07/" + aprID;
+                partURL = '2020/07/' + aprID;
                 break;
             case aprID <= 202:
-                partURL = "2020/08/" + aprID;
+                partURL = '2020/08/' + aprID;
                 break;
             case aprID <= 244:
-                partURL = "2020/09/" + aprID;
+                partURL = '2020/09/' + aprID;
                 break;
             case aprID <= 287:
-                partURL = "2020/10/" + aprID;
+                partURL = '2020/10/' + aprID;
                 break;
             case aprID <= 332:
-                partURL = "2020/11/" + aprID;
+                partURL = '2020/11/' + aprID;
                 break;
             case aprID <= 375:
-                partURL = "2020/12/" + aprID;
+                partURL = '2020/12/' + aprID;
                 break;
             case aprID <= 407:
-                partURL = "2021/01/" + aprID;
+                partURL = '2021/01/' + aprID;
                 break;
             case aprID <= 421:
-                partURL = "2021/02/" + aprID;
+                partURL = '2021/02/' + aprID;
                 break;
             case aprID <= 472:
-                partURL = "2021/03/" + aprID;
+                partURL = '2021/03/' + aprID;
                 break;
             case aprID <= 507:
-                partURL = "2021/04/" + aprID;
+                partURL = '2021/04/' + aprID;
                 break;
             case aprID <= 517:
-                partURL = "2021/05/" + aprID;
+                partURL = '2021/05/' + aprID;
                 break;
             default:
-                partURL = "search/";
+                partURL = 'search/';
                 break;
         }
-        this.weeks["aprID"] = [aprID, "Апракос-ID"];
-        this.weeks["evnglElemID"] = [evangelieElemID, "Элемент-ID Евангельского зачала"];
-        this.weeks["apstlElemID"] = [apostolElemID, "Элемент-ID Апостольского зачала"];
+        this.weeks['aprID'] = [aprID, 'Апракос-ID'];
+        this.weeks['evnglElemID'] = [
+            evangelieElemID,
+            'Элемент-ID Евангельского зачала',
+        ];
+        this.weeks['apstlElemID'] = [
+            apostolElemID,
+            'Элемент-ID Апостольского зачала',
+        ];
         return partURL;
-    };
-    OLY.prototype.stupka = function () {
-        var stupka;
+    }
+    stupka() {
+        let stupka;
         switch (this.mondayAfterVozdvizgenie()) {
             case true:
                 stupka = this.stupkaN();
@@ -407,8 +426,8 @@ var OLY = (function () {
                 break;
         }
         return stupka;
-    };
-    OLY.prototype.stupkaN = function () {
+    }
+    stupkaN() {
         if (this.weeks.current[0] >= this.weeks.mif[0]) {
             return -(this.weeks.stupkaK[0] - this.weeks.stupkaV[0]);
         }
@@ -421,195 +440,327 @@ var OLY = (function () {
             return this.weeks.stupkaV[0];
         }
         return 0;
-    };
-    OLY.prototype.stupkaVozdvizjenia = function (week) {
+    }
+    stupkaVozdvizjenia(week) {
         this.weeks.evnglElemID = this.weeks.apstlElemID;
         return 0;
-    };
-    OLY.prototype.stupkaK = function () {
+    }
+    stupkaK() {
         return 0;
-    };
-    OLY.prototype.holydays_9 = function () {
-        var link_to_hld9 = undefined;
-        var tmt = this.theMomentTime.getMonth() + "/" + this.theMomentTime.getDate();
-        for (var item in this.NINEHOLIDAYS) {
-            var pathToHollliday = this.NINEHOLIDAYS[item].year +
-                "/" +
+    }
+    holydays_9() {
+        let link_to_hld9 = undefined;
+        let tmt = this.theMomentTime.getMonth() + '/' + this.theMomentTime.getDate();
+        for (let item in this.NINEHOLIDAYS) {
+            let pathToHollliday = this.NINEHOLIDAYS[item].year +
+                '/' +
                 this.NINEHOLIDAYS[item].monthRU +
-                "/" +
+                '/' +
                 this.NINEHOLIDAYS[item].day;
-            var date_9 = new Date(pathToHollliday);
-            var h9 = date_9.getMonth() + "/" + date_9.getDate();
+            let date_9 = new Date(pathToHollliday);
+            let h9 = date_9.getMonth() + '/' + date_9.getDate();
             if (h9 === tmt) {
                 link_to_hld9 =
-                    "/" +
+                    '/' +
                         this.NINEHOLIDAYS[item].year +
-                        "/" +
+                        '/' +
                         this.NINEHOLIDAYS[item].monthRU +
-                        "/" +
+                        '/' +
                         this.NINEHOLIDAYS[item].day +
-                        ".html";
+                        '.html';
                 return link_to_hld9;
                 break;
             }
         }
         return undefined;
-    };
-    OLY.prototype.initModalView = function () {
-        var _this = this;
-        var lastSegment = document.location.pathname.split('/').pop();
-        var closeClick = '<span id="close" class="close" onclick="apr.closeModalView()"></span>';
-        var commentStvol = "<span class='comment-stvol'>В стволе указаны числа текущих седмиц.<br> Подробнее<a class='a-href' href='https://www.aprakos.ru/p/blog-page.html'> здесь</a>.</div>";
-        var str = "\n        <section id=\"fp-content\" class=\"fp-content\">\n        <b>\u0421\u0435\u0434\u043C\u0438\u0446\u0430 \u0415\u0432\u0430\u043D\u0433\u0435\u043B\u0438\u044F: </b>\n        <div id=\"modal-cweek\">\u043F\u043E \u041F\u0430\u0441\u0445\u0435&nbsp; <span class=\"red bold\">".concat(this.anchorElemID, ",</span></div>\n        <div id=\"modal-cweek50\">\u043F\u043E \u041F\u044F\u0442\u044C&shy;\u0434\u0435\u0441\u044F\u0442&shy;\u043D\u0438\u0446\u0435 <span class=\"red bold\">").concat(this.weeks.current[0] > 7 ? Number(this.anchorElemID) - 7 : "нет", ".</span>\n        <div>").concat(lastSegment === "stvol.html" ? "".concat(this.weeks.stupkaV[1], " <span class=\"red bold\">").concat(Math.abs(this.weeks.stupkaV[0]), "</span> \u0441\u0435\u0434\u043C.") : "", "</div></div>\n        <div>").concat(lastSegment === "stvol.html" ? "".concat(this.weeks.stupkaK[1], " <span class=\"red bold\">").concat(Math.abs(this.weeks.stupkaK[0]), "</span> \u0441\u0435\u0434\u043C.") : "", "</div></div>\n        <div>").concat(lastSegment === "stvol.html" ? "".concat(this.weeks.all[1], " <span class=\"red bold\">").concat(Math.abs(this.weeks.all[0]), "</span> \u0441\u0435\u0434\u043C.") : "", "</div></div>\n        <div>").concat(lastSegment === "stvol.html" ? commentStvol : "", "</div></div>\n        <div>").concat(lastSegment === "blog-post.html" ? "".concat(this.weeks.stupkaK[1], " <span class=\"red bold\">").concat(Math.abs(this.weeks.stupkaK[0]), "</span> \u0441\u0435\u0434\u043C.") : "", "</div></div>\n        <div>").concat(lastSegment === "blog-page_13.html" ? "".concat(this.weeks.stupkaK[1], " <span class=\"red bold\">").concat(Math.abs(this.weeks.stupkaK[0]), "</span> \u0441\u0435\u0434\u043C.") : "", "</div></div>\n        ").concat(closeClick, "\n        </section>\n        ");
-        document.getElementById("first-preview").innerHTML = str;
-        document.querySelector("#fp00").classList.add("fp00");
-        document.querySelector("#first-preview").classList.add("fp01");
-        var rpack = this.reversePack();
+    }
+    initModalView() {
+        let lastSegment = document.location.pathname.split('/').pop();
+        const closeClick = '<span id="close" class="close" onclick="apr.closeModalView()"></span>';
+        const commentStvol = "<span class='comment-stvol'>В стволе указаны числа текущих седмиц.<br> Подробнее<a class='a-href' href='https://www.aprakos.ru/p/blog-page.html'> здесь</a>.</div>";
+        let str = `
+        <section id="fp-content" class="fp-content">
+        <b>Седмица Евангелия: </b>
+        <div id="modal-cweek">по Пасхе&nbsp; <span class="red bold">${this.anchorElemID},</span></div>
+        <div id="modal-cweek50">по Пять&shy;десят&shy;нице <span class="red bold">${this.weeks.current[0] > 7 ? Number(this.anchorElemID) - 7 : 'нет'}.</span>
+        <div>${lastSegment === 'stvol.html'
+            ? `${this.weeks.stupkaV[1]} <span class="red bold">${Math.abs(this.weeks.stupkaV[0])}</span> седм.`
+            : ''}</div></div>
+        <div>${lastSegment === 'stvol.html'
+            ? `${this.weeks.stupkaK[1]} <span class="red bold">${Math.abs(this.weeks.stupkaK[0])}</span> седм.`
+            : ''}</div></div>
+        <div>${lastSegment === 'stvol.html'
+            ? `${this.weeks.all[1]} <span class="red bold">${Math.abs(this.weeks.all[0])}</span> седм.`
+            : ''}</div></div>
+        <div>${lastSegment === 'stvol.html' ? commentStvol : ''}</div></div>
+        <div>${lastSegment === 'blog-post.html'
+            ? `${this.weeks.stupkaK[1]} <span class="red bold">${Math.abs(this.weeks.stupkaK[0])}</span> седм.`
+            : ''}</div></div>
+        <div>${lastSegment === 'blog-page_13.html'
+            ? `${this.weeks.stupkaK[1]} <span class="red bold">${Math.abs(this.weeks.stupkaK[0])}</span> седм.`
+            : ''}</div></div>
+        ${closeClick}
+        </section>
+        `;
+        document.getElementById('first-preview').innerHTML = str;
+        document.querySelector('#fp00').classList.add('fp00');
+        document.querySelector('#first-preview').classList.add('fp01');
+        const rpack = this.reversePack();
         rpack();
-        var timerOff = setTimeout(function () {
-            _this.closeModalView(timerOff);
-            alert("\n Долгое отсутствие увеличивает расстояние разлуки.");
+        let timerOff = setTimeout(() => {
+            this.closeModalView(timerOff);
+            alert('\n Долгое отсутствие увеличивает расстояние разлуки.');
         }, 3600000);
-    };
-    OLY.prototype.correctorStupka = function () {
-        this.weeks.stupkaV[1] = String(this.weeks.stupkaV[0] <= 0 ? "Воздвиженская отступка" : "Воздвиженская преступка");
-    };
-    OLY.prototype.initElementsDOM = function () {
+    }
+    correctorStupka() {
+        this.weeks.stupkaV[1] = String(this.weeks.stupkaV[0] <= 0
+            ? 'Воздвиженская отступка'
+            : 'Воздвиженская преступка');
+    }
+    initElementsDOM() {
         var _a, _b, _c;
-        var stvol = document.location.pathname.split('/').pop();
-        if (stvol != "stvol.html") {
+        const stvol = document.location.pathname.split('/').pop();
+        if (stvol != 'stvol.html') {
             return;
         }
-        (_a = document.getElementById('name')) === null || _a === void 0 ? void 0 : _a.children[0].setAttribute('href', (_b = this.linkToHolydays) !== null && _b !== void 0 ? _b : this.linkToAprakos);
-        var elemsID = {
-            curweek: "".concat(this.weeks.current[0]),
-            curweek50: "".concat(this.weeks.current[0] < 8 ? "*" : this.weeks.current[0] - 7),
-            glass: "Глаc: " + this.glas(+this.weeks.current[0])
+        (_a = document
+            .getElementById('name')) === null || _a === void 0 ? void 0 : _a.children[0].setAttribute('href', (_b = this.linkToHolydays) !== null && _b !== void 0 ? _b : this.linkToAprakos);
+        let elemsID = {
+            curweek: `${this.weeks.current[0]}`,
+            curweek50: `${this.weeks.current[0] < 8 ? '*' : this.weeks.current[0] - 7}`,
+            glass: 'Глаc: ' + this.glas(+this.weeks.current[0]),
         };
-        for (var atrubuteID in elemsID) {
+        for (const atrubuteID in elemsID) {
             if (Object.prototype.hasOwnProperty.call(elemsID, atrubuteID)) {
-                if (atrubuteID === "curweek") {
-                    document.getElementById(atrubuteID).innerHTML = "<a href=\"#week".concat(this.weeks.apstlElemID[0], "\">").concat(elemsID[atrubuteID], "</a>");
+                if (atrubuteID === 'curweek') {
+                    document.getElementById(atrubuteID).innerHTML = `<a href="#week${this.weeks.apstlElemID[0]}">${elemsID[atrubuteID]}</a>`;
                 }
-                else if (atrubuteID === "curweek50") {
-                    document.getElementById(atrubuteID).innerHTML = "<a href=\"#week".concat(this.weeks.evnglElemID[0], "\">").concat(elemsID[atrubuteID], "</a>");
+                else if (atrubuteID === 'curweek50') {
+                    document.getElementById(atrubuteID).innerHTML = `<a href="#week${this.weeks.evnglElemID[0]}">${elemsID[atrubuteID]}</a>`;
                 }
                 else {
                     document.getElementById(atrubuteID).innerHTML = elemsID[atrubuteID];
                 }
-                if (atrubuteID == "glass") {
+                if (atrubuteID == 'glass') {
                     document.querySelector('#glass').innerHTML = elemsID[atrubuteID];
                 }
             }
         }
         if (Number(elemsID.curweek) < 8) {
-            (_c = document.getElementById("id50")) === null || _c === void 0 ? void 0 : _c.remove();
+            (_c = document.getElementById('id50')) === null || _c === void 0 ? void 0 : _c.remove();
         }
-        document.getElementById("weekday" + this.weeks.apstlElemID[0] + this.weeks.day[0]).className += " apstl-day";
-        document.getElementById("weekday" + this.weeks.apstlElemID[0] + this.weeks.day[0]).style.lineHeight = "3.5rem";
-        document.getElementById("week" + this.weeks.apstlElemID[0]).className += " color-block-apstl-stupka";
+        document.getElementById('weekday' + this.weeks.apstlElemID[0] + this.weeks.day[0]).className += ' apstl-day';
+        document.getElementById('weekday' + this.weeks.apstlElemID[0] + this.weeks.day[0]).style.lineHeight = '3.5rem';
+        document.getElementById('week' + this.weeks.apstlElemID[0]).className +=
+            ' color-block-apstl-stupka';
         if (this.weeks.evnglElemID[0] != this.weeks.apstlElemID[0]) {
-            document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0]).className += " evngl-day";
-            document.getElementById("week" + this.weeks.evnglElemID[0]).className += " color-block-evngl-stupka";
-            document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0]).style.lineHeight = "3.5rem";
+            document.getElementById('weekday' + this.weeks.evnglElemID[0] + this.weeks.day[0]).className += ' evngl-day';
+            document.getElementById('week' + this.weeks.evnglElemID[0]).className +=
+                ' color-block-evngl-stupka';
+            document.getElementById('weekday' + this.weeks.evnglElemID[0] + this.weeks.day[0]).style.lineHeight = '3.5rem';
         }
         else {
-            document.getElementById("weekday" + this.weeks.evnglElemID[0] + this.weeks.day[0]).className += " evngl-day";
-            document.getElementById("weekday" + this.weeks.aprID[0]).className += " seedday-week-on";
-            document.getElementById("week" + this.weeks.apstlElemID[0]).classList.remove("color-block-apstl-stupka");
-            document.getElementById("week" + this.weeks.apstlElemID[0]).className += " color-block";
+            document.getElementById('weekday' + this.weeks.evnglElemID[0] + this.weeks.day[0]).className += ' evngl-day';
+            document.getElementById('weekday' + this.weeks.aprID[0]).className +=
+                ' seedday-week-on';
+            document
+                .getElementById('week' + this.weeks.apstlElemID[0])
+                .classList.remove('color-block-apstl-stupka');
+            document.getElementById('week' + this.weeks.apstlElemID[0]).className +=
+                ' color-block';
         }
         if (this.weeks.evnglElemID[0] == 50) {
-            document.querySelector("#week50").setAttribute("style", "border: solid 4rem #fedede; background-color: #fedede;");
+            document
+                .querySelector('#week50')
+                .setAttribute('style', 'border: solid 4rem #fedede; background-color: #fedede;');
         }
-    };
-    OLY.prototype.glas = function (sedmica) {
-        var x = sedmica;
-        var n = (x % 8) * 0.1;
-        var g = Math.floor(n * 10) - 1;
+    }
+    glas(sedmica) {
+        let x = sedmica;
+        let n = (x % 8) * 0.1;
+        let g = Math.floor(n * 10) - 1;
         switch (g) {
             case 0:
-                return "8";
+                return '8';
                 break;
             case -1:
-                return "7";
+                return '7';
                 break;
             default:
                 return g.toString();
                 break;
         }
-    };
-    OLY.prototype.reversePack = function () {
-        var _this = this;
-        var i = this.stateModalView;
-        var reverseP = function () {
+    }
+    reversePack() {
+        let i = this.stateModalView;
+        const reverseP = () => {
             i = !i;
-            _this.stateModalView = i;
+            this.stateModalView = i;
             return i;
         };
         return reverseP;
-    };
-    OLY.prototype.closeModalView = function (timerOff) {
+    }
+    closeModalView(timerOff) {
         var _a, _b;
         localStorage.ystm = JSON.stringify({
             entries: 1,
             opasity: 0,
-            visibility: "hidden",
+            visibility: 'hidden',
         });
-        (_a = document.querySelector("#fp00")) === null || _a === void 0 ? void 0 : _a.classList.remove("fp00");
-        (_b = document.querySelector("#first-preview")) === null || _b === void 0 ? void 0 : _b.classList.remove("fp01");
-        document.querySelector("#close").outerHTML = '<!-- Will embed element-->';
-        document.querySelector("#fp-content").outerHTML = '<!-- Will embed element-->';
-        var rpack = this.reversePack();
+        (_a = document.querySelector('#fp00')) === null || _a === void 0 ? void 0 : _a.classList.remove('fp00');
+        (_b = document.querySelector('#first-preview')) === null || _b === void 0 ? void 0 : _b.classList.remove('fp01');
+        document.querySelector('#close').outerHTML = '<!-- Will embed element-->';
+        document.querySelector('#fp-content').outerHTML =
+            '<!-- Will embed element-->';
+        const rpack = this.reversePack();
         rpack();
         clearTimeout(timerOff);
-    };
-    OLY.prototype.firstViewModal = function () {
-        var aaa = localStorage.ystm;
+    }
+    firstViewModal() {
+        const aaa = localStorage.ystm;
         if (aaa == null) {
             this.initModalView();
         }
         return {};
-    };
-    OLY.prototype.eventKeys = function () {
-        var _this = this;
-        var oneClickInfo = "";
-        document.addEventListener("keyup", function (event) {
-            if (event.key == "F2") {
-                oneClickInfo += event.code + "";
-                setTimeout(function () {
-                    oneClickInfo = "";
+    }
+    eventKeys() {
+        let oneClickInfo = '';
+        document.addEventListener('keyup', event => {
+            if (event.key == 'F2') {
+                oneClickInfo += event.code + '';
+                setTimeout(() => {
+                    oneClickInfo = '';
                 }, 700);
             }
-            if (oneClickInfo == "F2F2" && _this.stateModalView == false) {
-                _this.initModalView();
+            if (oneClickInfo == 'F2F2' && this.stateModalView == false) {
+                this.initModalView();
             }
-            else if (oneClickInfo == "F2F2" && _this.stateModalView == true) {
-                oneClickInfo = "";
-                _this.closeModalView();
+            else if (oneClickInfo == 'F2F2' && this.stateModalView == true) {
+                oneClickInfo = '';
+                this.closeModalView();
             }
-            if (event.code == "Escape") {
-                oneClickInfo += event.code + "";
+            if (event.code == 'Escape') {
+                oneClickInfo += event.code + '';
             }
-            if (oneClickInfo == "EscapeEscape") {
+            if (oneClickInfo == 'EscapeEscape') {
                 sessionStorage.removeItem('userDate');
-                oneClickInfo = "";
-                document.location.replace("");
+                oneClickInfo = '';
+                document.location.replace('');
             }
         });
-    };
-    OLY.prototype.deleteUserDateFromSessionStorage = function () {
+    }
+    deleteUserDateFromSessionStorage() {
         sessionStorage.removeItem('userDate');
         document.location.replace(document.location.origin);
-    };
-    OLY.prototype.reloadAprakosPage = function () {
-        var cd = new Date();
-        var nextDay = new Date(cd.getFullYear(), cd.getMonth(), cd.getDate() + 1);
-        var interval = nextDay.getTime() - cd.getTime();
+    }
+    reloadAprakosPage() {
+        let cd = new Date();
+        let nextDay = new Date(cd.getFullYear(), cd.getMonth(), cd.getDate() + 1);
+        let interval = nextDay.getTime() - cd.getTime();
         setTimeout(function () {
             document.location.reload();
         }, interval);
-    };
-    return OLY;
-}());
-var apr = new OLY();
+    }
+    setUserDate() {
+    }
+}
+let apr = new OLY();
+class selectedDay {
+    constructor() {
+        this.c = 0;
+        this.userDate_ss = sessionStorage.getItem('userDate');
+        this.newDate = document.getElementById('form-date');
+        this.v = 'visibility';
+        this.h = 'hidden';
+        this.d = [];
+        this.setUserData();
+        this.setColor();
+        this.listener();
+    }
+    setUserData() {
+        const color = this.userDate_ss
+            ? '<span style="color: #e34234">'
+            : '<span style="color: #000">';
+        const color2 = this.userDate_ss
+            ? '<span style="color: #813bff">'
+            : '<span style="color: #000">';
+        if (this.c == 0) {
+            let easterData = document.querySelector('#easter');
+            easterData.innerHTML +=
+                '<span style="font-size: 1.5rem; opasity: .5;"><span style="color: #0005"> Прошедшая Пасха: ' +
+                    apr.oldEaster.toLocaleDateString() +
+                    '</span><br>' +
+                    'ОЖИДАЕМАЯ ПАСХА: ' +
+                    color +
+                    apr.newEaster.toLocaleDateString() +
+                    '</span></span>';
+            const obj = apr.weeks;
+            const ul = document.getElementById('listWeeks');
+            for (var key in obj) {
+                if (Object.prototype.hasOwnProperty.call(obj, key)) {
+                    var element = obj[key];
+                    const li = document.createElement('li');
+                    li.innerHTML += element[1] + ': ' + color2 + element[0];
+                    ul.appendChild(li) + '</span>';
+                }
+            }
+            const obj2 = apr.datesOLY;
+            const ul2 = document.getElementById('listDatesOly');
+            for (var key in obj2) {
+                if (Object.prototype.hasOwnProperty.call(obj2, key)) {
+                    let element = obj2[key];
+                    const li = document.createElement('li');
+                    li.innerHTML +=
+                        element[1] + ': ' + color + element[0].toLocaleDateString();
+                    ul2.appendChild(li) + '</span>';
+                }
+            }
+        }
+        this.c = this.c + 1;
+    }
+    reloadPage() {
+        sessionStorage.removeItem('userDate');
+        document.location.reload();
+    }
+    setColor() {
+        if (this.userDate_ss) {
+            document.getElementById('form-date').classList.add(this.h);
+            document.getElementById('button-date').classList.add(this.v);
+            document
+                .getElementById('warningString')
+                .setAttribute('style', 'color:red; font-wigth: bold; font-weight: bolder;');
+            document.getElementById('apr-year').innerHTML =
+                ' для ' +
+                    '<span style="padding-left: .4rem; color: #000"> ' +
+                    new Date(+this.userDate_ss).toLocaleDateString() +
+                    '</span>';
+        }
+        else {
+            let dateFromForm = document.querySelector('input[type="date"]');
+            dateFromForm.value = "0000-00-00";
+            document.getElementById('form-date').classList.add(this.v);
+            document.getElementById('button-date').classList.add(this.h);
+            document.getElementById('apr-year').innerText = ' СЕГО ДНЯ.';
+        }
+    }
+    serializeForm(formNode_p) {
+        if (formNode_p != null && formNode_p != undefined) {
+            let a = new FormData(formNode_p);
+            for (var pair of a.entries()) {
+                let b = pair[1].toString();
+                this.d = [+b.slice(0, 4), +b.slice(5, 7) - 1, +b.slice(-2)];
+            }
+        }
+        new OLY(this.d);
+    }
+    listener() {
+        this.newDate.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.serializeForm(this.newDate);
+        });
+        document.addEventListener('load', () => {
+            this.setUserData();
+        });
+    }
+}
+let set = new selectedDay();

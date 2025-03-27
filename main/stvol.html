@@ -46,6 +46,120 @@
 			<!-- js insert -->
 		</span>
 	</div>
+
+
+
+
+
+
+
+
+
+		<style>
+			#submit {
+				background-color: chocolate;
+				color: azure;
+				padding: 0.4em;
+				border-radius: 7px;
+			}
+		
+			#adate {
+				color: black;
+				background-color: white;
+			}
+		
+			@media (max-width: 500px) {
+				#info {
+					min-width: 98%;
+				}
+		
+				#d1 {
+					display: none;
+				}
+		
+				#a2 {
+					flex-direction: column;
+				}
+				
+			}
+			/* =========================================== */
+			/*  после добавления в css файл — удалить свойства  */
+			.visibility{visibility: visible;}
+				.hidden{display: none;}
+			/* =========================================== */
+		</style>
+		<div id="input-date" class="aprakos-date" style="
+						font-size: 1.3em;
+						margin-right: 2%;
+						display: flex;
+						justify-content: center;
+						align-content: center;
+						flex-direction: row-reverse;
+					">
+			<button id="button-date" style="
+							border-radius: 7px;
+							color: white;
+							background-color: #ff6052c4;
+							padding: 0.5rem;
+						" href="#" onclick="set.reloadPage()"> Вернуться в реальность … </button>
+			<form action="" id="form-date">
+				<label for="adate"></label>
+				<input type="date" id="adate" name="adate" min="2000-01-01" max="2099-12-31" required />
+				<input id="submit" type="submit" value="установить" />
+			</form>
+			<div id="d1" style="
+							font-size: 1.4em;
+							color: #e34234;
+							font-weight: 600;
+							text-align: center;
+							margin-right: 2em;
+							margin-top: 0.3em;
+						">
+				<a onclick="apr.initModalView()" style="cursor: pointer">Данные <span id="apr-year"></span></a>
+			</div>
+		</div>
+		<div id="d">
+			<section id="a1" style="
+							display: flex;
+							justify-content: center;
+							margin-top: 3dvw;
+							margin-bottom: 1dvw;
+						">
+				<p id="easter"></p>
+			</section>
+			<section id="a2" style="font-size: 1rem; display: flex; justify-content: space-evenly">
+				<ul id="listWeeks" style="padding-left: 3dvw; list-style-type: circle"></ul>
+				<ul id="listDatesOly" style="padding-left: 2.5dvw; list-style-type: disc"></ul>
+			</section>
+		</div>
+		<section>
+			<p id="info" style="
+							font-size: 1.2em;
+							padding-top: 0.1em;
+							margin: 4dvw auto;
+							max-width: 66%;
+						"> При любой установленной дате в диапазоне 2000 — 2099, <b>в нижнем левом углу</b> будет отображен стикер с выбранной датой и красная кнопка заменит выбор даты.<br />
+				<span id="warningString">Cайт настроен на выбранную дату, будьте внимательны.</span><br /> Для возврата к текущей-сегодняшней дате Апракоса кликните по кнопке или стикеру-дате.
+			</p>
+		</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<hr class="hr-1"> <br> <!-- <p class="date new" id="2">Евнгл., ?? зач., ?.?-??</p> -->
 	<div class="onoff" id="stvol1">
 		<p class="abzac"> <a href="/2020/04/XB.html">КанHнъ с™hz пaсхи.</a> </p>
