@@ -1180,7 +1180,9 @@ class OLY implements IOLY {
 let apr = new OLY()
 //=============== end ===================
 
-class selectedDay {
+
+
+class selectedDay  {
 
     userDate_ss = sessionStorage.getItem('userDate') as string
     newDate: any = document.getElementById('form-date')
@@ -1279,8 +1281,10 @@ class selectedDay {
                 new Date(+this.userDate_ss).toLocaleDateString() +
                 '</span>'
         } else {
+
             let dateFromForm = document.querySelector('input[type="date"]') as HTMLTextAreaElement
-            dateFromForm.value = "0000-00-00" // сброс дата-пикера
+            dateFromForm.value = apr.theMoment.toISOString().slice(0, 10)
+
 
             document.getElementById('form-date')!.classList.add(show)
             document.getElementById('button-date')!.classList.add(hide)
@@ -1311,9 +1315,9 @@ class selectedDay {
             }
         )
 
-        // document.addEventListener('load', () => {
-        //     this.setUserData()
-        // })
+        window.addEventListener('load', () => {
+
+        })
     }
 }
 

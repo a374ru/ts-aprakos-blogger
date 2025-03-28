@@ -760,7 +760,7 @@ class selectedDay {
         }
         else {
             let dateFromForm = document.querySelector('input[type="date"]');
-            dateFromForm.value = "0000-00-00";
+            dateFromForm.value = apr.theMoment.toISOString().slice(0, 10);
             document.getElementById('form-date').classList.add(show);
             document.getElementById('button-date').classList.add(hide);
             document.getElementById('apr-year').innerText = ' СЕГО ДНЯ.';
@@ -781,6 +781,13 @@ class selectedDay {
         this.newDate.addEventListener('submit', (e) => {
             e.preventDefault();
             this.serializeForm(this.newDate);
+        });
+        window.addEventListener('load', () => {
+            let closedButton = window.navigator.userAgent.includes("Version/18.3.1");
+            if (closedButton) {
+                console.log("=====XXXX=====");
+                document.getElementById('input-date').style.display = "none";
+            }
         });
     }
 }
