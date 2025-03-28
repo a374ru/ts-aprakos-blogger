@@ -685,7 +685,7 @@ class OLY {
     }
 }
 let apr = new OLY();
-class selectedDay {
+class SelectedDay {
     constructor() {
         this.userDate_ss = sessionStorage.getItem('userDate');
         this.newDate = document.getElementById('form-date');
@@ -782,13 +782,6 @@ class selectedDay {
             e.preventDefault();
             this.serializeForm(this.newDate);
         });
-        window.addEventListener('load', () => {
-            let closedButton = window.navigator.userAgent.includes("Version/18.3.1");
-            if (closedButton) {
-                console.log("=====XXXX=====");
-                document.getElementById('input-date').style.display = "none";
-            }
-        });
     }
 }
-let set = new selectedDay();
+let set = new SelectedDay();

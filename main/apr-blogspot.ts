@@ -1182,7 +1182,7 @@ let apr = new OLY()
 
 
 
-class selectedDay  {
+class SelectedDay  {
 
     userDate_ss = sessionStorage.getItem('userDate') as string
     newDate: any = document.getElementById('form-date')
@@ -1257,8 +1257,6 @@ class selectedDay  {
         document.location.reload()
     }
 
-    
-
     /**
      *  Метод раскрашивает элементы на странице в зависимости от того какое событие состоялось.
      */
@@ -1315,12 +1313,12 @@ class selectedDay  {
             }
         )
 
-        window.addEventListener('load', () => {
-
-        })
+        // window.addEventListener('load', () => {
+        //     // ??? 
+        // })
     }
 }
 
-let set = new selectedDay()
+let set = new SelectedDay()
 
 //=============== end ===================
