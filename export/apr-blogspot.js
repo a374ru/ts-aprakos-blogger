@@ -217,14 +217,21 @@ class OLY {
             return true;
         }
     }
+    ruday() {
+        const days = ['Воскресенье', 'Понедельник', 'Вторник', ' Среда', 'Четверг', 'Пятница', 'Суббота'];
+        const d = days[this.theMomentTime.getDay()];
+        return d;
+    }
     initWeeks() {
         const day = (this.weeks['day'] = [
             this.theMomentTime.getDay() + 1,
             'День седмицы',
+            " … " + this.ruday(),
         ]);
         const all = (this.weeks['all'] = [
             Math.ceil((this.newEasterMLS - this.oldEasterMLS) / 864e5 / 7),
             'Протяженность ПБГ',
+            'седмиц',
         ]);
         const current = (this.weeks['current'] = [
             Math.ceil((this.theMomentTime.getTime() - this.offsetZone - this.oldEasterMLS) /
@@ -235,11 +242,16 @@ class OLY {
         if (current[0] == 0 || current[0] > 55) {
             this.weeks['current'][0] = 1;
         }
-        const mif = (this.weeks['mif'] = [all[0] - 9, 'Седмица МиФ по Пасхе']);
+        const pip = (this.weeks['mif2'] = [
+            Math.ceil((this.datesOLY.pip[0].getTime() - (this.datesOLY.pentecost[0].getTime() + 864e5 * 7)) / 864e5),
+            'Петров пост',
+            'дн.'
+        ]);
         const zakhey = (this.weeks['zakhey'] = [
-            mif[0] - 1,
+            all[0] - 10,
             'Седмица Закхея по Пасхе',
         ]);
+        const mif = (this.weeks['mif'] = [all[0] - 9, 'Седмица МиФ по Пасхе']);
         const vozdvizgenie = (this.weeks['vozdvizgenie'] = [
             Math.ceil((this.datesOLY.vozdvizgenieKresta[0].getTime() - this.oldEasterMLS) /
                 864e5 /
@@ -249,10 +261,12 @@ class OLY {
         let stupkaV = (this.weeks['stupkaV'] = [
             Math.ceil((this.datesOLY.week24[0].getTime() - this.oldEasterMLS) / 864e5 / 7) - vozdvizgenie[0],
             'Воздвиженская ступка',
+            'седм.',
         ]);
         let stupkaK = (this.weeks['stupkaK'] = [
             Math.abs(all[0] - 50 - -stupkaV[0]),
             'Крещенская отступка',
+            'седм.',
         ]);
         this.correctorStupka();
         return this.weeks;
@@ -267,9 +281,17 @@ class OLY {
             new Date(this.oldEasterMLS + 864e5 * 49),
             'Пятьдесятница',
         ];
+        this.datesOLY['pip'] = [
+            new Date(this.oldEaster.getFullYear() + '-07-12T00:00:00'),
+            'Начало Петрова поста',
+        ];
         this.datesOLY['vozdvizgenieKresta'] = [
             new Date(this.oldEaster.getFullYear() + '-09-27T00:00:00'),
             'Воздвижение Креста Господня',
+        ];
+        this.datesOLY['week24'] = [
+            new Date(this.oldEasterMLS + 864e5 * 168),
+            '17/24 седмица по Пасхе',
         ];
         this.datesOLY['zakhey'] = [
             new Date(this.newEasterMLS - 864e5 * 77),
@@ -295,9 +317,9 @@ class OLY {
             new Date(this.newEasterMLS - 864e5 * 48),
             'Начало Великого Поста',
         ];
-        this.datesOLY['week24'] = [
-            new Date(this.oldEasterMLS + 864e5 * 168),
-            '17/24 седмица по Пасхе',
+        this.datesOLY['CrossSunday'] = [
+            new Date(this.newEaster - 864e5 * 28),
+            'Неделя Крестопоклонная'
         ];
         return this.datesOLY;
     }
@@ -402,13 +424,13 @@ class OLY {
                 break;
         }
         this.weeks['aprID'] = [aprID, 'Апракос-ID'];
-        this.weeks['evnglElemID'] = [
-            evangelieElemID,
-            'Элемент-ID Евангельского зачала',
-        ];
         this.weeks['apstlElemID'] = [
             apostolElemID,
-            'Элемент-ID Апостольского зачала',
+            'Апостола-ID',
+        ];
+        this.weeks['evnglElemID'] = [
+            evangelieElemID,
+            'Евангелие-ID ',
         ];
         return partURL;
     }
@@ -661,18 +683,13 @@ class OLY {
             document.location.reload();
         }, interval);
     }
-    setUserDate() {
-    }
 }
 let apr = new OLY();
 class selectedDay {
     constructor() {
-        this.c = 0;
         this.userDate_ss = sessionStorage.getItem('userDate');
         this.newDate = document.getElementById('form-date');
-        this.v = 'visibility';
-        this.h = 'hidden';
-        this.d = [];
+        this.counter = 0;
         this.setUserData();
         this.setColor();
         this.listener();
@@ -682,9 +699,9 @@ class selectedDay {
             ? '<span style="color: #e34234">'
             : '<span style="color: #000">';
         const color2 = this.userDate_ss
-            ? '<span style="color: #813bff">'
+            ? '<span style="font-weight: 600; color: #5d01ff">'
             : '<span style="color: #000">';
-        if (this.c == 0) {
+        if (this.counter == 0) {
             let easterData = document.querySelector('#easter');
             easterData.innerHTML +=
                 '<span style="font-size: 1.5rem; opasity: .5;"><span style="color: #0005"> Прошедшая Пасха: ' +
@@ -700,7 +717,11 @@ class selectedDay {
                 if (Object.prototype.hasOwnProperty.call(obj, key)) {
                     var element = obj[key];
                     const li = document.createElement('li');
-                    li.innerHTML += element[1] + ': ' + color2 + element[0];
+                    var str = " ";
+                    if (element[2] != undefined) {
+                        str += element[2];
+                    }
+                    li.innerHTML += element[1] + ': ' + color2 + element[0] + str;
                     ul.appendChild(li) + '</span>';
                 }
             }
@@ -716,16 +737,18 @@ class selectedDay {
                 }
             }
         }
-        this.c = this.c + 1;
+        this.counter = this.counter + 1;
     }
     reloadPage() {
         sessionStorage.removeItem('userDate');
         document.location.reload();
     }
     setColor() {
+        let show = 'visibility';
+        let hide = 'hidden';
         if (this.userDate_ss) {
-            document.getElementById('form-date').classList.add(this.h);
-            document.getElementById('button-date').classList.add(this.v);
+            document.getElementById('form-date').classList.add(hide);
+            document.getElementById('button-date').classList.add(show);
             document
                 .getElementById('warningString')
                 .setAttribute('style', 'color:red; font-wigth: bold; font-weight: bolder;');
@@ -738,28 +761,26 @@ class selectedDay {
         else {
             let dateFromForm = document.querySelector('input[type="date"]');
             dateFromForm.value = "0000-00-00";
-            document.getElementById('form-date').classList.add(this.v);
-            document.getElementById('button-date').classList.add(this.h);
+            document.getElementById('form-date').classList.add(show);
+            document.getElementById('button-date').classList.add(hide);
             document.getElementById('apr-year').innerText = ' СЕГО ДНЯ.';
         }
     }
     serializeForm(formNode_p) {
+        let d = [];
         if (formNode_p != null && formNode_p != undefined) {
             let a = new FormData(formNode_p);
             for (var pair of a.entries()) {
                 let b = pair[1].toString();
-                this.d = [+b.slice(0, 4), +b.slice(5, 7) - 1, +b.slice(-2)];
+                d = [+b.slice(0, 4), +b.slice(5, 7) - 1, +b.slice(-2)];
             }
         }
-        new OLY(this.d);
+        new OLY(d);
     }
     listener() {
         this.newDate.addEventListener('submit', (e) => {
             e.preventDefault();
             this.serializeForm(this.newDate);
-        });
-        document.addEventListener('load', () => {
-            this.setUserData();
         });
     }
 }
