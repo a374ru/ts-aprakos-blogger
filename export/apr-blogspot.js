@@ -188,7 +188,6 @@ class OLY {
         this.linkToAprakos = '/' + this.yearMonthID() + '.html';
         this.anchorElemID = '' + this.weeks.evnglElemID[0];
         this.linkToHolydays = (_a = this.holydays_9()) !== null && _a !== void 0 ? _a : this.linkToAprakos;
-        this.info();
         this.initElementsDOM();
         this.firstViewModal();
         this.eventKeys();
@@ -338,7 +337,7 @@ class OLY {
             location.reload();
         }
         else {
-            console.warn(`${userYear
+            console.info(`${userYear
                 ? 'Формат введенный пользователем не подходит… попробуйте ([2099,0,7])'
                 : 'Год пользователем не предоставлен…'}.\nБудет использован текущий год.\nСПАСИБО ЗА ВНИМАНИЕ!`);
         }
@@ -362,11 +361,11 @@ class OLY {
                 console.log(element[1] + ' | ' + element[0]);
             }
         }
-        console.warn(`
-Сегодня: ${this.theMomentTime.toDateString()}
-Ссылка на Апракос: https://aprakos.blogspot.com${this.linkToAprakos}
-Ссылка на праздник: https://aprakos.blogspot.com${(_a = this.linkToHolydays) !== null && _a !== void 0 ? _a : ''}
-Справка здесь: https://aprakos.blogspot.com/p/blog-page_4.html
+        console.info(`
+            Сегодня: ${this.theMomentTime.toDateString()}
+            Ссылка на Апракос: https://aprakos.blogspot.com${this.linkToAprakos}
+            Ссылка на праздник: https://aprakos.blogspot.com${(_a = this.linkToHolydays) !== null && _a !== void 0 ? _a : ''}
+            Справка здесь: https://aprakos.blogspot.com/p/blog-page_4.html
         `);
     }
     yearMonthID() {
@@ -687,12 +686,14 @@ class OLY {
 let apr = new OLY();
 class SelectedDay {
     constructor() {
-        this.userDate_ss = sessionStorage.getItem('userDate');
         this.newDate = document.getElementById('form-date');
+        this.userDate_ss = sessionStorage.getItem('userDate');
         this.counter = 0;
-        this.setUserData();
-        this.setColor();
-        this.listener();
+        if (this.newDate) {
+            this.setUserData();
+            this.setColor();
+            this.listener();
+        }
     }
     setUserData() {
         const color = this.userDate_ss
@@ -756,24 +757,23 @@ class SelectedDay {
                 ' для ' +
                     '<span style="padding-left: .4rem; color: #000"> ' +
                     new Date(+this.userDate_ss).toLocaleDateString() +
-                    '</span>';
+                    ' ✔️ </span>';
         }
         else {
             let dateFromForm = document.querySelector('input[type="date"]');
-            dateFromForm.value = apr.theMoment.toISOString().slice(0, 10);
+            dateFromForm.value = new Date(apr.theMomentTime.getTime() - apr.offsetZone).toISOString().slice(0, 10);
             document.getElementById('form-date').classList.add(show);
             document.getElementById('button-date').classList.add(hide);
             document.getElementById('apr-year').innerText = ' СЕГО ДНЯ.';
         }
     }
-    serializeForm(formNode_p) {
+    serializeForm(event) {
         let d = [];
-        if (formNode_p != null && formNode_p != undefined) {
-            let a = new FormData(formNode_p);
-            for (var pair of a.entries()) {
-                let b = pair[1].toString();
-                d = [+b.slice(0, 4), +b.slice(5, 7) - 1, +b.slice(-2)];
-            }
+        if (event != null && event != undefined) {
+            let fd = new FormData(event);
+            fd.forEach((item) => {
+                d = [+item.slice(0, 4), +item.slice(5, 7) - 1, +item.slice(-2)];
+            });
         }
         new OLY(d);
     }

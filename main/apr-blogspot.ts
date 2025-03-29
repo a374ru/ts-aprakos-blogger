@@ -131,7 +131,7 @@ class OLY implements IOLY {
         this.linkToAprakos = '/' + this.yearMonthID() + '.html' // с учетом ступок
         this.anchorElemID = '' + this.weeks.evnglElemID[0]
         this.linkToHolydays = this.holydays_9() ?? this.linkToAprakos
-        this.info()
+        // this.info()
         this.initElementsDOM()
         this.firstViewModal()
         this.eventKeys()
@@ -430,7 +430,6 @@ class OLY implements IOLY {
         // let addMLS = sessionStorage.getItem('userDate') ? 0.001 : 0
 
         const current = (this.weeks['current'] = [
-            //  S:S  Неправильное вычисление седмицы в текущей строке, происходит сбой седмицы независимо от делителя.
             Math.ceil(
                 (this.theMomentTime.getTime() - this.offsetZone - this.oldEasterMLS) /
                 864e5 /
@@ -608,7 +607,7 @@ class OLY implements IOLY {
             // здесь нужно перезагрузить страницу для очистки экземпляра `apr`
             location.reload()
         } else {
-            console.warn(
+            console.info(
                 `${userYear
                     ? 'Формат введенный пользователем не подходит… попробуйте ([2099,0,7])'
                     : 'Год пользователем не предоставлен…'
@@ -651,11 +650,11 @@ class OLY implements IOLY {
             }
         }
 
-        console.warn(`
-Сегодня: ${this.theMomentTime.toDateString()}
-Ссылка на Апракос: https://aprakos.blogspot.com${this.linkToAprakos}
-Ссылка на праздник: https://aprakos.blogspot.com${this.linkToHolydays ?? ''}
-Справка здесь: https://aprakos.blogspot.com/p/blog-page_4.html
+        console.info(`
+            Сегодня: ${this.theMomentTime.toDateString()}
+            Ссылка на Апракос: https://aprakos.blogspot.com${this.linkToAprakos}
+            Ссылка на праздник: https://aprakos.blogspot.com${this.linkToHolydays ?? ''}
+            Справка здесь: https://aprakos.blogspot.com/p/blog-page_4.html
         `)
 
         // return
@@ -1164,7 +1163,7 @@ class OLY implements IOLY {
 
     // DONE #34 @a374ru функция обработки пользовательской даты и выводы на web-страницу вычисленных данных.
 
-} 
+}
 
 /**
  *  Экземпляр класса `apr` можно инициализирровать параметрами в формате `[YYYY, m, d]`.
@@ -1182,16 +1181,18 @@ let apr = new OLY()
 
 
 
-class SelectedDay  {
+class SelectedDay {
 
-    userDate_ss = sessionStorage.getItem('userDate') as string
     newDate: any = document.getElementById('form-date')
+    userDate_ss = sessionStorage.getItem('userDate') as string
     counter: number = 0
 
     constructor() {
-        this.setUserData()
-        this.setColor()
-        this.listener()
+        if (this.newDate) {
+            this.setUserData()
+            this.setColor()
+            this.listener()
+        }
     }
 
     /**
@@ -1208,8 +1209,8 @@ class SelectedDay  {
             : '<span style="color: #000">'
 
         if (this.counter == 0) {
-            let easterData = document.querySelector('#easter') as HTMLTextAreaElement
 
+            let easterData = document.querySelector('#easter') as HTMLTextAreaElement
             easterData.innerHTML +=
                 '<span style="font-size: 1.5rem; opasity: .5;"><span style="color: #0005"> Прошедшая Пасха: ' +
                 apr.oldEaster.toLocaleDateString() +
@@ -1245,10 +1246,11 @@ class SelectedDay  {
                     ul2.appendChild(li) + '</span>'
                 }
             }
+
         }
         this.counter = this.counter + 1
     }
-    
+
     /**
     *  Метод перезагружает страницу и удаляет сохранённую ранее дату пользователем.
      */
@@ -1277,11 +1279,11 @@ class SelectedDay  {
                 ' для ' +
                 '<span style="padding-left: .4rem; color: #000"> ' +
                 new Date(+this.userDate_ss).toLocaleDateString() +
-                '</span>'
+                ' ✔️ </span>'
         } else {
 
             let dateFromForm = document.querySelector('input[type="date"]') as HTMLTextAreaElement
-            dateFromForm.value = apr.theMoment.toISOString().slice(0, 10)
+            dateFromForm.value = new Date(apr.theMomentTime.getTime() - apr.offsetZone).toISOString().slice(0, 10)
 
 
             document.getElementById('form-date')!.classList.add(show)
@@ -1292,20 +1294,34 @@ class SelectedDay  {
     /**
      * Метод форматирует введённые пользователем время из строки в массив.
      */
-    serializeForm(formNode_p: HTMLFormElement | null | undefined) {
-    let d: any = []
-        if (formNode_p != null && formNode_p != undefined) {
-            let a = new FormData(formNode_p)
-            for (var pair of a.entries()) {
-                let b = pair[1].toString()
-                d = [+b.slice(0, 4), +b.slice(5, 7) - 1, +b.slice(-2)]
-            }
+    serializeForm(event: HTMLFormElement) {
+        let d: any = []
+        if (event != null && event != undefined) {
+            let fd = new FormData(event)
+            fd.forEach((item) => {
+                d = [+item.slice(0, 4), +item.slice(5, 7) - 1, +item.slice(-2)]
+            })
+
+            // for (var pair of a.entries()) {
+            //     let b = pair[1].toString()
+            //     d = [+b.slice(0, 4), +b.slice(5, 7) - 1, +b.slice(-2)]
+            // }
+
+
+            // let mf = dataFormNewDate!.target
+            // let fd = new FormData(mf)
+
+            // for (let key of fd.keys()) {
+            //     console.log(key, fd(key));
+
+
         }
+
         new OLY(d)
     }
 
     listener() {
-        this.newDate!.addEventListener(
+        this.newDate.addEventListener(
             'submit',
             (e: { preventDefault: () => void }) => {
                 e.preventDefault()
@@ -1317,7 +1333,9 @@ class SelectedDay  {
         //     // ??? 
         // })
     }
+
 }
+
 
 let set = new SelectedDay()
 
