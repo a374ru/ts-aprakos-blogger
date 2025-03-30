@@ -89,6 +89,7 @@
             /* =========================================== */
         </style>
         <base target="_self" />
+        
         <div  id="input-date" style="
                         font-size: 1.3em;
                         margin-right: 2%;
@@ -97,16 +98,22 @@
                         align-content: center;
                         flex-direction: row-reverse;
                     ">
+                    
             <button id="button-date" style="
                             border-radius: 7px;
                             color: white;
                             background-color: #ff6052c4;
                             padding: 0.5rem;
                         " href="#" onclick="set.reloadPage()"> Вернуться в реальность … </button>
+                        
             <form action="" id="form-date">
-                <input type="date" name="adate" min="2000-01-01" max="2099-12-31" required />
+        <input type="checkbox" title="ФИКСИРОВАТЬ ПОСЛЕДНИЙ ВЫБОР" name="fixed-date" value="">
+
+                <input type="date" name="adate" min="2000-01-01" max="2099-12-31" required autofocus/>
                 <input id="submit" type="submit" value="установить" />
             </form>
+
+
             <div id="d1" style="
                             font-size: 1.4em;
                             color: #e34234;

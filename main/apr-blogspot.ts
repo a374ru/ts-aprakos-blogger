@@ -116,7 +116,7 @@ class OLY implements IOLY {
     * Отступ временной зоны: +03:00
      */
     offsetZone = this.theMoment.getTimezoneOffset() * 60000 // ВАЖНОЕ
-    
+
     /**
     *  Переменная точного времени с учётом сдвига временной зоны длягорода Москва.
      */
@@ -1199,6 +1199,7 @@ class SelectedDay {
 
     newDate: any = document.getElementById('form-date')
     userDate_ss = sessionStorage.getItem('userDate') as string
+    userCheck_ss = sessionStorage.getItem('userCheck') as string
     counter: number = 0
 
     constructor() {
@@ -1281,7 +1282,9 @@ class SelectedDay {
         let hide = 'hidden'
         if (this.userDate_ss) {
             document.getElementById('form-date')!.classList.add(hide)
-            document.getElementById('button-date')!.classList.add(show)
+            let returnToRealDate = document.getElementById('button-date')!
+            returnToRealDate.classList.add(show)
+            returnToRealDate.focus()
             document
                 .getElementById('warningString')!
                 .setAttribute(
@@ -1297,41 +1300,55 @@ class SelectedDay {
         } else {
 
             let dateFromForm = document.querySelector('input[type="date"]') as HTMLTextAreaElement
-            /// В данной строчке присутствует важное корректировка – отступ временной зоны. 
-            /// Без этой корректировки вычисления запаздывают на 03:00.
-            dateFromForm.value = apr.theMomentOffsetZone.toISOString().slice(0, 10)
+            /** 
+            * В данной строчке присутствует важное корректировка – отступ временной зоны. 
+            * Без этой корректировки вычисления запаздывают на 03:00.
+            */
+            !this.userCheck_ss ? dateFromForm.value = apr.theMomentOffsetZone.toISOString().slice(0, 10):undefined
 
 
             document.getElementById('form-date')!.classList.add(show)
             document.getElementById('button-date')!.classList.add(hide)
-            document.getElementById('apr-year')!.innerText = ' СЕГО ДНЯ.'
+            document.getElementById('apr-year')!.innerText = ' СЕГО ДНЯ '
         }
     }
     /**
      * Метод форматирует введённые пользователем время из строки в массив.
+     * @param dataftf - data from hte form
      */
-    serializeForm(event: HTMLFormElement) {
+    serializeForm(dataftf: HTMLFormElement) {
         let d: any = []
-        if (event != null && event != undefined) {
-            let fd = new FormData(event)
-            fd.forEach((item) => {
-                d = [+item.slice(0, 4), +item.slice(5, 7) - 1, +item.slice(-2)]
-            })
+        const check: boolean = dataftf["fixed-date"].checked
 
-            // for (var pair of a.entries()) {
-            //     let b = pair[1].toString()
-            //     d = [+b.slice(0, 4), +b.slice(5, 7) - 1, +b.slice(-2)]
-            // }
-
-
-            // let mf = dataFormNewDate!.target
-            // let fd = new FormData(mf)
-
-            // for (let key of fd.keys()) {
-            //     console.log(key, fd(key));
-
-
+        if (check) {
+            sessionStorage.setItem('userCheck', 'yes')
+        } else {
+            sessionStorage.removeItem('userCheck')
         }
+
+        const inputDate: string = dataftf["adate"].value
+
+        d = [+inputDate.slice(0, 4), +inputDate.slice(5, 7) - 1, +inputDate.slice(-2)]
+
+        // if (dataftf != null && dataftf != undefined) {
+        //     let fd = new FormData(dataftf)
+        //     fd.forEach((item) => {
+        //     console.log(item);
+
+        //         d = [+item.slice(0, 4), +item.slice(5, 7) - 1, +item.slice(-2)]
+        //     })
+
+        // for (var pair of dataftf.entries()) {
+        //     let b = pair[1].toString()
+        //     d = [+b.slice(0, 4), +b.slice(5, 7) - 1, +b.slice(-2)]
+        // }
+
+
+        // let mf = dataFormNewDate!.target
+        // let fd = new FormData(mf)
+
+        // for (let key of fd.keys()) {
+        //     console.log(key, fd(key)); }
 
         new OLY(d)
     }
