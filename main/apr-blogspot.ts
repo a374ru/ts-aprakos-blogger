@@ -101,17 +101,28 @@ interface IOLY {
     initOLY(): void
 }
 
+
+/**
+ * Класс вычисляет православный богослужебный диапазон времени согласно церковному уставу. 
+ * Вычисляет диапазон от Пасхи до Пасхи. 
+ * Вычисляет отступки и преступки Вычисляет 3 переходящих праздника.
+ * 
+ */
 class OLY implements IOLY {
 
     theMoment = new Date()
-    offsetZone = this.theMoment.getTimezoneOffset() * 60000
 
-    // ??? Проба настроить точное соответствие часов в момент наступления воскресения.
+    /**
+    * Отступ временной зоны: +03:00
+     */
+    offsetZone = this.theMoment.getTimezoneOffset() * 60000 // ВАЖНОЕ
+    
+    /**
+    *  Переменная точного времени с учётом сдвига временной зоны длягорода Москва.
+     */
+    theMomentOffsetZone = new Date(this.theMoment.getTime() - this.offsetZone) // точное время для вычислений для Московского Времени
+
     theMomentTime = new Date()
-    // this.theMoment.getFullYear(),
-    // this.theMoment.getMonth(),
-    // this.theMoment.getDate(),
-    // this.theMoment.getHours()
     oldEaster: any
     newEaster: any
     oldEasterMLS: any
@@ -1180,7 +1191,10 @@ let apr = new OLY()
 //=============== end ===================
 
 
-
+/**
+ * Класс обрабатывает введённую пользователем дату и возвращает вычисленные данные для всего года.
+* Также происходит фиксация введённой даты и перевод сайта на данный диапазон времени.
+ */
 class SelectedDay {
 
     newDate: any = document.getElementById('form-date')
@@ -1196,8 +1210,8 @@ class SelectedDay {
     }
 
     /**
-     *  Метод собирает данные в соответствии с введённой датой,  выводит их на страницу.
-     *  Если пользовательской даты нет выводит вид по умолчанию.
+     *  Метод собирает данные в соответствии с введённой датой, выводит их на страницу.
+     *  Если пользовательской даты нет,– выводит вид по умолчанию.
      */
     setUserData() {
 
@@ -1283,7 +1297,9 @@ class SelectedDay {
         } else {
 
             let dateFromForm = document.querySelector('input[type="date"]') as HTMLTextAreaElement
-            dateFromForm.value = new Date(apr.theMomentTime.getTime() - apr.offsetZone).toISOString().slice(0, 10)
+            /// В данной строчке присутствует важное корректировка – отступ временной зоны. 
+            /// Без этой корректировки вычисления запаздывают на 03:00.
+            dateFromForm.value = apr.theMomentOffsetZone.toISOString().slice(0, 10)
 
 
             document.getElementById('form-date')!.classList.add(show)
