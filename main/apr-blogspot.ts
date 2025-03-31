@@ -1304,8 +1304,7 @@ class SelectedDay {
             * В данной строчке присутствует важное корректировка – отступ временной зоны. 
             * Без этой корректировки вычисления запаздывают на 03:00.
             */
-            !this.userCheck_ss ? dateFromForm.value = apr.theMomentOffsetZone.toISOString().slice(0, 10):undefined
-
+            this.userCheck_ss ? undefined : dateFromForm.value = apr.theMomentOffsetZone.toISOString().slice(0, 10)
 
             document.getElementById('form-date')!.classList.add(show)
             document.getElementById('button-date')!.classList.add(hide)

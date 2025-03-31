@@ -743,7 +743,6 @@ class SelectedDay {
         this.counter = this.counter + 1;
     }
     reloadPage() {
-        sessionStorage.removeItem('userDate');
         document.location.reload();
     }
     setColor() {
@@ -765,7 +764,7 @@ class SelectedDay {
         }
         else {
             let dateFromForm = document.querySelector('input[type="date"]');
-            !this.userCheck_ss ? dateFromForm.value = apr.theMomentOffsetZone.toISOString().slice(0, 10) : undefined;
+            !this.userCheck_ss ? undefined : dateFromForm.value = apr.theMomentOffsetZone.toISOString().slice(0, 10);
             document.getElementById('form-date').classList.add(show);
             document.getElementById('button-date').classList.add(hide);
             document.getElementById('apr-year').innerText = ' СЕГО ДНЯ ';
