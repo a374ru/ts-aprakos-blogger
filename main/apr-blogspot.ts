@@ -1206,6 +1206,7 @@ class SelectedDay {
         if (this.newDate) {
             this.setUserData()
             this.setColor()
+            this.widthButton()
             this.listener()
         }
     }
@@ -1215,6 +1216,7 @@ class SelectedDay {
      *  Если пользовательской даты нет,– выводит вид по умолчанию.
      */
     setUserData() {
+
 
         const color = this.userDate_ss
             ? '<span style="color: #e34234">'
@@ -1362,6 +1364,16 @@ class SelectedDay {
         //     console.log(key, fd(key)); }
 
         new OLY(d)
+    }
+
+    widthButton() {
+
+        if (window.innerWidth < 660) {
+            document.getElementById('submit')!.value = "✔️"
+            document.getElementById('submit')!.style.backgroundColor = "#ffe6d3" 
+            
+        }
+        
     }
 
     listener() {

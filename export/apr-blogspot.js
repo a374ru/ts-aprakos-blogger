@@ -694,6 +694,7 @@ class SelectedDay {
         if (this.newDate) {
             this.setUserData();
             this.setColor();
+            this.widthButton();
             this.listener();
         }
     }
@@ -795,6 +796,12 @@ class SelectedDay {
         const inputDate = dataftf["adate"].value;
         d = [+inputDate.slice(0, 4), +inputDate.slice(5, 7) - 1, +inputDate.slice(-2)];
         new OLY(d);
+    }
+    widthButton() {
+        if (window.innerWidth < 660) {
+            document.getElementById('submit').value = "✔️";
+            document.getElementById('submit').style.backgroundColor = "#ffe6d3";
+        }
     }
     listener() {
         this.newDate.addEventListener('submit', (e) => {

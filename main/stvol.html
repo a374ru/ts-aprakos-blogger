@@ -15,29 +15,20 @@
     flex-wrap: wrap;
     flex-direction: column;
     margin: 4vw;">
-
-
-    <p class="name" id="name" style="cursor: pointer"> <a id='a-visited-userdate' href="###" class="apracos-title"
-            title="☨ АПРАКОС КНИГ ЕВАНГЕЛИЯ И АПОСТОЛ. НЕДЕЛЬНЫЕ (ВОСКРЕСНЫЕ) И
+    <p class="name" id="name" style="cursor: pointer"> <a id='a-visited-userdate' href="###" class="apracos-title" title="☨ АПРАКОС КНИГ ЕВАНГЕЛИЯ И АПОСТОЛ. НЕДЕЛЬНЫЕ (ВОСКРЕСНЫЕ) И
                 КАЖДОДНЕВНЫЕ РЯДОВЫЕ ЧТЕНИЯ СЕДМИЦ НАЧИНАЯ ОТ ПАСХИ, СОГЛАСНО УСТАВУ
-                ПРАВОСЛАВНОЙ ЦЕРКВИ.">
-            Ѓпракосъ на литургІю <br>кни~гъ Ґпо~столъ и# е#vа~нгелÏа </a> </p>
+                ПРАВОСЛАВНОЙ ЦЕРКВИ."> Ѓпракосъ на литургІю <br>кни~гъ Ґпо~столъ и# е#vа~нгелÏа </a> </p>
     <!-- ПОСЛЕДОВАТЕЛЬНЫЙ НОМЕР ЧИТАЕМОЙ СЕДМИЦЫ ОТ ПАСХИ, КОТОРЫХ БЫВАЕТ НЕ БОЛЕЕ (50) - ПО ЧИСЛУ ЛУННЫХ СЕДМИЦ. ВСЕ СВЫШЕ 50-ТИ ЕСТЬ ОТСТУПКИ И ПРЕСТУПКИ ПРИ ЧТЕНИЯХ ЗАЧАЛ. -->
-    <div id="date" class="date" style="text-indent: 0px; padding-left: 12px" title="">Рядовые зачала всего лета по
-        Пасхе.<sup onclick="apr.initModalView()" class="sup">*</sup> <br> 
+    <div id="date" class="date" style="text-indent: 0px; padding-left: 12px" title>Рядовые зачала всего лета по Пасхе.<sup onclick="apr.initModalView()" class="sup">*</sup> <br>
         <span class="123">
             <span class="dugpre slide-bck-center" title="СЕМЬ ПОСЛЕДОВАТЕЛЬНЫХ ДНЕЙ. ПЕРВЫМ ДНЁМ В CЕДМИЦЕ ОБЪЯВЛЯЕТСЯ ДЕНЬ
-                    ПОД НАЗВАНИЕМ – НЕДЕЛЯ, ИНАЧЕ НАЗЫВАЕМЫЙ – ВОСКРЕСЕНИЕМ.">Седмица
-                по Пасхе
-            </span>
+                    ПОД НАЗВАНИЕМ – НЕДЕЛЯ, ИНАЧЕ НАЗЫВАЕМЫЙ – ВОСКРЕСЕНИЕМ.">Седмица по Пасхе </span>
             <span id="curweek" class="dug">00</span>
-            </span>
-            <br>
+        </span>
+        <br>
         <span id="id50">
             <span id="title50" class="dugpre" title="ПОКАЗЫВАЕТ ЧИСЛО ЧИТАЕМОЙ СЕДМИЦЫ СЧИТАЯ ОТ ПРАЗДНИКА ПЯТИДЕСЯТНИЦЫ,
-                    НАЧИНАЯ С ВОСКРЕСЕНЬЯ"> По
-                Пятьдесятнице
-            </span>
+                    НАЧИНАЯ С ВОСКРЕСЕНЬЯ"> По Пятьдесятнице </span>
             <span id="curweek50" class="dug">00</span>
         </span>
         <br>
@@ -49,48 +40,48 @@
 
 
 
+    <style>
+        #submit {
+            background-color: chocolate;
+            color: azure;
+            padding: 0.4em;
+            border-radius: 7px;
+        }
 
+        #adate {
+            color: black;
+            background-color: white;
+        }
 
-
-
-
-
-        <style>
-            #submit {
-                background-color: chocolate;
-                color: azure;
-                padding: 0.4em;
-                border-radius: 7px;
+        @media (max-width: 500px) {
+            #info {
+                min-width: 98%;
             }
-        
-            #adate {
-                color: black;
-                background-color: white;
+
+            #d1 {
+                /* display: block; */
+                margin-right: .7em;
             }
-        
-            @media (max-width: 500px) {
-                #info {
-                    min-width: 98%;
-                }
-        
-                #d1 {
-                    display: none;
-                }
-        
-                #a2 {
-                    flex-direction: column;
-                }
-                
+
+            #a2 {
+                flex-direction: column;
             }
-            /* =========================================== */
-            /*  после добавления в css файл — удалить свойства  */
-            .visibility{visibility: visible;}
-                .hidden{display: none;}
-            /* =========================================== */
-        </style>
-        <base target="_self" />
-        
-        <div  id="input-date" style="
+        }
+
+        /* =========================================== */
+        /*  после добавления в css файл — удалить свойства  */
+        .visibility {
+            visibility: visible;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* =========================================== */
+    </style>
+    <base target="_self" />
+    <div id="input-date" style="
                         font-size: 1.3em;
                         margin-right: 2%;
                         display: flex;
@@ -98,23 +89,18 @@
                         align-content: center;
                         flex-direction: row-reverse;
                     ">
-                    
-            <button id="button-red" style="
+        <button id="button-red" style="
                             border-radius: 7px;
                             color: white;
                             background-color: #ff6052c4;
                             padding: 0.5rem;
                         " href="#" onclick="set.reloadPage()"> Вернуться в реальность … </button>
-                        
-            <form action="" id="form-date">
-        <input type="checkbox" title="ЗАПОМНИТЬ ВЫБОР" name="fixed-date" value="">
-
-                <input type="date" name="adate" min="2000-01-01" max="2099-12-31" required autofocus/>
-                <input id="submit" type="submit" value="установить" />
-            </form>
-
-
-            <div id="d1" style="
+        <form action id="form-date">
+            <input type="checkbox" title="ЗАПОМНИТЬ ВЫБОР" name="fixed-date" value>
+            <input type="date" name="adate" min="2000-01-01" max="2099-12-31" required autofocus />
+            <input id="submit" type="submit" value="установить" />
+        </form>
+        <div id="d1" style="
                             font-size: 1.4em;
                             color: #e34234;
                             font-weight: 600;
@@ -122,3108 +108,712 @@
                             margin-right: 2em;
                             margin-top: 0.3em;
                         ">
-                <a onclick="apr.initModalView()" style="cursor: pointer">Данные <span id="apr-year"></span></a>
-            </div>
+            <a onclick="apr.initModalView()" style="cursor: pointer">Данные <span id="apr-year"></span></a>
         </div>
-        <div id="d">
-            <section id="a1" style="
+    </div>
+    <div id="d">
+        <section id="a1" style="
                             display: flex;
                             justify-content: center;
                             margin-top: 3dvw;
                             margin-bottom: 1dvw;
                         ">
-                <p id="easter"></p>
-            </section>
-            <section id="a2" style="font-size: 1rem; display: flex; justify-content: space-evenly">
-                <ul id="listWeeks" style="padding-left: 3dvw; list-style-type: circle"></ul>
-                <ul id="listDatesOly" style="padding-left: 2.5dvw; list-style-type: disc"></ul>
-            </section>
-        </div>
-        <section>
-            <p id="info" style="
+            <p id="easter"></p>
+        </section>
+        <section id="a2" style="font-size: 1rem; display: flex; justify-content: space-evenly">
+            <ul id="listWeeks" style="padding-left: 3dvw; list-style-type: circle"></ul>
+            <ul id="listDatesOly" style="padding-left: 2.5dvw; list-style-type: disc"></ul>
+        </section>
+    </div>
+    <section>
+        <p id="info" style="
                             font-size: 1.2em;
                             padding-top: 0.1em;
                             margin: 4dvw auto;
                             max-width: 66%;
                         "> При любой установленной дате в диапазоне 2000 — 2099, <b>в нижнем левом углу</b> будет отображен стикер с выбранной датой и красная кнопка заменит выбор даты.<br />
-                <span id="warningString">Cайт настроен на выбранную дату, будьте внимательны.</span><br /> Для возврата к текущей-сегодняшней дате Апракоса кликните по кнопке или стикеру-дате.
-            </p>
-        </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <hr class="hr-1"> <br> <!-- <p class="date new" id="2">Евнгл., ?? зач., ?.?-??</p> -->
-    <div class="onoff" id="stvol1">
-        <p class="abzac"> <a href="/2020/04/XB.html">КанHнъ с™hz пaсхи.</a> </p>
-        <p class="abzac"> <span title="Так обозначается слово «зачало» в сокращенной
-                    записи" class="red">За? п</span> aсхи:
-            <span id="weekday11" class="weekday"> Ґпc. <a href="/2020/04/11.html"
-                    title="Апостол, книга Деяний: Зачало 1 (первое)">а7</a> Їн. <a href="/2020/04/11.html#2"
-                    title="Евангелие от Иоанна: Зачало 1 (первое)">а7</a>
+            <span id="warningString">Cайт настроен на выбранную дату, будьте внимательны.</span><br /> Для возврата к текущей-сегодняшней дате Апракоса кликните по кнопке или стикеру-дате.
         </p>
-        <p id="week1" class="abzac"> <span class="sedmica"> <span class="red">П</span>е1рваz све1тлаz седми1ца по пaсхе
-                зачинaимаz съ понедёльника. </span> <br> <span id="weekday12" class="weekday"> Ґпc. <a
-                    href="/2020/04/12.html" title="зачало 2">в7</a> Їн. <a href="/2020/04/12.html#2"
-                    title="зачало 2">в7</a>
+    </section>
+
+
+    
+    <hr class="hr-1"> <br>
+    <!-- <p class="date new" id="2">Евнгл., ?? зач., ?.?-??</p> -->
+    <div class="onoff" id="stvol1">
+        <p class="abzac"> <a href="/2020/04/XB.html">КанHнъ с™hz пaсхи.</a>
+        </p>
+        <p class="abzac"> <span title="Так обозначается слово «зачало» в сокращенной
+                    записи" class="red">За? п</span> aсхи: <span id="weekday11" class="weekday"> Ґпc. <a href="/2020/04/11.html" title="Апостол, книга Деяний: Зачало 1 (первое)">а7</a> Їн. <a href="/2020/04/11.html#2" title="Евангелие от Иоанна: Зачало 1 (первое)">а7</a>
+        </p>
+        <p id="week1" class="abzac"> <span class="sedmica"> <span class="red">П</span>е1рваz све1тлаz седми1ца по пaсхе зачинaимаz съ понедёльника. </span> <br> <span id="weekday12" class="weekday"> Ґпc. <a href="/2020/04/12.html" title="зачало 2">в7</a> Їн. <a href="/2020/04/12.html#2" title="зачало 2">в7</a>
             </span> / <span id="weekday13" class="weekday"> Ґпc. <a href="/2020/04/13.html" title="НАРУШЕНИЕ ПОСЛЕДОВАТЕЛЬНОСТИ ЧТЕНИЯ БЫВАЕТ, В НЕКОТОРЫЕ
-                            УСТАНОВЛЕННЫЕ ЦЕРКОВЬЮ ДНИ.">д7</a> Лк.
-                <a href="/2020/04/13.html#2" title="НАРУШЕНИЕ ПОСЛЕДОВАТЕЛЬНОСТИ ЧТЕНИЯ БЫВАЕТ, В НЕКОТОРЫЕ
+                            УСТАНОВЛЕННЫЕ ЦЕРКОВЬЮ ДНИ.">д7</a> Лк. <a href="/2020/04/13.html#2" title="НАРУШЕНИЕ ПОСЛЕДОВАТЕЛЬНОСТИ ЧТЕНИЯ БЫВАЕТ, В НЕКОТОРЫЕ
                             УСТАНОВЛЕННЫЕ ЦЕРКОВЬЮ ДНИ.">рг7i</a>
-            </span> / <span id="weekday14" class="weekday"> Ґпc. <a href="/2020/04/14.html" title="зачало 5">є7</a> Їн.
-                <a href="/2020/04/14.html#2" title="зачало 4">д7</a> </span> / <span id="weekday15" class="weekday">
-                Ґпc.
-                <a href="/2020/04/15.html" title="зачало 6">ѕ7</a> Їн. <a href="/2020/04/15.html#2"
-                    title="зачало 8">и7</a>
-            </span> / <span id="weekday16" class="weekday"> Ґпc. <a href="/2020/04/16.html" title="зачало 7">з7</a> Їн.
-                <a href="/2020/04/16.html#2" title="зачало 7">з7</a> </span> / <span id="weekday17" class="weekday">
-                Ґпc.
-                <a href="/2020/04/17.html" title="зачало 8">и7</a> Їн. <a href="/2020/04/17.html#2"
-                    title="зачало 11">а7i</a> </span> </p>
-        <p id="week2" class="abzac "> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span>
-                    едёлz
-                    в7, њ fwмЁ. <span class="red">С</span>едми1ца в7-z по пaсхе. </span>
-            </a> <br> <span id="weekday21" class="weekday"> Ґпc. <a href="/2020/04/21.html" title="зачало 14">д7i</a>
-                Їн. <a href="/2020/04/21.html#2" title="зачало 65">…є</a> </span> / <span id="weekday22"
-                class="weekday">
-                Ґпc. <a href="/2020/04/22.html" title="зачало 9">f7</a> Їн. <a href="/2020/04/22.html#2" title="Начало
+            </span> / <span id="weekday14" class="weekday"> Ґпc. <a href="/2020/04/14.html" title="зачало 5">є7</a> Їн. <a href="/2020/04/14.html#2" title="зачало 4">д7</a>
+            </span> / <span id="weekday15" class="weekday"> Ґпc. <a href="/2020/04/15.html" title="зачало 6">ѕ7</a> Їн. <a href="/2020/04/15.html#2" title="зачало 8">и7</a>
+            </span> / <span id="weekday16" class="weekday"> Ґпc. <a href="/2020/04/16.html" title="зачало 7">з7</a> Їн. <a href="/2020/04/16.html#2" title="зачало 7">з7</a>
+            </span> / <span id="weekday17" class="weekday"> Ґпc. <a href="/2020/04/17.html" title="зачало 8">и7</a> Їн. <a href="/2020/04/17.html#2" title="зачало 11">а7i</a>
+            </span> </p>
+        <p id="week2" class="abzac "> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span> едёлz в7, њ fwмЁ. <span class="red">С</span>едми1ца в7-z по пaсхе. </span>
+            </a> <br> <span id="weekday21" class="weekday"> Ґпc. <a href="/2020/04/21.html" title="зачало 14">д7i</a> Їн. <a href="/2020/04/21.html#2" title="зачало 65">…є</a> </span> / <span id="weekday22" class="weekday"> Ґпc. <a href="/2020/04/22.html" title="зачало 9">f7</a> Їн. <a href="/2020/04/22.html#2" title="Начало
                             чудес в Кане Галилейской">ѕ7</a>
-            </span> / <span id="weekday23" class="weekday"> Ґпc. <a href="/2020/04/23.html" title="зачало 10">‹</a> Їн.
-                <a href="/2020/04/23.html#2" title="зачало 10">‹</a> </span> / <span id="weekday24" class="weekday">
-                Ґпc.
-                <a href="/2020/04/24.html" title="зачало 11">№i</a> Їн. <a href="/2020/04/24.html#2"
-                    title="зачало 15">є7i</a> </span> / <span id="weekday25" class="weekday">
-                Ґпc. <a href="/2020/04/25.html" title="зачало 12">в7i</a> Їн. <a href="/2020/04/25.html#2"
-                    title="зачало 16">ѕ7i</a> </span> / <span id="weekday26" class="weekday">
-                Ґпc. <a href="/2020/05/26.html" title="зачало 13">Gi</a> Їн. <a href="/2020/05/26.html#2"
-                    title="зачало 17">з7i</a> </span> / <span id="weekday27" class="weekday">
-                Ґпc. <a href="/2020/05/27.html" title="зачало 15">є7i</a> Їн. <a href="/2020/05/27.html#2"
-                    title="зачало 19">f7i</a> </span> </p>
-        <p id="week3" class="abzac "> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span>едёлz г7, њ
-                    мmрон0сицахъ. <span class="red">С</span>едми1ца г7-z по пaсхе.
-                </span> </a> <br> <span id="weekday31" class="weekday"> Ґпc. <a href="/2020/05/31.html"
-                    title="зачало 16">ѕ7i</a> Мк. <a href="/2020/05/31.html#2" title="зачало 69">…f</a> </span> / <span
-                id="weekday32" class="weekday"> Ґпc.
-                <a href="/2020/05/32.html" title="зачало 17">з7i</a> Їн. <a href="/2020/05/32.html#2"
-                    title="зачало 13">Gi</a> </span> / <span id="weekday33" class="weekday">
-                Ґпc. <a href="/2020/05/33.html" title="зачало 18">ҳi</a> Їн. <a href="/2020/05/33.html#2" title="зачало
-                            20">к7</a> </span> / <span id="weekday34" class="weekday"> Ґпc. <a href="/2020/05/34.html"
-                    title="зачало 19">f7i</a> Їн. <a href="/2020/05/34.html#2" title="зачало 21">к7а</a> </span> / <span
-                id="weekday35" class="weekday"> Ґпc.
-                <a href="/2020/05/35.html" title="зачало 20">к7</a> Їн. <a href="/2020/05/35.html#2"
-                    title="зачало 22">к7в</a> </span> / <span id="weekday36" class="weekday">
-                Ґпc. <a href="/2020/05/36.html" title="зачало 21">к7а</a> Їн. <a href="/2020/05/36.html#2"
-                    title="зачало 23">к7г</a> </span> / <span id="weekday37" class="weekday">
-                Ґпc. <a href="/2020/05/37.html" title="зачало 22">к7в</a> Їн. <a href="/2020/05/37.html#2"
-                    title="зачало 52">н7в</a> </span> </p>
-        <p id="week4" class="abzac "> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span>
-                    едёлz
-                    д7, њ разслaбленнэмъ. <span class="red">С</span>едми1ца д7-z по пaсхе.
-                </span> </a> <br> <span id="weekday41" class="weekday"> Ґпc. <a href="/2020/05/41.html"
-                    title="зачало 23">к7г</a> Їн. <a href="/2020/05/41.html#2" title="зачало 14">д7i</a> </span> / <span
-                id="weekday42" class="weekday"> Ґпc.
-                <a href="/2020/05/42.html" title="зачало 24">к7д</a> Їн. <a href="/2020/05/42.html#2"
-                    title="зачало 24">к7д</a> </span> / <span id="weekday43" class="weekday">
-                Ґпc. <a href="/2020/05/43.html" title="зачало 25">к7є</a> Їн. <a href="/2020/05/43.html#2"
-                    title="зачало 25">к7є</a> </span> / <span id="weekday44" class="weekday">
-                Ґпc. <a href="/2020/05/44.html" title="зачало 25">к7є</a> Їн. <a href="/2020/05/44.html#2"
-                    title="зачало 26">к7ѕ</a> </span> / <span id="weekday45" class="weekday">
-                Ґпc. <a href="/2020/05/45.html" title="зачало 25">к7ѕ</a> Їн. <a href="/2020/05/45.html#2"
-                    title="зачало 29">к7f</a> </span> / <span id="weekday46" class="weekday">
-                Ґпc. <a href="/2020/05/46.html" title="зачало 27">к7з</a> Їн. <a href="/2020/05/46.html#2"
-                    title="зачало 30">l</a> </span> / <span id="weekday47" class="weekday">
-                Ґпc. <a href="/2020/05/47.html" title="зачало 29">к7f</a> Їн. <a href="/2020/05/47.html#2" title="зачало
+            </span> / <span id="weekday23" class="weekday"> Ґпc. <a href="/2020/04/23.html" title="зачало 10">‹</a> Їн. <a href="/2020/04/23.html#2" title="зачало 10">‹</a>
+            </span> / <span id="weekday24" class="weekday"> Ґпc. <a href="/2020/04/24.html" title="зачало 11">№i</a> Їн. <a href="/2020/04/24.html#2" title="зачало 15">є7i</a>
+            </span> / <span id="weekday25" class="weekday"> Ґпc. <a href="/2020/04/25.html" title="зачало 12">в7i</a> Їн. <a href="/2020/04/25.html#2" title="зачало 16">ѕ7i</a> </span> / <span id="weekday26" class="weekday"> Ґпc. <a href="/2020/05/26.html" title="зачало 13">Gi</a> Їн. <a href="/2020/05/26.html#2" title="зачало 17">з7i</a>
+            </span> / <span id="weekday27" class="weekday"> Ґпc. <a href="/2020/05/27.html" title="зачало 15">є7i</a> Їн. <a href="/2020/05/27.html#2" title="зачало 19">f7i</a> </span> </p>
+        <p id="week3" class="abzac "> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span>едёлz г7, њ мmрон0сицахъ. <span class="red">С</span>едми1ца г7-z по пaсхе. </span> </a> <br> <span id="weekday31" class="weekday"> Ґпc. <a href="/2020/05/31.html" title="зачало 16">ѕ7i</a> Мк. <a href="/2020/05/31.html#2" title="зачало 69">…f</a> </span> / <span id="weekday32" class="weekday"> Ґпc. <a href="/2020/05/32.html" title="зачало 17">з7i</a> Їн. <a href="/2020/05/32.html#2" title="зачало 13">Gi</a> </span> / <span id="weekday33" class="weekday"> Ґпc. <a href="/2020/05/33.html" title="зачало 18">ҳi</a> Їн. <a href="/2020/05/33.html#2" title="зачало
+                            20">к7</a> </span> / <span id="weekday34" class="weekday"> Ґпc. <a href="/2020/05/34.html" title="зачало 19">f7i</a> Їн. <a href="/2020/05/34.html#2" title="зачало 21">к7а</a>
+            </span> / <span id="weekday35" class="weekday"> Ґпc. <a href="/2020/05/35.html" title="зачало 20">к7</a> Їн. <a href="/2020/05/35.html#2" title="зачало 22">к7в</a>
+            </span> / <span id="weekday36" class="weekday"> Ґпc. <a href="/2020/05/36.html" title="зачало 21">к7а</a> Їн. <a href="/2020/05/36.html#2" title="зачало 23">к7г</a> </span> / <span id="weekday37" class="weekday"> Ґпc. <a href="/2020/05/37.html" title="зачало 22">к7в</a> Їн. <a href="/2020/05/37.html#2" title="зачало 52">н7в</a> </span> </p>
+        <p id="week4" class="abzac "> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span> едёлz д7, њ разслaбленнэмъ. <span class="red">С</span>едми1ца д7-z по пaсхе. </span> </a> <br> <span id="weekday41" class="weekday"> Ґпc. <a href="/2020/05/41.html" title="зачало 23">к7г</a> Їн. <a href="/2020/05/41.html#2" title="зачало 14">д7i</a>
+            </span> / <span id="weekday42" class="weekday"> Ґпc. <a href="/2020/05/42.html" title="зачало 24">к7д</a> Їн. <a href="/2020/05/42.html#2" title="зачало 24">к7д</a> </span> / <span id="weekday43" class="weekday"> Ґпc. <a href="/2020/05/43.html" title="зачало 25">к7є</a> Їн. <a href="/2020/05/43.html#2" title="зачало 25">к7є</a> </span> / <span id="weekday44" class="weekday"> Ґпc. <a href="/2020/05/44.html" title="зачало 25">к7є</a> Їн. <a href="/2020/05/44.html#2" title="зачало 26">к7ѕ</a> </span> / <span id="weekday45" class="weekday"> Ґпc. <a href="/2020/05/45.html" title="зачало 25">к7ѕ</a> Їн. <a href="/2020/05/45.html#2" title="зачало 29">к7f</a> </span> / <span id="weekday46" class="weekday"> Ґпc. <a href="/2020/05/46.html" title="зачало 27">к7з</a> Їн. <a href="/2020/05/46.html#2" title="зачало 30">l</a>
+            </span> / <span id="weekday47" class="weekday"> Ґпc. <a href="/2020/05/47.html" title="зачало 29">к7f</a> Їн. <a href="/2020/05/47.html#2" title="зачало
                             31">lа</a> </span> </p>
-        <p id="week5" class="abzac "> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span>
-                    едёлz
-                    є7, њ самарzнhни. <span class="red">С</span>едми1ца є7-z по пaсхе.
-                </span> </a> <br> <span id="weekday51" class="weekday"> Ґпc. <a href="/2020/05/51.html"
-                    title="зачало 28">к7и</a> Їн. <a href="/2020/05/51.html#2" title="зачало 12">в7i</a> </span> / <span
-                id="weekday52" class="weekday"> Ґпc.
-                <a href="/2020/05/52.html" title="зачало 30">l</a> Їн. <a href="/2020/05/52.html#2"
-                    title="зачало 32">lв</a>
-            </span> / <span id="weekday53" class="weekday"> Ґпc. <a href="/2020/05/53.html" title="зачало 31">lа</a> Їн.
-                <a href="/2020/05/53.html#2" title="зачало 33">lг</a> </span> / <span id="weekday54" class="weekday">
-                Ґпc.
-                <a href="/2020/05/54.html" title="зачало 32">lв</a> Їн. <a href="/2020/05/54.html#2"
-                    title="зачало 18">ҳi</a> </span> / <span id="weekday55" class="weekday">
-                Ґпc. <a href="/2020/05/55.html" title="зачало 35">lє</a> Їн. <a href="/2020/05/55.html#2" title="зачало
-                            35">lє</a> </span> / <span id="weekday56" class="weekday"> Ґпc. <a href="/2020/05/56.html"
-                    title="зачало 36">lѕ</a> Їн. <a href="/2020/05/56.html#2" title="зачало 37">lз</a> </span> / <span
-                id="weekday57" class="weekday"> Ґпc.
-                <a href="/2020/05/57.html" title="зачало 37">lз</a> Їн. <a href="/2020/05/57.html#2"
-                    title="зачало 38">lи</a> </span> </p>
-        <p id="week6" class="abzac "> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span>
-                    едёлz
-                    ѕ7, њ слэп0мъ. <span class="red">С</span>едми1ца ѕ7-z по пaсхе. </span>
-            </a> <br> <span id="weekday61" class="weekday"> Ґпc. <a href="/2020/05/61.html" title="зачало 38">lи</a>
-                Їн. <a href="/2020/05/61.html#2" title="зачало 34">lд</a> </span> / <span id="weekday62"
-                class="weekday">
-                Ґпc. <a href="/2020/05/62.html" title="зачало 39">lf</a> Їн. <a href="/2020/05/62.html#2" title="зачало
-                            40">м7</a> </span> / <span id="weekday63" class="weekday"> Ґпc. <a href="/2020/05/63.html" title="зачало 40*">м7
-                    t
-                    полY</a> Їн. <a href="/2020/05/63.html#2" title="зачало 42">м7в</a>
-            </span> / <span id="weekday64" class="weekday"> Ґпc.
-                <a href="/2020/05/64.html" title="зачало 41">м7а</a> Їн. <a href="/2020/05/64.html#2"
-                    title="зачало 43">м7г</a> </span> / <span id="weekday65" class="weekday">
-                Ґпc. <a href="/2020/05/65.html" title="ВОЗНЕСЕНИЕ ГОСПОДНЕ. Зачало 1">№</a>
-                Їн. <a href="/2020/05/65.html#2" title="ВОЗНЕСЕНИЕ ГОСПОДНЕ. Зачало 114">рд7i.</a> </span> / <span
-                id="weekday66" class="weekday"> Ґпc.
-                <a href="/2020/05/66.html" title="зачало 42">м7в</a> Їн. <a href="/2020/05/66.html#2"
-                    title="зачало 47">м7з</a> </span> / <span id="weekday67" class="weekday">
-                Ґпc. <a href="/2020/05/67.html" title="зачало 43">м7г</a> Їн. <a href="/2020/05/67.html#2"
-                    title="зачало 48">м7и</a> </span> </p>
-        <p id="week7" class="abzac"> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span>едёлz
-                    з7-z с™hхъ nц7ъ. <span class="red">С</span>едми1ца з7-z по пaсхе.
-                </span>
-            </a> <br> <span id="weekday71" class="weekday"> Ґпc. <a href="/2020/05/71.html" title="зачало 44">м7д</a>
-                Їн. <a href="/2020/05/71.html#2" title="зачало 56">н7ѕ</a> </span> / <span id="weekday72"
-                class="weekday"> Ґпc.
-                <a href="/2020/06/72.html" title="зачало 45">м7є</a> Їн. <a href="/2020/06/72.html#2"
-                    title="зачало 49">м7f</a> </span> / <span id="weekday73" class="weekday">
-                Ґпc. <a href="/2020/06/73.html" title="зачало 46">м7ѕ</a> Їн. <a href="/2020/06/73.html#2"
-                    title="зачало 53">н7г</a> </span> / <span id="weekday74" class="weekday">
-                Ґпc. <a href="/2020/06/74.html" title="зачало 47">м7з</a> Їн. <a href="/2020/06/74.html#2"
-                    title="зачало 54">н7д</a> </span> / <span id="weekday75" class="weekday">
-                Ґпc. <a href="/2020/06/75.html" title="зачало 48">м7и</a> Їн. <a href="/2020/06/75.html#2"
-                    title="зачало 55">н7є</a> </span> / <span id="weekday76" class="weekday">
-                Ґпc. <a href="/2020/06/76.html" title="зачало 50">н7</a> Їн. <a href="/2020/06/76.html#2"
-                    title="зачало 57">н7з</a> </span> / <span id="weekday77" class="weekday">
-                Ґпc. <a href="/2020/06/77.html" title="зачало 51">н7а</a> Їн. <a href="/2020/06/77.html#2"
-                    title="зачало 67">…з</a> </span> </p>
+        <p id="week5" class="abzac "> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span> едёлz є7, њ самарzнhни. <span class="red">С</span>едми1ца є7-z по пaсхе. </span> </a> <br> <span id="weekday51" class="weekday"> Ґпc. <a href="/2020/05/51.html" title="зачало 28">к7и</a> Їн. <a href="/2020/05/51.html#2" title="зачало 12">в7i</a> </span> / <span id="weekday52" class="weekday"> Ґпc. <a href="/2020/05/52.html" title="зачало 30">l</a> Їн. <a href="/2020/05/52.html#2" title="зачало 32">lв</a>
+            </span> / <span id="weekday53" class="weekday"> Ґпc. <a href="/2020/05/53.html" title="зачало 31">lа</a> Їн. <a href="/2020/05/53.html#2" title="зачало 33">lг</a>
+            </span> / <span id="weekday54" class="weekday"> Ґпc. <a href="/2020/05/54.html" title="зачало 32">lв</a> Їн. <a href="/2020/05/54.html#2" title="зачало 18">ҳi</a>
+            </span> / <span id="weekday55" class="weekday"> Ґпc. <a href="/2020/05/55.html" title="зачало 35">lє</a> Їн. <a href="/2020/05/55.html#2" title="зачало
+                            35">lє</a> </span> / <span id="weekday56" class="weekday"> Ґпc. <a href="/2020/05/56.html" title="зачало 36">lѕ</a> Їн. <a href="/2020/05/56.html#2" title="зачало 37">lз</a>
+            </span> / <span id="weekday57" class="weekday"> Ґпc. <a href="/2020/05/57.html" title="зачало 37">lз</a> Їн. <a href="/2020/05/57.html#2" title="зачало 38">lи</a>
+            </span> </p>
+        <p id="week6" class="abzac "> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span> едёлz ѕ7, њ слэп0мъ. <span class="red">С</span>едми1ца ѕ7-z по пaсхе. </span>
+            </a> <br> <span id="weekday61" class="weekday"> Ґпc. <a href="/2020/05/61.html" title="зачало 38">lи</a> Їн. <a href="/2020/05/61.html#2" title="зачало 34">lд</a>
+            </span> / <span id="weekday62" class="weekday"> Ґпc. <a href="/2020/05/62.html" title="зачало 39">lf</a> Їн. <a href="/2020/05/62.html#2" title="зачало
+                            40">м7</a> </span> / <span id="weekday63" class="weekday"> Ґпc. <a href="/2020/05/63.html" title="зачало 40*">м7 t полY</a> Їн. <a href="/2020/05/63.html#2" title="зачало 42">м7в</a>
+            </span> / <span id="weekday64" class="weekday"> Ґпc. <a href="/2020/05/64.html" title="зачало 41">м7а</a> Їн. <a href="/2020/05/64.html#2" title="зачало 43">м7г</a> </span> / <span id="weekday65" class="weekday"> Ґпc. <a href="/2020/05/65.html" title="ВОЗНЕСЕНИЕ ГОСПОДНЕ. Зачало 1">№</a> Їн. <a href="/2020/05/65.html#2" title="ВОЗНЕСЕНИЕ ГОСПОДНЕ. Зачало 114">рд7i.</a>
+            </span> / <span id="weekday66" class="weekday"> Ґпc. <a href="/2020/05/66.html" title="зачало 42">м7в</a> Їн. <a href="/2020/05/66.html#2" title="зачало 47">м7з</a> </span> / <span id="weekday67" class="weekday"> Ґпc. <a href="/2020/05/67.html" title="зачало 43">м7г</a> Їн. <a href="/2020/05/67.html#2" title="зачало 48">м7и</a> </span> </p>
+        <p id="week7" class="abzac"> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span>едёлz з7-z с™hхъ nц7ъ. <span class="red">С</span>едми1ца з7-z по пaсхе. </span>
+            </a> <br> <span id="weekday71" class="weekday"> Ґпc. <a href="/2020/05/71.html" title="зачало 44">м7д</a> Їн. <a href="/2020/05/71.html#2" title="зачало 56">н7ѕ</a> </span> / <span id="weekday72" class="weekday"> Ґпc. <a href="/2020/06/72.html" title="зачало 45">м7є</a> Їн. <a href="/2020/06/72.html#2" title="зачало 49">м7f</a> </span> / <span id="weekday73" class="weekday"> Ґпc. <a href="/2020/06/73.html" title="зачало 46">м7ѕ</a> Їн. <a href="/2020/06/73.html#2" title="зачало 53">н7г</a> </span> / <span id="weekday74" class="weekday"> Ґпc. <a href="/2020/06/74.html" title="зачало 47">м7з</a> Їн. <a href="/2020/06/74.html#2" title="зачало 54">н7д</a> </span> / <span id="weekday75" class="weekday"> Ґпc. <a href="/2020/06/75.html" title="зачало 48">м7и</a> Їн. <a href="/2020/06/75.html#2" title="зачало 55">н7є</a> </span> / <span id="weekday76" class="weekday"> Ґпc. <a href="/2020/06/76.html" title="зачало 50">н7</a> Їн. <a href="/2020/06/76.html#2" title="зачало 57">н7з</a>
+            </span> / <span id="weekday77" class="weekday"> Ґпc. <a href="/2020/06/77.html" title="зачало 51">н7а</a> Їн. <a href="/2020/06/77.html#2" title="зачало 67">…з</a> </span> </p>
     </div>
     <hr>
     <div class="onoff" id="stvol2">
-        <p id="week8" class="abzac"> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span>едёлz
-                    ҳ.
-                    <span class="red">ПZТЬДЕСZ~ТНИЦА</span> <br> <span class="red">С</span>
-                    едми1ца и7-z по пaсхе и пeрваz
-                    по пzтьдесz1тнице. </span> </a> <br> <span id="weekday81" class="weekday">
-                Ґпc. <a href="/2020/06/81.html" title="День СВЯТОЙ ТРОИЦЫ. Зачало 3">г7</a>
-                Їн. <a href="/2020/06/81.html#2" title="День СВЯТОЙ ТРОИЦЫ. Зачало 67">ѕ7з</a> </span> / <span
-                id="weekday82" class="weekday"> Ґпc. <a href="/2020/06/82.html"
-                    title="День СВЯТАГО ДУХА. Зачало 229">ск7f</a>
-                Мф.
-                <a href="/2020/06/82.html#2" title="День СВЯТАГО ДУХА. Зачало 75">o7є</a>
-            </span> / <span id="weekday83" class="weekday"> Ґпc. <a href="/2020/06/83.html" title="зачало 79">o7f</a>
-                Мф. <a href="/2020/06/83.html#2" title="зачало 10">‹</a> </span> / <span id="weekday84" class="weekday">
-                Ґпc. <a href="/2020/06/84.html" title="зачало 80">п7</a> Мф. <a href="/2020/06/84.html#2" title="зачало
-                            12">в7i</a> </span> / <span id="weekday85" class="weekday"> Ґпc. <a href="/2020/06/85.html"
-                    title="зачало 81">п7а</a>
-                Мф. <a href="/2020/06/85.html#2" title="зачало 13">Gi</a> </span> / <span id="weekday86"
-                class="weekday">
-                Ґпc.
-                <a href="/2020/06/86.html" title="зачало 82">п7в</a> Мф. <a href="/2020/06/86.html#2"
-                    title="зачало 14">д7i</a> </span> / <span id="weekday87" class="weekday">
-                Ґпc. <a href="/2020/06/87.html" title="зачало 79*">o7f t полY</a> Мф. <a href="/2020/06/87.html#2"
-                    title="зачало 15">є7i</a> </span> </p>
+        <p id="week8" class="abzac"> <a href="#" class="return"> <span class="sedmica"> <span class="red">Н</span>едёлz ҳ. <span class="red">ПZТЬДЕСZ~ТНИЦА</span> <br> <span class="red">С</span> едми1ца и7-z по пaсхе и пeрваz по пzтьдесz1тнице. </span> </a> <br> <span id="weekday81" class="weekday"> Ґпc. <a href="/2020/06/81.html" title="День СВЯТОЙ ТРОИЦЫ. Зачало 3">г7</a> Їн. <a href="/2020/06/81.html#2" title="День СВЯТОЙ ТРОИЦЫ. Зачало 67">ѕ7з</a>
+            </span> / <span id="weekday82" class="weekday"> Ґпc. <a href="/2020/06/82.html" title="День СВЯТАГО ДУХА. Зачало 229">ск7f</a> Мф. <a href="/2020/06/82.html#2" title="День СВЯТАГО ДУХА. Зачало 75">o7є</a>
+            </span> / <span id="weekday83" class="weekday"> Ґпc. <a href="/2020/06/83.html" title="зачало 79">o7f</a> Мф. <a href="/2020/06/83.html#2" title="зачало 10">‹</a>
+            </span> / <span id="weekday84" class="weekday"> Ґпc. <a href="/2020/06/84.html" title="зачало 80">п7</a> Мф. <a href="/2020/06/84.html#2" title="зачало
+                            12">в7i</a> </span> / <span id="weekday85" class="weekday"> Ґпc. <a href="/2020/06/85.html" title="зачало 81">п7а</a> Мф. <a href="/2020/06/85.html#2" title="зачало 13">Gi</a>
+            </span> / <span id="weekday86" class="weekday"> Ґпc. <a href="/2020/06/86.html" title="зачало 82">п7в</a> Мф. <a href="/2020/06/86.html#2" title="зачало 14">д7i</a> </span> / <span id="weekday87" class="weekday"> Ґпc. <a href="/2020/06/87.html" title="зачало 79*">o7f t полY</a> Мф. <a href="/2020/06/87.html#2" title="зачало 15">є7i</a> </span> </p>
         <p id="week9" class="abzac"> <a href="#" class="return"> <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz а7, всёхъ с™hхъ. <span class="red">С</span>
-                    едми1ца в7-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz а7, всёхъ с™hхъ. <span class="red">С</span> едми1ца в7-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday91" class="weekday">
-                Ґпc.
-                <a href="/2020/06/91.html" title="зачало 3">т7л</a>
-                Мф.
-                <a href="/2020/06/91.html#2" title="зачало 27">lи</a>
-            </span>
-            /
-
-
-            <span id="weekday92" class="weekday" title="НАЧАЛО АПОСТОЛЬСКОГО ПОСТА">
-                Ґпc.
-                <a href="/2020/06/92.html" title="зачало 19">п7и</a>
-                Мф.
-                <a href="/2020/06/92.html#2" title="зачало 22">f7i</a>
-            </span>
-            /
-
-
-            <span id="weekday93" class="weekday">
-                Ґпc.
-                <a href="/2020/06/93.html" title="зачало 86">п7ѕ</a>
-                Мф.
-                <a href="/2020/06/93.html#2" title="зачало 22">к7в</a>
-            </span>
-            /
-
-
-            <span id="weekday94" class="weekday">
-                Ґпc.
-                <a href="/2020/06/94.html" title="зачало 87">п7з</a>
-                Мф.
-                <a href="/2020/06/94.html#2" title="зачало 23">к7г</a>
-            </span>
-            /
-
-
-            <span id="weekday95" class="weekday">
-                Ґпc.
-                <a href="/2020/06/95.html" title="зачало 89">п7f</a>
-                Мф.
-                <a href="/2020/06/95.html#2" title="зачало 27">к7з</a>
-            </span>
-            /
-
-
-            <span id="weekday96" class="weekday">
-                Ґпc.
-                <a href="/2020/06/96.html" title="зачало 90">ч7</a>
-                Мф.
-                <a href="/2020/06/96.html#2" title="зачало 31">lа</a>
-            </span>
-            /
-
-
-            <span id="weekday97" class="weekday">
-                Ґпc.
-                <a href="/2020/06/97.html" title="зачало 84">п7д</a>
-                Мф.
-                <a href="/2020/06/97.html#2" title="зачало 20: О суде, сучке&#769, псах и свиньях. О молитве и
+            <span id="weekday91" class="weekday"> Ґпc. <a href="/2020/06/91.html" title="зачало 3">т7л</a> Мф. <a href="/2020/06/91.html#2" title="зачало 27">lи</a>
+            </span> / <span id="weekday92" class="weekday" title="НАЧАЛО АПОСТОЛЬСКОГО ПОСТА"> Ґпc. <a href="/2020/06/92.html" title="зачало 19">п7и</a> Мф. <a href="/2020/06/92.html#2" title="зачало 22">f7i</a>
+            </span> / <span id="weekday93" class="weekday"> Ґпc. <a href="/2020/06/93.html" title="зачало 86">п7ѕ</a> Мф. <a href="/2020/06/93.html#2" title="зачало 22">к7в</a>
+            </span> / <span id="weekday94" class="weekday"> Ґпc. <a href="/2020/06/94.html" title="зачало 87">п7з</a> Мф. <a href="/2020/06/94.html#2" title="зачало 23">к7г</a>
+            </span> / <span id="weekday95" class="weekday"> Ґпc. <a href="/2020/06/95.html" title="зачало 89">п7f</a> Мф. <a href="/2020/06/95.html#2" title="зачало 27">к7з</a>
+            </span> / <span id="weekday96" class="weekday"> Ґпc. <a href="/2020/06/96.html" title="зачало 90">ч7</a> Мф. <a href="/2020/06/96.html#2" title="зачало 31">lа</a>
+            </span> / <span id="weekday97" class="weekday"> Ґпc. <a href="/2020/06/97.html" title="зачало 84">п7д</a> Мф. <a href="/2020/06/97.html#2" title="зачало 20: О суде, сучке&#769, псах и свиньях. О молитве и
                             дверях.">к7</a>
             </span>
         </p>
         <p id="week10" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica" title="ВСЕХ СВЯТЫХ В ЗЕМЛЕ РОССИЙСКОЙ ПРОСИЯВШИХ">
-                    <span class="red">Н</span>
-                    едёлz
-                    в7-z. <span class="red">С</span>
-                    едми1ца г7-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz в7-z. <span class="red">С</span> едми1ца г7-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday101" class="weekday">
-                Ґпc.
-                <a href="/2020/06/101.html" title="зачало 81">п7а t
-                    полY</a>
-                Мф.
-                <a href="/2020/06/101.html#2" title="зачало 9">f7</a>
-            </span>
-            /
-
-            <span id="weekday102" class="weekday">
-                Ґпc.
-                <a href="/2020/06/102.html" title="зачало 94">§д</a>
-                Мф.
-                <a href="/2020/06/102.html#2" title="зачало 34">lд</a>
-            </span>
-            /
-
-            <span id="weekday103" class="weekday">
-                Ґпc.
-                <a href="/2020/06/103.html" title="зачало 95">§є</a>
-                Мф.
-                <a href="/2020/06/103.html#2" title="зачало 35">lє</a>
-            </span>
-            /
-
-            <span id="weekday104" class="weekday">
-                Ґпc.
-                <a href="/2020/06/104.html" title="зачало 96">§ѕ</a>
-                Мф.
-                <a href="/2020/06/104.html#2" title="зачало 36">lѕ</a>
-            </span>
-            /
-
-            <span id="weekday105" class="weekday">
-                Ґпc.
-                <a href="105.html" title="зачало 98">§и</a>
-                Мф.
-                <a href="/2020/06/105.html#2" title="зачало 37">lз</a>
-            </span>
-            /
-
-            <span id="weekday106" class="weekday">
-                Ґпc.
-                <a href="/2020/06/106.html" title="зачало 101">Rа</a>
-                Мф.
-                <a href="106.html#2" title="зачало 38">lи</a>
-            </span>
-            /
-
-            <span id="weekday107" class="weekday">
-                Ґпc.
-                <a href="/2020/06/107.html" title="зачало 85">п7є</a>
-                Мф.
-                <a href="/2020/06/107.html#2" title="зачало 24">к7д</a>
+            <span id="weekday101" class="weekday"> Ґпc. <a href="/2020/06/101.html" title="зачало 81">п7а t полY</a> Мф. <a href="/2020/06/101.html#2" title="зачало 9">f7</a>
+            </span> / <span id="weekday102" class="weekday"> Ґпc. <a href="/2020/06/102.html" title="зачало 94">§д</a> Мф. <a href="/2020/06/102.html#2" title="зачало 34">lд</a>
+            </span> / <span id="weekday103" class="weekday"> Ґпc. <a href="/2020/06/103.html" title="зачало 95">§є</a> Мф. <a href="/2020/06/103.html#2" title="зачало 35">lє</a>
+            </span> / <span id="weekday104" class="weekday"> Ґпc. <a href="/2020/06/104.html" title="зачало 96">§ѕ</a> Мф. <a href="/2020/06/104.html#2" title="зачало 36">lѕ</a>
+            </span> / <span id="weekday105" class="weekday"> Ґпc. <a href="105.html" title="зачало 98">§и</a> Мф. <a href="/2020/06/105.html#2" title="зачало 37">lз</a>
+            </span> / <span id="weekday106" class="weekday"> Ґпc. <a href="/2020/06/106.html" title="зачало 101">Rа</a> Мф. <a href="106.html#2" title="зачало 38">lи</a>
+            </span> / <span id="weekday107" class="weekday"> Ґпc. <a href="/2020/06/107.html" title="зачало 85">п7є</a> Мф. <a href="/2020/06/107.html#2" title="зачало 24">к7д</a>
             </span>
         </p>
         <p id="week11" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz г7-z. <span class="red">С</span>
-                    едми1ца д7-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz г7-z. <span class="red">С</span> едми1ца д7-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday111" class="weekday">
-                Ґпc.
-                <a href="/2020/06/111.html" title="зачало 88">п7и</a>
-                Мф.
-                <a href="/2020/06/111.html#2" title="зачало 18">ҳi</a>
-            </span>
-            /
-
-            <span id="weekday112" class="weekday">
-                Ґпc.
-                <a href="/2020/06/112.html" title="зачало 102">Rв</a>
-                Мф.
-                <a href="/2020/06/112.html#2" title="зачало 40">м7</a>
-            </span>
-            /
-
-            <span id="weekday113" class="weekday">
-                Ґпc.
-                <a href="/2020/06/113.html" title="зачало 104">Rд</a>
-                Мф.
-                <a href="/2020/06/113.html#2" title="зачало 41">м7а</a>
-            </span>
-            /
-
-            <span id="weekday114" class="weekday">
-                Ґпc.
-                <a href="/2020/07/114.html" title="зачало 105">Rє</a>
-                Мф.
-                <a href="/2020/07/114.html#2" title="зачало 42">м7в</a>
-            </span>
-            /
-
-            <span id="weekday115" class="weekday">
-                Ґпc.
-                <a href="/2020/07/115.html" title="зачало 106">Rѕ</a>
-                Мф.
-                <a href="/2020/07/115.html#2" title="зачало 43">м7г</a>
-            </span>
-            /
-
-            <span id="weekday116" class="weekday">
-                Ґпc.
-                <a href="/2020/07/116.html" title="зачало 107">Rз</a>
-                Мф.
-                <a href="/2020/07/116.html#2" title="зачало 44">м7д</a>
-            </span>
-            /
-
-            <span id="weekday117" class="weekday">
-                Ґпc.
-                <a href="/2020/07/117.html" title="зачало 92">ч7в</a>
-                Мф.
-                <a href="/2020/07/117.html#2" title="зачало 26">к7ѕ</a>
+            <span id="weekday111" class="weekday"> Ґпc. <a href="/2020/06/111.html" title="зачало 88">п7и</a> Мф. <a href="/2020/06/111.html#2" title="зачало 18">ҳi</a>
+            </span> / <span id="weekday112" class="weekday"> Ґпc. <a href="/2020/06/112.html" title="зачало 102">Rв</a> Мф. <a href="/2020/06/112.html#2" title="зачало 40">м7</a>
+            </span> / <span id="weekday113" class="weekday"> Ґпc. <a href="/2020/06/113.html" title="зачало 104">Rд</a> Мф. <a href="/2020/06/113.html#2" title="зачало 41">м7а</a>
+            </span> / <span id="weekday114" class="weekday"> Ґпc. <a href="/2020/07/114.html" title="зачало 105">Rє</a> Мф. <a href="/2020/07/114.html#2" title="зачало 42">м7в</a>
+            </span> / <span id="weekday115" class="weekday"> Ґпc. <a href="/2020/07/115.html" title="зачало 106">Rѕ</a> Мф. <a href="/2020/07/115.html#2" title="зачало 43">м7г</a>
+            </span> / <span id="weekday116" class="weekday"> Ґпc. <a href="/2020/07/116.html" title="зачало 107">Rз</a> Мф. <a href="/2020/07/116.html#2" title="зачало 44">м7д</a>
+            </span> / <span id="weekday117" class="weekday"> Ґпc. <a href="/2020/07/117.html" title="зачало 92">ч7в</a> Мф. <a href="/2020/07/117.html#2" title="зачало 26">к7ѕ</a>
             </span>
         </p>
         <p id="week12" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz д7-z. <span class="red">С</span>
-                    едми1ца є7-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz д7-z. <span class="red">С</span> едми1ца є7-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday121" class="weekday">
-                Ґпc.
-                <a href="/2020/07/121.html" title="зачало 93">ч7г</a>
-                Мф.
-                <a href="/2020/07/121.html#2" title="зачало 25">к7є</a>
-            </span>
-            /
-
-            <span id="weekday122" class="weekday">
-                Ґпc.
-                <a href="/2020/07/122.html" title="зачало 109">Rf</a>
-                Мф.
-                <a href="/2020/07/122.html#2" title="зачало 45">м7є</a>
-            </span>
-            /
-
-            <span id="weekday123" class="weekday">
-                Ґпc.
-                <a href="/2020/07/123.html" title="зачало 114">рд7i</a>
-                Мф.
-                <a href="/2020/07/123.html#2" title="зачало 46">м7ѕ</a>
-            </span>
-            /
-
-            <span id="weekday124" class="weekday">
-                Ґпc.
-                <a href="/2020/07/124.html" title="зачало 117">рз7i</a>
-                Мф.
-                <a href="/2020/07/124.html#2" title="зачало 48">м7и</a>
-            </span>
-            /
-
-            <span id="weekday125" class="weekday">
-                Ґпc.
-                <a href="/2020/07/125.html" title="зачало 118">рҳi</a>
-                Мф.
-                <a href="/2020/07/125.html#2" title="зачало 49">м7f</a>
-            </span>
-            /
-
-            <span id="weekday126" class="weekday">
-                Ґпc.
-                <a href="126.html" title="зачало 120">Rк</a>
-                Мф.
-                <a href="/2020/07/126.html#2" title="зачало 8">ҳ</a>
-            </span>
-            /
-
-            <span id="weekday127" class="weekday">
-                Ґпc.
-                <a href="/2020/07/127.html" title="зачало 97">§з</a>
-                Мф.
-                <a href="/2020/07/127.html#2" title="зачало 30">l</a>
+            <span id="weekday121" class="weekday"> Ґпc. <a href="/2020/07/121.html" title="зачало 93">ч7г</a> Мф. <a href="/2020/07/121.html#2" title="зачало 25">к7є</a>
+            </span> / <span id="weekday122" class="weekday"> Ґпc. <a href="/2020/07/122.html" title="зачало 109">Rf</a> Мф. <a href="/2020/07/122.html#2" title="зачало 45">м7є</a>
+            </span> / <span id="weekday123" class="weekday"> Ґпc. <a href="/2020/07/123.html" title="зачало 114">рд7i</a> Мф. <a href="/2020/07/123.html#2" title="зачало 46">м7ѕ</a>
+            </span> / <span id="weekday124" class="weekday"> Ґпc. <a href="/2020/07/124.html" title="зачало 117">рз7i</a> Мф. <a href="/2020/07/124.html#2" title="зачало 48">м7и</a>
+            </span> / <span id="weekday125" class="weekday"> Ґпc. <a href="/2020/07/125.html" title="зачало 118">рҳi</a> Мф. <a href="/2020/07/125.html#2" title="зачало 49">м7f</a>
+            </span> / <span id="weekday126" class="weekday"> Ґпc. <a href="126.html" title="зачало 120">Rк</a> Мф. <a href="/2020/07/126.html#2" title="зачало 8">ҳ</a>
+            </span> / <span id="weekday127" class="weekday"> Ґпc. <a href="/2020/07/127.html" title="зачало 97">§з</a> Мф. <a href="/2020/07/127.html#2" title="зачало 30">l</a>
             </span>
         </p>
         <p id="week13" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz є7-z. <span class="red">С</span>
-                    едми1ца ѕ7-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz є7-z. <span class="red">С</span> едми1ца ѕ7-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday131" class="weekday">
-                Ґпc.
-                <a href="/2020/07/131.html" title="зачало 103">Rг.</a>
-                Мф.
-                <a href="/2020/07/131.html#2" title="зачало 28">к7и</a>
-            </span>
-            /
-
-            <span id="weekday132" class="weekday">
-                Ґпc.
-                <a href="/2020/07/132.html" title="зачало 121">рк7а</a>
-                Мф.
-                <a href="/2020/07/132.html#2" title="зачало 51">н7а</a>
-            </span>
-            /
-
-            <span id="weekday133" class="weekday">
-                Ґпc.
-                <a href="/2020/07/133.html" title="зачало 122">рк7в</a>
-                Мф.
-                <a href="/2020/07/133.html#2" title="зачало 52">н7в</a>
-            </span>
-            /
-
-            <span id="weekday134" class="weekday">
-                Ґпc.
-                <a href="/2020/07/134.html" title="зачало 127">рк7з</a>
-                Мф.
-                <a href="/2020/07/134.html#2" title="зачало 53">н7г</a>
-            </span>
-            /
-
-            <span id="weekday135" class="weekday">
-                Ґпc.
-                <a href="/2020/07/135.html" title="зачало 129">рк7f</a>
-                Мф.
-                <a href="/2020/07/135.html#2" title="зачало 54">н7д</a>
-            </span>
-            /
-
-            <span id="weekday136" class="weekday">
-                Ґпc.
-                <a href="/2020/07/136.html" title="зачало 130*">рl t
-                    полY</a>
-                Мф.
-                <a href="/2020/07/136.html#2" title="зачало 55">н7є</a>
-            </span>
-            /
-
-            <span id="weekday137" class="weekday">
-                Ґпc.
-                <a href="/2020/07/137.html" title="зачало 100">R</a>
-                Мф.
-                <a href="/2020/07/137.html#2" title="зачало 32">lв</a>
+            <span id="weekday131" class="weekday"> Ґпc. <a href="/2020/07/131.html" title="зачало 103">Rг.</a> Мф. <a href="/2020/07/131.html#2" title="зачало 28">к7и</a>
+            </span> / <span id="weekday132" class="weekday"> Ґпc. <a href="/2020/07/132.html" title="зачало 121">рк7а</a> Мф. <a href="/2020/07/132.html#2" title="зачало 51">н7а</a>
+            </span> / <span id="weekday133" class="weekday"> Ґпc. <a href="/2020/07/133.html" title="зачало 122">рк7в</a> Мф. <a href="/2020/07/133.html#2" title="зачало 52">н7в</a>
+            </span> / <span id="weekday134" class="weekday"> Ґпc. <a href="/2020/07/134.html" title="зачало 127">рк7з</a> Мф. <a href="/2020/07/134.html#2" title="зачало 53">н7г</a>
+            </span> / <span id="weekday135" class="weekday"> Ґпc. <a href="/2020/07/135.html" title="зачало 129">рк7f</a> Мф. <a href="/2020/07/135.html#2" title="зачало 54">н7д</a>
+            </span> / <span id="weekday136" class="weekday"> Ґпc. <a href="/2020/07/136.html" title="зачало 130*">рl t полY</a> Мф. <a href="/2020/07/136.html#2" title="зачало 55">н7є</a>
+            </span> / <span id="weekday137" class="weekday"> Ґпc. <a href="/2020/07/137.html" title="зачало 100">R</a> Мф. <a href="/2020/07/137.html#2" title="зачало 32">lв</a>
             </span>
         </p>
         <p id="week14" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz ѕ7-z. <span class="red">С</span>едми1ца з7-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz ѕ7-z. <span class="red">С</span>едми1ца з7-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday141" class="weekday">
-                Ґпc.
-                <a href="/2020/07/141.html" title="зачало 110">Ri</a>
-                Мф.
-                <a href="/2020/07/141.html#2" title="зачало 29">к7f</a>
-            </span>
-            /
-
-
-            <span id="weekday142" class="weekday">
-                Ґпc.
-                <a href="/2020/07/142.html" title="зачало 134">рlд</a>
-                Мф.
-                <a href="/2020/07/142.html#2" title="зачало 56">н7ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday143" class="weekday">
-                Ґпc.
-                <a href="/2020/07/143.html" title="зачало 136">рlѕ</a>
-                Мф.
-                <a href="143.html#2" title="зачало 57">н7з</a>
-            </span>
-            /
-
-
-            <span id="weekday144" class="weekday">
-                Ґпc.
-                <a href="/2020/07/144.html" title="зачало 137">рlз</a>
-                Мф.
-                <a href="/2020/07/144.html#2" title="зачало 60">x7</a>
-            </span>
-            /
-
-
-            <span id="weekday145" class="weekday">
-                Ґпc.
-                <a href="/2020/07/145.html" title="зачало 138">рlи</a>
-                Мф.
-                <a href="/2020/07/145.html#2" title="зачало 61">x7а</a>
-            </span>
-            /
-
-
-            <span id="weekday146" class="weekday">
-                Ґпc.
-                <a href="/2020/07/146.html" title="зачало 139">рlf</a>
-                Мф.
-                <a href="/2020/07/146.html#2" title="зачало 63">x7г</a>
-            </span>
-            /
-
-
-            <span id="weekday147" class="weekday">
-                Ґпc.
-                <a href="/2020/07/147.html" title="зачало 108">Rи</a>
-                Мф.
-                <a href="/2020/07/147.html#2" title="зачало 39">lf</a>
+            <span id="weekday141" class="weekday"> Ґпc. <a href="/2020/07/141.html" title="зачало 110">Ri</a> Мф. <a href="/2020/07/141.html#2" title="зачало 29">к7f</a>
+            </span> / <span id="weekday142" class="weekday"> Ґпc. <a href="/2020/07/142.html" title="зачало 134">рlд</a> Мф. <a href="/2020/07/142.html#2" title="зачало 56">н7ѕ</a>
+            </span> / <span id="weekday143" class="weekday"> Ґпc. <a href="/2020/07/143.html" title="зачало 136">рlѕ</a> Мф. <a href="143.html#2" title="зачало 57">н7з</a>
+            </span> / <span id="weekday144" class="weekday"> Ґпc. <a href="/2020/07/144.html" title="зачало 137">рlз</a> Мф. <a href="/2020/07/144.html#2" title="зачало 60">x7</a>
+            </span> / <span id="weekday145" class="weekday"> Ґпc. <a href="/2020/07/145.html" title="зачало 138">рlи</a> Мф. <a href="/2020/07/145.html#2" title="зачало 61">x7а</a>
+            </span> / <span id="weekday146" class="weekday"> Ґпc. <a href="/2020/07/146.html" title="зачало 139">рlf</a> Мф. <a href="/2020/07/146.html#2" title="зачало 63">x7г</a>
+            </span> / <span id="weekday147" class="weekday"> Ґпc. <a href="/2020/07/147.html" title="зачало 108">Rи</a> Мф. <a href="/2020/07/147.html#2" title="зачало 39">lf</a>
             </span>
         </p>
         <p id="week15" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz з7-z. <span class="red">С</span>едми1ца ҳ-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz з7-z. <span class="red">С</span>едми1ца ҳ-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday151" class="weekday">
-                Ґпc.
-                <a href="151.html" title="зачало 116">рѕ7i</a>
-                Мф.
-                <a href="151.html#2" title="зачало 33">lг</a>
-            </span>
-            /
-
-
-            <span id="weekday152" class="weekday">
-                Ґпc.
-                <a href="152.html" title="зачало 142">рм7в</a>
-                Мф.
-                <a href="152.html#2" title="зачало 65">x7є</a>
-            </span>
-            /
-
-
-            <span id="weekday153" class="weekday">
-                Ґпc.
-                <a href="153.html" title="зачало 144">рм7д</a>
-                Мф.
-                <a href="153.html#2" title="зачало 66">x7ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday154" class="weekday">
-                Ґпc.
-                <a href="154.html" title="зачало 145">рм7є</a>
-                Мф.
-                <a href="154.html#2" title="зачало 68">x7и</a>
-            </span>
-            /
-
-
-            <span id="weekday155" class="weekday">
-                Ґпc.
-                <a href="155.html" title="зачало 147">рм7з</a>
-                Мф.
-                <a href="155.html#2" title="зачало 69">x7f</a>
-            </span>
-            /
-
-
-            <span id="weekday156" class="weekday">
-                Ґпc.
-                <a href="/2020/08/156.html" title="зачало 148">рм7и</a>
-                Мф.
-                <a href="/2020/08/156.html#2" title="зачало 71">o7а</a>
-            </span>
-            /
-
-
-            <span id="weekday157" class="weekday">
-                Ґпc.
-                <a href="/2020/08/157.html" title="зачало 111">р№i</a>
-                Мф.
-                <a href="/2020/08/157.html#2" title="зачало 47">м7з</a>
+            <span id="weekday151" class="weekday"> Ґпc. <a href="151.html" title="зачало 116">рѕ7i</a> Мф. <a href="151.html#2" title="зачало 33">lг</a>
+            </span> / <span id="weekday152" class="weekday"> Ґпc. <a href="152.html" title="зачало 142">рм7в</a> Мф. <a href="152.html#2" title="зачало 65">x7є</a>
+            </span> / <span id="weekday153" class="weekday"> Ґпc. <a href="153.html" title="зачало 144">рм7д</a> Мф. <a href="153.html#2" title="зачало 66">x7ѕ</a>
+            </span> / <span id="weekday154" class="weekday"> Ґпc. <a href="154.html" title="зачало 145">рм7є</a> Мф. <a href="154.html#2" title="зачало 68">x7и</a>
+            </span> / <span id="weekday155" class="weekday"> Ґпc. <a href="155.html" title="зачало 147">рм7з</a> Мф. <a href="155.html#2" title="зачало 69">x7f</a>
+            </span> / <span id="weekday156" class="weekday"> Ґпc. <a href="/2020/08/156.html" title="зачало 148">рм7и</a> Мф. <a href="/2020/08/156.html#2" title="зачало 71">o7а</a>
+            </span> / <span id="weekday157" class="weekday"> Ґпc. <a href="/2020/08/157.html" title="зачало 111">р№i</a> Мф. <a href="/2020/08/157.html#2" title="зачало 47">м7з</a>
             </span>
         </p>
         <p id="week16" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz ҳ-z. <span class="red">С</span>едми1ца f7-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz ҳ-z. <span class="red">С</span>едми1ца f7-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday161" class="weekday">
-                Ґпc.
-                <a href="/2020/08/161.html" title="зачало 124">рк7д</a>
-                Мф.
-                <a href="/2020/08/161.html#2" title="зачало 58">н7и</a>
-            </span>
-            /
-
-
-            <span id="weekday162" class="weekday">
-                Ґпc.
-                <a href="/2020/08/162.html" title="зачало 150">р7н</a>
-                Мф.
-                <a href="/2020/08/162.html#2" title="зачало 74">о7д</a>
-            </span>
-            /
-
-
-            <span id="weekday163" class="weekday">
-                Ґпc.
-                <a href="/2020/08/163.html" title="зачало 152">рн7в</a>
-                Мф.
-                <a href="/2020/08/163.html#2" title="зачало 76">o7ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday164" class="weekday">
-                Ґпc.
-                <a href="/2020/08/164.html" title="зачало 154">рн7д</a>
-                Мф.
-                <a href="/2020/08/164.html#2" title="зачало 80">п7</a>
-            </span>
-            /
-
-
-            <span id="weekday165" class="weekday">
-                Ґпc.
-                <a href="/2020/08/165.html" title="зачало 155">рн7є</a>
-                Мф.
-                <a href="/2020/08/165.html#2" title="зачало 81">п7а</a>
-            </span>
-            /
-
-
-            <span id="weekday166" class="weekday">
-                Ґпc.
-                <a href="/2020/08/166.html" title="зачало 157">рн7з</a>
-                Мф.
-                <a href="/2020/08/166.html#2" title="зачало 83">п7г t
-                    полY</a>
-            </span>
-            /
-
-
-            <span id="weekday167" class="weekday">
-                Ґпc.
-                <a href="/2020/08/167.html" title="зачало 113">рGi</a>
-                Мф.
-                <a href="/2020/08/167.html#2" title="зачало 64">x7д</a>
+            <span id="weekday161" class="weekday"> Ґпc. <a href="/2020/08/161.html" title="зачало 124">рк7д</a> Мф. <a href="/2020/08/161.html#2" title="зачало 58">н7и</a>
+            </span> / <span id="weekday162" class="weekday"> Ґпc. <a href="/2020/08/162.html" title="зачало 150">р7н</a> Мф. <a href="/2020/08/162.html#2" title="зачало 74">о7д</a>
+            </span> / <span id="weekday163" class="weekday"> Ґпc. <a href="/2020/08/163.html" title="зачало 152">рн7в</a> Мф. <a href="/2020/08/163.html#2" title="зачало 76">o7ѕ</a>
+            </span> / <span id="weekday164" class="weekday"> Ґпc. <a href="/2020/08/164.html" title="зачало 154">рн7д</a> Мф. <a href="/2020/08/164.html#2" title="зачало 80">п7</a>
+            </span> / <span id="weekday165" class="weekday"> Ґпc. <a href="/2020/08/165.html" title="зачало 155">рн7є</a> Мф. <a href="/2020/08/165.html#2" title="зачало 81">п7а</a>
+            </span> / <span id="weekday166" class="weekday"> Ґпc. <a href="/2020/08/166.html" title="зачало 157">рн7з</a> Мф. <a href="/2020/08/166.html#2" title="зачало 83">п7г t полY</a>
+            </span> / <span id="weekday167" class="weekday"> Ґпc. <a href="/2020/08/167.html" title="зачало 113">рGi</a> Мф. <a href="/2020/08/167.html#2" title="зачало 64">x7д</a>
             </span>
         </p>
         <p id="week17" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica" title="ПАМЯТЬ СВЯТЫХ ОТЕЦ ШЕСТИ ВСЕЛЕНСКИX СОБОРОВ">
-                    <span class="red">Н</span>
-                    едёлz f7-z. <span class="red">С</span>едми1ца ‹-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz f7-z. <span class="red">С</span>едми1ца ‹-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday171" class="weekday">
-                Ґпc.
-                <a href="/2020/08/171.html" title="зачало 128">рк7и</a>
-                Мф.
-                <a href="/2020/08/171.html#2" title="зачало 59">н7f</a>
-            </span>
-            /
-
-
-            <span id="weekday172" class="weekday">
-                Ґпc.
-                <a href="/2020/08/172.html" title="зачало 159">рн7f</a>
-                Мф.
-                <a href="/2020/08/172.html#2" title="зачало 84">п7д</a>
-            </span>
-            /
-
-
-            <span id="weekday173" class="weekday">
-                Ґпc.
-                <a href="/2020/08/173.html" title="зачало 167">р…а</a>
-                Мф.
-                <a href="/2020/08/173.html#2" title="зачало 85">п7є</a>
-            </span>
-            /
-
-
-            <span id="weekday174" class="weekday">
-                Ґпc.
-                <a href="/2020/08/174.html" title="зачало 165">р…є</a>
-                Мф.
-                <a href="/2020/08/174.html#2" title="зачало 86">п7ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday175" class="weekday">
-                Ґпc.
-                <a href="/2020/08/175.html" title="зачало 167">р…з</a>
-                Мф.
-                <a href="/2020/08/175.html#2" title="зачало 88">п7и</a>
-            </span>
-            /
-
-
-            <span id="weekday176" class="weekday">
-                Ґпc.
-                <a href="/2020/08/176.html" title="зачало 169">р…f</a>
-                Мф.
-                <a href="/2020/08/176.html#2" title="зачало 91">ч7а</a>
-            </span>
-            /
-
-
-            <span id="weekday177" class="weekday">
-                Ґпc.
-                <a href="/2020/08/177.html" title="зачало 119">рf7i</a>
-                Мф.
-                <a href="/2020/08/177.html#2" title="зачало 73">o7г</a>
+            <span id="weekday171" class="weekday"> Ґпc. <a href="/2020/08/171.html" title="зачало 128">рк7и</a> Мф. <a href="/2020/08/171.html#2" title="зачало 59">н7f</a>
+            </span> / <span id="weekday172" class="weekday"> Ґпc. <a href="/2020/08/172.html" title="зачало 159">рн7f</a> Мф. <a href="/2020/08/172.html#2" title="зачало 84">п7д</a>
+            </span> / <span id="weekday173" class="weekday"> Ґпc. <a href="/2020/08/173.html" title="зачало 167">р…а</a> Мф. <a href="/2020/08/173.html#2" title="зачало 85">п7є</a>
+            </span> / <span id="weekday174" class="weekday"> Ґпc. <a href="/2020/08/174.html" title="зачало 165">р…є</a> Мф. <a href="/2020/08/174.html#2" title="зачало 86">п7ѕ</a>
+            </span> / <span id="weekday175" class="weekday"> Ґпc. <a href="/2020/08/175.html" title="зачало 167">р…з</a> Мф. <a href="/2020/08/175.html#2" title="зачало 88">п7и</a>
+            </span> / <span id="weekday176" class="weekday"> Ґпc. <a href="/2020/08/176.html" title="зачало 169">р…f</a> Мф. <a href="/2020/08/176.html#2" title="зачало 91">ч7а</a>
+            </span> / <span id="weekday177" class="weekday"> Ґпc. <a href="/2020/08/177.html" title="зачало 119">рf7i</a> Мф. <a href="/2020/08/177.html#2" title="зачало 73">o7г</a>
             </span>
         </p>
         <p id="week18" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz ‹-z. <span class="red">С</span>едми1ца а7i-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz ‹-z. <span class="red">С</span>едми1ца а7i-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday181" class="weekday">
-                Ґпc.
-                <a href="/2020/08/181.html" title="зачало 131">рlа</a>
-                Мф.
-                <a href="/2020/08/181.html#2" title="зачало 72">o7в</a>
-            </span>
-            /
-
-
-            <span id="weekday182" class="weekday">
-                Ґпc.
-                <a href="/2020/08/182.html" title="зачало 171">рo7а</a>
-                Мф.
-                <a href="/2020/08/182.html#2" title="зачало 94">§д</a>
-            </span>
-            /
-
-
-            <span id="weekday183" class="weekday">
-                Ґпc.
-                <a href="/2020/08/183.html" title="зачало 172">рo7в</a>
-                Мф.
-                <a href="/2020/08/183.html#2" title="зачало 95">§є</a>
-            </span>
-            /
-
-
-            <span id="weekday184" class="weekday">
-                Ґпc.
-                <a href="/2020/08/184.html" title="зачало 173">рo7г</a>
-                Мф.
-                <a href="/2020/08/184.html#2" title="зачало 96">§ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday185" class="weekday">
-                Ґпc.
-                <a href="/2020/08/185.html" title="зачало 175">рo7є</a>
-                Мф.
-                <a href="/2020/08/185.html#2" title="зачало 99">§f</a>
-            </span>
-            /
-
-
-            <span id="weekday186" class="weekday">
-                Ґпc.
-                <a href="/2020/08/186.html" title="зачало 177">рo7з</a>
-                Мф.
-                <a href="/2020/08/186.html#2" title="зачало 100">R</a>
-            </span>
-            /
-
-
-            <span id="weekday187" class="weekday">
-                Ґпc.
-                <a href="/2020/08/187.html" title="зачало 123">рк7г</a>
-                Мф.
-                <a href="/2020/08/187.html#2" title="зачало 78">o7и</a>
+            <span id="weekday181" class="weekday"> Ґпc. <a href="/2020/08/181.html" title="зачало 131">рlа</a> Мф. <a href="/2020/08/181.html#2" title="зачало 72">o7в</a>
+            </span> / <span id="weekday182" class="weekday"> Ґпc. <a href="/2020/08/182.html" title="зачало 171">рo7а</a> Мф. <a href="/2020/08/182.html#2" title="зачало 94">§д</a>
+            </span> / <span id="weekday183" class="weekday"> Ґпc. <a href="/2020/08/183.html" title="зачало 172">рo7в</a> Мф. <a href="/2020/08/183.html#2" title="зачало 95">§є</a>
+            </span> / <span id="weekday184" class="weekday"> Ґпc. <a href="/2020/08/184.html" title="зачало 173">рo7г</a> Мф. <a href="/2020/08/184.html#2" title="зачало 96">§ѕ</a>
+            </span> / <span id="weekday185" class="weekday"> Ґпc. <a href="/2020/08/185.html" title="зачало 175">рo7є</a> Мф. <a href="/2020/08/185.html#2" title="зачало 99">§f</a>
+            </span> / <span id="weekday186" class="weekday"> Ґпc. <a href="/2020/08/186.html" title="зачало 177">рo7з</a> Мф. <a href="/2020/08/186.html#2" title="зачало 100">R</a>
+            </span> / <span id="weekday187" class="weekday"> Ґпc. <a href="/2020/08/187.html" title="зачало 123">рк7г</a> Мф. <a href="/2020/08/187.html#2" title="зачало 78">o7и</a>
             </span>
         </p>
         <p id="week19" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz а7i-z. <span class="red">С</span>едми1ца в7i-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz а7i-z. <span class="red">С</span>едми1ца в7i-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday191" class="weekday">
-                Ґпc.
-                <a href="/2020/08/191.html" title="зачало 141">рм7а</a>
-                Мф.
-                <a href="/2020/08/191.html#2" title="зачало 77">o7з</a>
-            </span>
-            /
-
-
-            <span id="weekday192" class="weekday">
-                Ґпc.
-                <a href="/2020/08/192.html" title="зачало 179">рo7f</a>
-                Мк.
-                <a href="/2020/08/192.html#2" title="зачало 2">в7</a>
-            </span>
-            /
-
-
-            <span id="weekday193" class="weekday">
-                Ґпc.
-                <a href="/2020/08/193.html" title="зачало 180">Rп</a>
-                Мк.
-                <a href="/2020/08/193.html#2" title="зачало 3">г7</a>
-            </span>
-            /
-
-
-            <span id="weekday194" class="weekday">
-                Ґпc.
-                <a href="/2020/08/194.html" title="зачало 182">рп7в</a>
-                Мк.
-                <a href="/2020/08/194.html#2" title="зачало 4">д7</a>
-            </span>
-            /
-
-
-            <span id="weekday195" class="weekday">
-                Ґпc.
-                <a href="/2020/08/195.html" title="зачало 183">рп7г</a>
-                Мк.
-                <a href="/2020/08/195.html#2" title="зачало 5">д7</a>
-            </span>
-            /
-
-
-            <span id="weekday196" class="weekday">
-                Ґпc.
-                <a href="/2020/08/196.html" title="зачало 184">рп7д</a>
-                Мк.
-                <a href="/2020/08/196.html#2" title="зачало 9">f7</a>
-            </span>
-            /
-
-
-            <span id="weekday197" class="weekday">
-                Ґпc.
-                <a href="/2020/08/197.html" title="зачало 125*">рк7є t
-                    полY</a>
-                Мф.
-                <a href="/2020/08/197.html#2" title="зачало 82">п7в</a>
+            <span id="weekday191" class="weekday"> Ґпc. <a href="/2020/08/191.html" title="зачало 141">рм7а</a> Мф. <a href="/2020/08/191.html#2" title="зачало 77">o7з</a>
+            </span> / <span id="weekday192" class="weekday"> Ґпc. <a href="/2020/08/192.html" title="зачало 179">рo7f</a> Мк. <a href="/2020/08/192.html#2" title="зачало 2">в7</a>
+            </span> / <span id="weekday193" class="weekday"> Ґпc. <a href="/2020/08/193.html" title="зачало 180">Rп</a> Мк. <a href="/2020/08/193.html#2" title="зачало 3">г7</a>
+            </span> / <span id="weekday194" class="weekday"> Ґпc. <a href="/2020/08/194.html" title="зачало 182">рп7в</a> Мк. <a href="/2020/08/194.html#2" title="зачало 4">д7</a>
+            </span> / <span id="weekday195" class="weekday"> Ґпc. <a href="/2020/08/195.html" title="зачало 183">рп7г</a> Мк. <a href="/2020/08/195.html#2" title="зачало 5">д7</a>
+            </span> / <span id="weekday196" class="weekday"> Ґпc. <a href="/2020/08/196.html" title="зачало 184">рп7д</a> Мк. <a href="/2020/08/196.html#2" title="зачало 9">f7</a>
+            </span> / <span id="weekday197" class="weekday"> Ґпc. <a href="/2020/08/197.html" title="зачало 125*">рк7є t полY</a> Мф. <a href="/2020/08/197.html#2" title="зачало 82">п7в</a>
             </span>
         </p>
         <p id="week20" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz в7i-z. <span class="red">С</span>
-                    едми1ца г7i-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz в7i-z. <span class="red">С</span> едми1ца г7i-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday201" class="weekday">
-                Ґпc.
-                <a href="/2020/08/201.html" title="зачало 158">рн7и</a>
-                Мф.
-                <a href="/2020/08/201.html#2" title="зачало 79">o7f</a>
-            </span>
-            /
-
-
-            <span id="weekday202" class="weekday">
-                Ґпc.
-                <a href="/2020/08/202.html" title="зачало 186">рп7ѕ</a>
-                Мк.
-                <a href="/2020/08/202.html#2" title="зачало 11">№i</a>
-            </span>
-            /
-
-
-            <span id="weekday203" class="weekday">
-                Ґпc.
-                <a href="/2020/09/203.html" title="зачало 187">рп7ѕ</a>
-                Мк.
-                <a href="/2020/09/203.html#2" title="зачало 12">в7i</a>
-            </span>
-            /
-
-
-            <span id="weekday204" class="weekday">
-                Ґпc.
-                <a href="/2020/09/204.html" title="зачало 189">рп7f</a>
-                Мк.
-                <a href="/2020/09/204.html#2" title="зачало 13">Gi</a>
-            </span>
-            /
-
-
-            <span id="weekday205" class="weekday">
-                Ґпc.
-                <a href="/2020/09/205.html" title="зачало 190">Rч</a>
-                Мк.
-                <a href="/2020/09/205.html#2" title="зачало 14">д7i</a>
-            </span>
-            /
-
-
-            <span id="weekday206" class="weekday">
-                Ґпc.
-                <a href="/2020/09/206.html" title="зачало 192">р§в</a>
-                Мк.
-                <a href="/2020/09/206.html#2" title="зачало 15">є7i</a>
-            </span>
-            /
-
-
-            <span id="weekday207" class="weekday">
-                Ґпc.
-                <a href="/2020/09/207.html" title="зачало 126">рк7ѕ</a>
-                Мф.
-                <a href="/2020/09/207.html#2" title="зачало 90">§</a>
+            <span id="weekday201" class="weekday"> Ґпc. <a href="/2020/08/201.html" title="зачало 158">рн7и</a> Мф. <a href="/2020/08/201.html#2" title="зачало 79">o7f</a>
+            </span> / <span id="weekday202" class="weekday"> Ґпc. <a href="/2020/08/202.html" title="зачало 186">рп7ѕ</a> Мк. <a href="/2020/08/202.html#2" title="зачало 11">№i</a>
+            </span> / <span id="weekday203" class="weekday"> Ґпc. <a href="/2020/09/203.html" title="зачало 187">рп7ѕ</a> Мк. <a href="/2020/09/203.html#2" title="зачало 12">в7i</a>
+            </span> / <span id="weekday204" class="weekday"> Ґпc. <a href="/2020/09/204.html" title="зачало 189">рп7f</a> Мк. <a href="/2020/09/204.html#2" title="зачало 13">Gi</a>
+            </span> / <span id="weekday205" class="weekday"> Ґпc. <a href="/2020/09/205.html" title="зачало 190">Rч</a> Мк. <a href="/2020/09/205.html#2" title="зачало 14">д7i</a>
+            </span> / <span id="weekday206" class="weekday"> Ґпc. <a href="/2020/09/206.html" title="зачало 192">р§в</a> Мк. <a href="/2020/09/206.html#2" title="зачало 15">є7i</a>
+            </span> / <span id="weekday207" class="weekday"> Ґпc. <a href="/2020/09/207.html" title="зачало 126">рк7ѕ</a> Мф. <a href="/2020/09/207.html#2" title="зачало 90">§</a>
             </span>
         </p>
         <p id="week21" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz г7i-z. <span class="red">С</span>
-                    едми1ца д7i-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz г7i-z. <span class="red">С</span> едми1ца д7i-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday211" class="weekday">
-                Ґпc.
-                <a href="/2020/09/211.html" title="зачало 166">р…ѕ</a>
-                Мф.
-                <a href="/2020/09/211.html#2" title="зачало 87">п7з</a>
-            </span>
-            /
-
-
-            <span id="weekday212" class="weekday">
-                Ґпc.
-                <a href="/2020/09/212.html" title="зачало 195">р§є</a>
-                Мк.
-                <a href="/2020/09/212.html#2" title="зачало 16">ѕ7i</a>
-            </span>
-            /
-
-
-            <span id="weekday213" class="weekday">
-                Ґпc.
-                <a href="/2020/09/213.html" title="зачало 196">р§ѕ</a>
-                Мк.
-                <a href="/2020/09/213.html#2" title="зачало 17">з7i</a>
-            </span>
-            /
-
-
-            <span id="weekday214" class="weekday">
-                Ґпc.
-                <a href="/2020/09/214.html" title="зачало 197">р§з</a>
-                Мк.
-                <a href="/2020/09/214.html#2" title="зачало 18">и7i</a>
-            </span>
-            /
-
-
-            <span id="weekday215" class="weekday">
-                Ґпc.
-                <a href="/2020/09/215.html" title="зачало 198">р§и</a>
-                Мк.
-                <a href="/2020/09/215.html#2" title="зачало 19">f7i</a>
-            </span>
-            /
-
-
-            <span id="weekday216" class="weekday">
-                Ґпc.
-                <a href="/2020/09/216.html" title="зачало 201">©а</a>
-                Мк.
-                <a href="/2020/09/216.html#2" title="зачало 20">к7</a>
-            </span>
-            /
-
-
-            <span id="weekday217" class="weekday">
-                Ґпc.
-                <a href="/2020/09/217.html" title="зачало 130">Rл</a>
-                Мф.
-                <a href="/2020/09/217.html#2" title="зачало 93">§г</a>
+            <span id="weekday211" class="weekday"> Ґпc. <a href="/2020/09/211.html" title="зачало 166">р…ѕ</a> Мф. <a href="/2020/09/211.html#2" title="зачало 87">п7з</a>
+            </span> / <span id="weekday212" class="weekday"> Ґпc. <a href="/2020/09/212.html" title="зачало 195">р§є</a> Мк. <a href="/2020/09/212.html#2" title="зачало 16">ѕ7i</a>
+            </span> / <span id="weekday213" class="weekday"> Ґпc. <a href="/2020/09/213.html" title="зачало 196">р§ѕ</a> Мк. <a href="/2020/09/213.html#2" title="зачало 17">з7i</a>
+            </span> / <span id="weekday214" class="weekday"> Ґпc. <a href="/2020/09/214.html" title="зачало 197">р§з</a> Мк. <a href="/2020/09/214.html#2" title="зачало 18">и7i</a>
+            </span> / <span id="weekday215" class="weekday"> Ґпc. <a href="/2020/09/215.html" title="зачало 198">р§и</a> Мк. <a href="/2020/09/215.html#2" title="зачало 19">f7i</a>
+            </span> / <span id="weekday216" class="weekday"> Ґпc. <a href="/2020/09/216.html" title="зачало 201">©а</a> Мк. <a href="/2020/09/216.html#2" title="зачало 20">к7</a>
+            </span> / <span id="weekday217" class="weekday"> Ґпc. <a href="/2020/09/217.html" title="зачало 130">Rл</a> Мф. <a href="/2020/09/217.html#2" title="зачало 93">§г</a>
             </span>
         </p>
         <p id="week22" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz д7i-z. Седми1ца є7i-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz д7i-z. Седми1ца є7i-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday221" class="weekday">
-                Ґпc.
-                <a href="/2020/09/221.html" title="зачало 170">Ro</a>
-                Мф.
-                <a href="/2020/09/221.html#2" title="зачало 89">п7f</a>
-            </span>
-            /
-
-
-            <span id="weekday222" class="weekday">
-                Ґпc.
-                <a href="/2020/09/222.html" title="зачало 202">©в</a>
-                Мк.
-                <a href="/2020/09/222.html#2" title="зачало 21">к7а</a>
-            </span>
-            /
-
-
-            <span id="weekday223" class="weekday">
-                Ґпc.
-                <a href="/2020/09/223.html" title="зачало 204">©д</a>
-                Мк.
-                <a href="/2020/09/223.html#2" title="зачало 22">к7в</a>
-            </span>
-            /
-
-
-            <span id="weekday224" class="weekday">
-                Ґпc.
-                <a href="/2020/09/224.html" title="зачало 207">©з</a>
-                Мк.
-                <a href="/2020/09/224.html#2" title="зачало 23">к7г</a>
-            </span>
-            /
-
-
-            <span id="weekday225" class="weekday">
-                Ґпc.
-                <a href="/2020/09/225.html" title="зачало 208">©и</a>
-                Мк.
-                <a href="/2020/09/225.html#2" title="зачало 25">к7є</a>
-            </span>
-            /
-
-
-            <span id="weekday226" class="weekday">
-                Ґпc.
-                <a href="/2020/09/226.html" title="зачало 210">©i</a>
-                Мк.
-                <a href="/2020/09/226.html#2" title="зачало 26">к7ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday227" class="weekday">
-                Ґпc.
-                <a href="/2020/09/227.html" title="зачало 132">рlв</a>
-                Мф.
-                <a href="/2020/09/227.html#2" title="зачало 97">§з</a>
+            <span id="weekday221" class="weekday"> Ґпc. <a href="/2020/09/221.html" title="зачало 170">Ro</a> Мф. <a href="/2020/09/221.html#2" title="зачало 89">п7f</a>
+            </span> / <span id="weekday222" class="weekday"> Ґпc. <a href="/2020/09/222.html" title="зачало 202">©в</a> Мк. <a href="/2020/09/222.html#2" title="зачало 21">к7а</a>
+            </span> / <span id="weekday223" class="weekday"> Ґпc. <a href="/2020/09/223.html" title="зачало 204">©д</a> Мк. <a href="/2020/09/223.html#2" title="зачало 22">к7в</a>
+            </span> / <span id="weekday224" class="weekday"> Ґпc. <a href="/2020/09/224.html" title="зачало 207">©з</a> Мк. <a href="/2020/09/224.html#2" title="зачало 23">к7г</a>
+            </span> / <span id="weekday225" class="weekday"> Ґпc. <a href="/2020/09/225.html" title="зачало 208">©и</a> Мк. <a href="/2020/09/225.html#2" title="зачало 25">к7є</a>
+            </span> / <span id="weekday226" class="weekday"> Ґпc. <a href="/2020/09/226.html" title="зачало 210">©i</a> Мк. <a href="/2020/09/226.html#2" title="зачало 26">к7ѕ</a>
+            </span> / <span id="weekday227" class="weekday"> Ґпc. <a href="/2020/09/227.html" title="зачало 132">рlв</a> Мф. <a href="/2020/09/227.html#2" title="зачало 97">§з</a>
             </span>
         </p>
         <p id="week23" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz є7i-z. Седми1ца ѕ7i-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz є7i-z. Седми1ца ѕ7i-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday231" class="weekday">
-                Ґпc.
-                <a href="/2020/09/231.html" title="зачало 176">рo7ѕ</a>
-                Мф.
-                <a href="/2020/09/231.html#2" title="зачало 92">§в</a>
-            </span>
-            /
-
-
-            <span id="weekday232" class="weekday">
-                Ґпc.
-                <a href="/2020/09/232.html" title="зачало 211">с№i</a>
-                Мк.
-                <a href="/2020/09/232.html#2" title="зачало 27">к7з</a>
-            </span>
-            /
-
-
-            <span id="weekday233" class="weekday">
-                Ґпc.
-                <a href="/2020/09/233.html" title="зачало 212">св7i</a>
-                Мк.
-                <a href="/2020/09/233.html#2" title="зачало 28">к7и</a>
-            </span>
-            /
-
-
-            <span id="weekday234" class="weekday">
-                Ґпc.
-                <a href="/2020/09/234.html" title="зачало 214">сд7i</a>
-                Мк.
-                <a href="/2020/09/234.html#2" title="зачало 29">к7f</a>
-            </span>
-            /
-
-
-            <span id="weekday235" class="weekday">
-                Ґпc.
-                <a href="/2020/09/235.html" title="зачало 216">сѕ7i</a>
-                Мк.
-                <a href="/2020/09/235.html#2" title="зачало 30">l</a>
-            </span>
-            /
-
-
-            <span id="weekday236" class="weekday">
-                Ґпc.
-                <a href="/2020/09/236.html" title="зачало 217">сз7i</a>
-                Мк.
-                <a href="/2020/09/236.html#2" title="зачало 32">lв</a>
-            </span>
-            /
-
-
-            <span id="weekday237" class="weekday">
-                Ґпc.
-                <a href="/2020/09/237.html" title="зачало 146">рм7ѕ</a>
-                Мф.
-                <a href="/2020/09/237.html#2" title="зачало 101">Rа</a>
+            <span id="weekday231" class="weekday"> Ґпc. <a href="/2020/09/231.html" title="зачало 176">рo7ѕ</a> Мф. <a href="/2020/09/231.html#2" title="зачало 92">§в</a>
+            </span> / <span id="weekday232" class="weekday"> Ґпc. <a href="/2020/09/232.html" title="зачало 211">с№i</a> Мк. <a href="/2020/09/232.html#2" title="зачало 27">к7з</a>
+            </span> / <span id="weekday233" class="weekday"> Ґпc. <a href="/2020/09/233.html" title="зачало 212">св7i</a> Мк. <a href="/2020/09/233.html#2" title="зачало 28">к7и</a>
+            </span> / <span id="weekday234" class="weekday"> Ґпc. <a href="/2020/09/234.html" title="зачало 214">сд7i</a> Мк. <a href="/2020/09/234.html#2" title="зачало 29">к7f</a>
+            </span> / <span id="weekday235" class="weekday"> Ґпc. <a href="/2020/09/235.html" title="зачало 216">сѕ7i</a> Мк. <a href="/2020/09/235.html#2" title="зачало 30">l</a>
+            </span> / <span id="weekday236" class="weekday"> Ґпc. <a href="/2020/09/236.html" title="зачало 217">сз7i</a> Мк. <a href="/2020/09/236.html#2" title="зачало 32">lв</a>
+            </span> / <span id="weekday237" class="weekday"> Ґпc. <a href="/2020/09/237.html" title="зачало 146">рм7ѕ</a> Мф. <a href="/2020/09/237.html#2" title="зачало 101">Rа</a>
             </span>
         </p>
         <p id="week24" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz ѕ7i-z. Седми1ца з7i-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz ѕ7i-z. Седми1ца з7i-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday241" class="weekday">
-                Ґпc.
-                <a href="/2020/09/241.html" title="зачало 181">рп7а</a>
-                Мф.
-                <a href="/2020/09/241.html#2" title="зачало 105">Rє</a>
-            </span>
-            /
-
-
-            <span id="weekday242" class="weekday">
-                Ґпc.
-                <a href="/2020/09/242.html" title="зачало 219">сf7i</a>
-                Мк.
-                <a href="/2020/09/242.html#2" title="зачало 48">м7и</a>
-            </span>
-            /
-
-
-            <span id="weekday243" class="weekday">
-                Ґпc.
-                <a href="/2020/09/243.html" title="зачало 222">ск7в</a>
-                Мк.
-                <a href="/2020/09/243.html#2" title="зачало 50">н7</a>
-            </span>
-            /
-
-
-            <span id="weekday244" class="weekday">
-                Ґпc.
-                <a href="/2020/09/244.html" title="зачало 223">ск7г</a>
-                Мк.
-                <a href="/2020/09/244.html#2" title="зачало 51">н7а</a>
-            </span>
-            /
-
-
-            <span id="weekday245" class="weekday">
-                Ґпc.
-                <a href="/2020/10/245.html" title="зачало 225">ск7є</a>
-                Мк.
-                <a href="/2020/10/245.html#2" title="зачало 52">н7в</a>
-            </span>
-            /
-
-
-            <span id="weekday246" class="weekday">
-                Ґпc.
-                <a href="/2020/10/246.html" title="зачало 226">ск7ѕ</a>
-                Мк.
-                <a href="/2020/10/246.html#2" title="зачало 53">н7г</a>
-            </span>
-            /
-
-
-            <span id="weekday247" class="weekday">
-                Ґпc.
-                <a href="/2020/10/247.html" title="зачало 156">рн7ѕ</a>
-                Мф.
-                <a href="/2020/10/247.html#2" title="зачало 104">Rд</a>
+            <span id="weekday241" class="weekday"> Ґпc. <a href="/2020/09/241.html" title="зачало 181">рп7а</a> Мф. <a href="/2020/09/241.html#2" title="зачало 105">Rє</a>
+            </span> / <span id="weekday242" class="weekday"> Ґпc. <a href="/2020/09/242.html" title="зачало 219">сf7i</a> Мк. <a href="/2020/09/242.html#2" title="зачало 48">м7и</a>
+            </span> / <span id="weekday243" class="weekday"> Ґпc. <a href="/2020/09/243.html" title="зачало 222">ск7в</a> Мк. <a href="/2020/09/243.html#2" title="зачало 50">н7</a>
+            </span> / <span id="weekday244" class="weekday"> Ґпc. <a href="/2020/09/244.html" title="зачало 223">ск7г</a> Мк. <a href="/2020/09/244.html#2" title="зачало 51">н7а</a>
+            </span> / <span id="weekday245" class="weekday"> Ґпc. <a href="/2020/10/245.html" title="зачало 225">ск7є</a> Мк. <a href="/2020/10/245.html#2" title="зачало 52">н7в</a>
+            </span> / <span id="weekday246" class="weekday"> Ґпc. <a href="/2020/10/246.html" title="зачало 226">ск7ѕ</a> Мк. <a href="/2020/10/246.html#2" title="зачало 53">н7г</a>
+            </span> / <span id="weekday247" class="weekday"> Ґпc. <a href="/2020/10/247.html" title="зачало 156">рн7ѕ</a> Мф. <a href="/2020/10/247.html#2" title="зачало 104">Rд</a>
             </span>
         </p>
         <p id="week25" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz з7i-z. Седми1ца и7i-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz з7i-z. Седми1ца и7i-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday251" class="weekday">
-                Ґпc.
-                <a href="/2020/10/251.html" title="зачало 182*">рп7в</a>
-                Мф.
-                <a href="/2020/10/251.html#2" title="зачало 62">…в</a>
-            </span>
-            /
-
-
-            <span id="weekday252" class="weekday">
-                Ґпc.
-                <a href="/2020/10/252.html" title="зачало 227">ск7з</a>
-                Лк.
-                <a href="/2020/10/252.html#2" title="зачало 10">‹</a>
-            </span>
-            /
-
-
-            <span id="weekday253" class="weekday">
-                Ґпc.
-                <a href="/2020/10/253.html" title="зачало 230">©л</a>
-                Лк.
-                <a href="/2020/10/253.html#2" title="зачало 11">№i</a>
-            </span>
-            /
-
-
-            <span id="weekday254" class="weekday">
-                Ґпc.
-                <a href="/2020/10/254.html" title="зачало 231 / О любви самого себя">сlа</a>
-                Лк.
-                <a href="/2020/10/254.html#2" title="зачало 12 / Искушение Христа в
+            <span id="weekday251" class="weekday"> Ґпc. <a href="/2020/10/251.html" title="зачало 182*">рп7в</a> Мф. <a href="/2020/10/251.html#2" title="зачало 62">…в</a>
+            </span> / <span id="weekday252" class="weekday"> Ґпc. <a href="/2020/10/252.html" title="зачало 227">ск7з</a> Лк. <a href="/2020/10/252.html#2" title="зачало 10">‹</a>
+            </span> / <span id="weekday253" class="weekday"> Ґпc. <a href="/2020/10/253.html" title="зачало 230">©л</a> Лк. <a href="/2020/10/253.html#2" title="зачало 11">№i</a>
+            </span> / <span id="weekday254" class="weekday"> Ґпc. <a href="/2020/10/254.html" title="зачало 231 / О любви самого себя">сlа</a> Лк. <a href="/2020/10/254.html#2" title="зачало 12 / Искушение Христа в
                             пустыне">в7i</a>
-            </span>
-            /
-
-
-            <span id="weekday255" class="weekday">
-                Ґпc.
-                <a href="/2020/10/255.html" title="зачало 232">сlв</a>
-                Лк.
-                <a href="/2020/10/255.html#2" title="зачало 13">г7i</a>
-            </span>
-            /
-
-
-            <span id="weekday256" class="weekday">
-                Ґпc.
-                <a href="/2020/10/256.html" title="зачало 234">сlд</a>
-                Лк.
-                <a href="/2020/10/256.html#2" title="зачало 14">д7i</a>
-            </span>
-            /
-
-
-            <span id="weekday257" class="weekday">
-                Ґпc.
-                <a href="/2020/10/257.html" title="зачало 162">рн7ѕ</a>
-                Лк.
-                <a href="/2020/10/257.html#2" title="зачало 15">є7i</a>
+            </span> / <span id="weekday255" class="weekday"> Ґпc. <a href="/2020/10/255.html" title="зачало 232">сlв</a> Лк. <a href="/2020/10/255.html#2" title="зачало 13">г7i</a>
+            </span> / <span id="weekday256" class="weekday"> Ґпc. <a href="/2020/10/256.html" title="зачало 234">сlд</a> Лк. <a href="/2020/10/256.html#2" title="зачало 14">д7i</a>
+            </span> / <span id="weekday257" class="weekday"> Ґпc. <a href="/2020/10/257.html" title="зачало 162">рн7ѕ</a> Лк. <a href="/2020/10/257.html#2" title="зачало 15">є7i</a>
             </span>
         </p>
         <p id="week26" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz и7i-z. Седми1ца f7i-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz и7i-z. Седми1ца f7i-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday261" class="weekday">
-                Ґпc.
-                <a href="/2020/10/261.html" title="зачало 188">рп7и</a>
-                Лк.
-                <a href="/2020/10/261.html#2" title="зачало 17">з7i</a>
-            </span>
-            /
-
-
-            <span id="weekday262" class="weekday">
-                Ґпc.
-                <a href="/2020/10/262.html" title="зачало 235">сlє</a>
-                Лк.
-                <a href="/2020/10/262.html#2" title="зачало 16">ѕ7i</a>
-            </span>
-            /
-
-
-            <span id="weekday263" class="weekday">
-                Ґпc.
-                <a href="/2020/10/263.html" title="зачало 236">сlѕ</a>
-                Лк.
-                <a href="/2020/10/263.html#2" title="зачало 18">ҳi</a>
-            </span>
-            /
-
-
-            <span id="weekday264" class="weekday">
-                Ґпc.
-                <a href="/2020/10/264.html" title="зачало 237">сlз</a>
-                Лк.
-                <a href="/2020/10/264.html#2" title="зачало 21">к7а</a>
-            </span>
-            /
-
-
-            <span id="weekday265" class="weekday">
-                Ґпc.
-                <a href="/2020/10/265.html" title="зачало 238">сlи</a>
-                Лк.
-                <a href="/2020/10/265.html#2" title="зачало 23">к7г</a>
-            </span>
-            /
-
-
-            <span id="weekday266" class="weekday">
-                Ґпc.
-                <a href="/2020/10/266.html" title="зачало 239">сlf</a>
-                Лк.
-                <a href="/2020/10/266.html#2" title="зачало 24">к7д</a>
-            </span>
-            /
-
-
-            <span id="weekday267" class="weekday">
-                Ґпc.
-                <a href="/2020/10/267.html" title="зачало 164">р…д</a>
-                Лк.
-                <a href="/2020/10/267.html#2" title="зачало 19">f‹</a>
+            <span id="weekday261" class="weekday"> Ґпc. <a href="/2020/10/261.html" title="зачало 188">рп7и</a> Лк. <a href="/2020/10/261.html#2" title="зачало 17">з7i</a>
+            </span> / <span id="weekday262" class="weekday"> Ґпc. <a href="/2020/10/262.html" title="зачало 235">сlє</a> Лк. <a href="/2020/10/262.html#2" title="зачало 16">ѕ7i</a>
+            </span> / <span id="weekday263" class="weekday"> Ґпc. <a href="/2020/10/263.html" title="зачало 236">сlѕ</a> Лк. <a href="/2020/10/263.html#2" title="зачало 18">ҳi</a>
+            </span> / <span id="weekday264" class="weekday"> Ґпc. <a href="/2020/10/264.html" title="зачало 237">сlз</a> Лк. <a href="/2020/10/264.html#2" title="зачало 21">к7а</a>
+            </span> / <span id="weekday265" class="weekday"> Ґпc. <a href="/2020/10/265.html" title="зачало 238">сlи</a> Лк. <a href="/2020/10/265.html#2" title="зачало 23">к7г</a>
+            </span> / <span id="weekday266" class="weekday"> Ґпc. <a href="/2020/10/266.html" title="зачало 239">сlf</a> Лк. <a href="/2020/10/266.html#2" title="зачало 24">к7д</a>
+            </span> / <span id="weekday267" class="weekday"> Ґпc. <a href="/2020/10/267.html" title="зачало 164">р…д</a> Лк. <a href="/2020/10/267.html#2" title="зачало 19">f‹</a>
             </span>
         </p>
         <p id="week27" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz f7i-z. Седми1ца к7-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz f7i-z. Седми1ца к7-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday271" class="weekday">
-                Ґпc.
-                <a href="/2020/10/271.html" title="зачало 194">р§д</a>
-                Лк.
-                <a href="/2020/10/271.html#2" title="зачало 26">к7ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday272" class="weekday">
-                Ґпc.
-                <a href="/2020/10/272.html" title="зачало 241">см7а</a>
-                Лк.
-                <a href="/2020/10/272.html#2" title="зачало 25">к7є</a>
-            </span>
-            /
-
-
-            <span id="weekday273" class="weekday">
-                Ґпc.
-                <a href="/2020/10/273.html" title="зачало 242">см7в</a>
-                Лк.
-                <a href="/2020/10/273.html#2" title="зачало 27">к7з</a>
-            </span>
-            /
-
-
-            <span id="weekday274" class="weekday">
-                Ґпc.
-                <a href="/2020/10/274.html" title="зачало 243">см7г</a>
-                Лк.
-                <a href="/2020/10/274.html#2" title="зачало 28">к7и</a>
-            </span>
-            /
-
-
-            <span id="weekday275" class="weekday">
-                Ґпc.
-                <a href="/2020/10/275.html" title="зачало 244">см7д</a>
-                Лк.
-                <a href="/2020/10/275.html#2" title="зачало 31">lа</a>
-            </span>
-            /
-
-
-            <span id="weekday276" class="weekday">
-                Ґпc.
-                <a href="/2020/10/276.html" title="зачало 245">см7є</a>
-                Лк.
-                <a href="/2020/10/276.html#2" title="зачало 32">lв</a>
-            </span>
-            /
-
-
-            <span id="weekday277" class="weekday">
-                Ґпc.
-                <a href="/2020/10/277.html" title="зачало 168">р…и</a>
-                Лк.
-                <a href="/2020/10/277.html#2" title="зачало 20">к7</a>
+            <span id="weekday271" class="weekday"> Ґпc. <a href="/2020/10/271.html" title="зачало 194">р§д</a> Лк. <a href="/2020/10/271.html#2" title="зачало 26">к7ѕ</a>
+            </span> / <span id="weekday272" class="weekday"> Ґпc. <a href="/2020/10/272.html" title="зачало 241">см7а</a> Лк. <a href="/2020/10/272.html#2" title="зачало 25">к7є</a>
+            </span> / <span id="weekday273" class="weekday"> Ґпc. <a href="/2020/10/273.html" title="зачало 242">см7в</a> Лк. <a href="/2020/10/273.html#2" title="зачало 27">к7з</a>
+            </span> / <span id="weekday274" class="weekday"> Ґпc. <a href="/2020/10/274.html" title="зачало 243">см7г</a> Лк. <a href="/2020/10/274.html#2" title="зачало 28">к7и</a>
+            </span> / <span id="weekday275" class="weekday"> Ґпc. <a href="/2020/10/275.html" title="зачало 244">см7д</a> Лк. <a href="/2020/10/275.html#2" title="зачало 31">lа</a>
+            </span> / <span id="weekday276" class="weekday"> Ґпc. <a href="/2020/10/276.html" title="зачало 245">см7є</a> Лк. <a href="/2020/10/276.html#2" title="зачало 32">lв</a>
+            </span> / <span id="weekday277" class="weekday"> Ґпc. <a href="/2020/10/277.html" title="зачало 168">р…и</a> Лк. <a href="/2020/10/277.html#2" title="зачало 20">к7</a>
             </span>
         </p>
         <p id="week28" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz к7-z. Седми1ца к7а-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz к7-z. Седми1ца к7а-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday281" class="weekday">
-                Ґпc.
-                <a href="/2020/10/281.html" title="зачало 200">©</a>
-                Лк.
-                <a href="/2020/10/281.html#2" title="зачало 30">l</a>
-            </span>
-            /
-
-
-            <span id="weekday282" class="weekday">
-                Ґпc.
-                <a href="/2020/10/282.html" title="зачало 248">см7и</a>
-                Лк.
-                <a href="/2020/10/282.html#2" title="зачало33">lг</a>
-            </span>
-            /
-
-
-            <span id="weekday283" class="weekday">
-                Ґпc.
-                <a href="/2020/10/283.html" title="зачало 249">см7f</a>
-                Лк.
-                <a href="/2020/10/283.html#2" title="зачало 34">lд</a>
-            </span>
-            /
-
-
-            <span id="weekday284" class="weekday">
-                Ґпc.
-                <a href="/2020/10/284.html" title="зачало 251">сн7а</a>
-                Лк.
-                <a href="/2020/10/284.html#2" title="зачало 37">lз</a>
-            </span>
-            /
-
-
-            <span id="weekday285" class="weekday">
-                Ґпc.
-                <a href="/2020/10/285.html" title="зачало 252">сн7в</a>
-                Лк.
-                <a href="/2020/10/285.html#2" title="зачало 41">м7а</a>
-            </span>
-            /
-
-
-            <span id="weekday286" class="weekday">
-                Ґпc.
-                <a href="/2020/10/286.html" title="зачало 253">сн7г</a>
-                Лк.
-                <a href="/2020/10/286.html#2" title="зачало 42">м7в</a>
-            </span>
-            /
-
-
-            <span id="weekday287" class="weekday">
-                Ґпc.
-                <a href="/2020/10/287.html" title="зачало 174">рo7д</a>
-                Лк.
-                <a href="/2020/10/287.html#2" title="зачало 22">к7в</a>
+            <span id="weekday281" class="weekday"> Ґпc. <a href="/2020/10/281.html" title="зачало 200">©</a> Лк. <a href="/2020/10/281.html#2" title="зачало 30">l</a>
+            </span> / <span id="weekday282" class="weekday"> Ґпc. <a href="/2020/10/282.html" title="зачало 248">см7и</a> Лк. <a href="/2020/10/282.html#2" title="зачало33">lг</a>
+            </span> / <span id="weekday283" class="weekday"> Ґпc. <a href="/2020/10/283.html" title="зачало 249">см7f</a> Лк. <a href="/2020/10/283.html#2" title="зачало 34">lд</a>
+            </span> / <span id="weekday284" class="weekday"> Ґпc. <a href="/2020/10/284.html" title="зачало 251">сн7а</a> Лк. <a href="/2020/10/284.html#2" title="зачало 37">lз</a>
+            </span> / <span id="weekday285" class="weekday"> Ґпc. <a href="/2020/10/285.html" title="зачало 252">сн7в</a> Лк. <a href="/2020/10/285.html#2" title="зачало 41">м7а</a>
+            </span> / <span id="weekday286" class="weekday"> Ґпc. <a href="/2020/10/286.html" title="зачало 253">сн7г</a> Лк. <a href="/2020/10/286.html#2" title="зачало 42">м7в</a>
+            </span> / <span id="weekday287" class="weekday"> Ґпc. <a href="/2020/10/287.html" title="зачало 174">рo7д</a> Лк. <a href="/2020/10/287.html#2" title="зачало 22">к7в</a>
             </span>
         </p>
         <p id="week29" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz к7а-z. Седми1ца к7в-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz к7а-z. Седми1ца к7в-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday291" class="weekday">
-                Ґпc.
-                <a href="/2020/11/291.html" title="зачало 203">©г</a>
-                Лк.
-                <a href="/2020/11/291.html#2" title="зачало 35">lє</a>
-            </span>
-            /
-
-
-            <span id="weekday292" class="weekday">
-                Ґпc.
-                <a href="/2020/11/292.html" title="зачало 255">сн7є</a>
-                Лк.
-                <a href="/2020/11/292.html#2" title="зачало 43">м7г</a>
-            </span>
-            /
-
-
-            <span id="weekday293" class="weekday">
-                Ґпc.
-                <a href="/2020/11/293.html" title="зачало 256">сн7ѕ</a>
-                Лк.
-                <a href="/2020/11/293.html#2" title="зачало 44">м7д</a>
-            </span>
-            /
-
-
-            <span id="weekday294" class="weekday">
-                Ґпc.
-                <a href="/2020/11/294.html" title="зачало 259">сн7f</a>
-                Лк.
-                <a href="/2020/11/294.html#2" title="зачало 47">м7з</a>
-            </span>
-            /
-
-
-            <span id="weekday295" class="weekday">
-                Ґпc.
-                <a href="/2020/11/295.html" title="зачало 260">©x</a>
-                Лк.
-                <a href="/2020/11/295.html#2" title="зачало 48">м7и</a>
-            </span>
-            /
-
-
-            <span id="weekday296" class="weekday">
-                Ґпc.
-                <a href="/2020/11/296.html" title="зачало 261">с…а</a>
-                Лк.
-                <a href="/2020/11/296.html#2" title="зачало 50">н7</a>
-            </span>
-            /
-
-
-            <span id="weekday297" class="weekday">
-                Ґпc.
-                <a href="/2020/11/297.html" title="зачало 178">рo7и</a>
-                Лк.
-                <a href="/2020/11/297.html#2" title="зачало 29">к7f</a>
+            <span id="weekday291" class="weekday"> Ґпc. <a href="/2020/11/291.html" title="зачало 203">©г</a> Лк. <a href="/2020/11/291.html#2" title="зачало 35">lє</a>
+            </span> / <span id="weekday292" class="weekday"> Ґпc. <a href="/2020/11/292.html" title="зачало 255">сн7є</a> Лк. <a href="/2020/11/292.html#2" title="зачало 43">м7г</a>
+            </span> / <span id="weekday293" class="weekday"> Ґпc. <a href="/2020/11/293.html" title="зачало 256">сн7ѕ</a> Лк. <a href="/2020/11/293.html#2" title="зачало 44">м7д</a>
+            </span> / <span id="weekday294" class="weekday"> Ґпc. <a href="/2020/11/294.html" title="зачало 259">сн7f</a> Лк. <a href="/2020/11/294.html#2" title="зачало 47">м7з</a>
+            </span> / <span id="weekday295" class="weekday"> Ґпc. <a href="/2020/11/295.html" title="зачало 260">©x</a> Лк. <a href="/2020/11/295.html#2" title="зачало 48">м7и</a>
+            </span> / <span id="weekday296" class="weekday"> Ґпc. <a href="/2020/11/296.html" title="зачало 261">с…а</a> Лк. <a href="/2020/11/296.html#2" title="зачало 50">н7</a>
+            </span> / <span id="weekday297" class="weekday"> Ґпc. <a href="/2020/11/297.html" title="зачало 178">рo7и</a> Лк. <a href="/2020/11/297.html#2" title="зачало 29">к7f</a>
             </span>
         </p>
         <p id="week30" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz к7в-z. Седми1ца к7г-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz к7в-z. Седми1ца к7г-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday301" class="weekday">
-                Ґпc.
-                <a href="/2020/11/301.html" title="зачало 215">сє7i</a>
-                Лк.
-                <a href="/2020/11/301.html#2" title="зачало 83">п7г</a>
-            </span>
-            /
-
-
-            <span id="weekday302" class="weekday">
-                Ґпc.
-                <a href="/2020/11/302.html" title="зачало 262">с…в</a>
-                Лк.
-                <a href="/2020/11/302.html#2" title="зачало 52">н7в</a>
-            </span>
-            /
-
-
-            <span id="weekday303" class="weekday">
-                Ґпc.
-                <a href="/2020/11/303.html" title="зачало 263">с…г</a>
-                Лк.
-                <a href="/2020/11/303.html#2" title="зачало 55">н7є</a>
-            </span>
-            /
-
-
-            <span id="weekday304" class="weekday">
-                Ґпc.
-                <a href="/2020/11/304.html" title="зачало 256">с…д</a>
-                Лк.
-                <a href="/2020/11/304.html#2" title="зачало 56">н7ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday305" class="weekday">
-                Ґпc.
-                <a href="/2020/11/305.html" title="зачало 265">с…є</a>
-                Лк.
-                <a href="/2020/11/305.html#2" title="зачало 57">н7з</a>
-            </span>
-            /
-
-
-            <span id="weekday306" class="weekday">
-                Ґпc.
-                <a href="/2020/11/306.html" title="зачало 266">с…ѕ</a>
-                Лк.
-                <a href="/2020/11/306.html#2" title="зачало 58">н7и</a>
-            </span>
-            /
-
-
-            <span id="weekday307" class="weekday">
-                Ґпc.
-                <a href="/2020/11/307.html" title="зачало 185">рп7є</a>
-                Лк.
-                <a href="/2020/11/307.html#2" title="зачало 36">lѕ</a>
+            <span id="weekday301" class="weekday"> Ґпc. <a href="/2020/11/301.html" title="зачало 215">сє7i</a> Лк. <a href="/2020/11/301.html#2" title="зачало 83">п7г</a>
+            </span> / <span id="weekday302" class="weekday"> Ґпc. <a href="/2020/11/302.html" title="зачало 262">с…в</a> Лк. <a href="/2020/11/302.html#2" title="зачало 52">н7в</a>
+            </span> / <span id="weekday303" class="weekday"> Ґпc. <a href="/2020/11/303.html" title="зачало 263">с…г</a> Лк. <a href="/2020/11/303.html#2" title="зачало 55">н7є</a>
+            </span> / <span id="weekday304" class="weekday"> Ґпc. <a href="/2020/11/304.html" title="зачало 256">с…д</a> Лк. <a href="/2020/11/304.html#2" title="зачало 56">н7ѕ</a>
+            </span> / <span id="weekday305" class="weekday"> Ґпc. <a href="/2020/11/305.html" title="зачало 265">с…є</a> Лк. <a href="/2020/11/305.html#2" title="зачало 57">н7з</a>
+            </span> / <span id="weekday306" class="weekday"> Ґпc. <a href="/2020/11/306.html" title="зачало 266">с…ѕ</a> Лк. <a href="/2020/11/306.html#2" title="зачало 58">н7и</a>
+            </span> / <span id="weekday307" class="weekday"> Ґпc. <a href="/2020/11/307.html" title="зачало 185">рп7є</a> Лк. <a href="/2020/11/307.html#2" title="зачало 36">lѕ</a>
             </span>
         </p>
         <p id="week31" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz к7г-z. Седми1ца к7д-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz к7г-z. Седми1ца к7д-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday311" class="weekday">
-                Ґпc.
-                <a href="/2020/11/311.html" title="зачало 220">©к</a>
-                Лк.
-                <a href="/2020/11/311.html#2" title="зачало 38">lи</a>
-            </span>
-            /
-
-
-            <span id="weekday312" class="weekday">
-                Ґпc.
-                <a href="/2020/11/312.html" title="зачало 267">с…з</a>
-                Лк.
-                <a href="/2020/11/312.html#2" title="зачало 59">н7f</a>
-            </span>
-            /
-
-
-            <span id="weekday313" class="weekday">
-                Ґпc.
-                <a href="/2020/11/313.html" title="зачало 268">с…и</a>
-                Лк.
-                <a href="/2020/11/313.html#2" title="зачало 60">…</a>
-            </span>
-            /
-
-
-            <span id="weekday314" class="weekday">
-                Ґпc.
-                <a href="/2020/11/314.html" title="зачало 269">с…f</a>
-                Лк.
-                <a href="/2020/11/314.html#2" title="зачало 61">…а</a>
-            </span>
-            /
-
-
-            <span id="weekday315" class="weekday">
-                Ґпc.
-                <a href="/2020/11/315.html" title="зачало 271">сo7а</a>
-                Лк.
-                <a href="/2020/11/315.html#2" title="зачало 62">…в</a>
-            </span>
-            /
-
-
-            <span id="weekday316" class="weekday">
-                Ґпc.
-                <a href="/2020/11/316.html" title="зачало 272">сo7в</a>
-                Лк.
-                <a href="/2020/11/316.html#2" title="зачало 67">…г</a>
-            </span>
-            /
-
-
-            <span id="weekday317" class="weekday">
-                Ґпc.
-                <a href="/2020/11/317.html" title="зачало 191">р§а</a>
-                Лк.
-                <a href="/2020/11/317.html#2" title="зачало 40">м7</a>
+            <span id="weekday311" class="weekday"> Ґпc. <a href="/2020/11/311.html" title="зачало 220">©к</a> Лк. <a href="/2020/11/311.html#2" title="зачало 38">lи</a>
+            </span> / <span id="weekday312" class="weekday"> Ґпc. <a href="/2020/11/312.html" title="зачало 267">с…з</a> Лк. <a href="/2020/11/312.html#2" title="зачало 59">н7f</a>
+            </span> / <span id="weekday313" class="weekday"> Ґпc. <a href="/2020/11/313.html" title="зачало 268">с…и</a> Лк. <a href="/2020/11/313.html#2" title="зачало 60">…</a>
+            </span> / <span id="weekday314" class="weekday"> Ґпc. <a href="/2020/11/314.html" title="зачало 269">с…f</a> Лк. <a href="/2020/11/314.html#2" title="зачало 61">…а</a>
+            </span> / <span id="weekday315" class="weekday"> Ґпc. <a href="/2020/11/315.html" title="зачало 271">сo7а</a> Лк. <a href="/2020/11/315.html#2" title="зачало 62">…в</a>
+            </span> / <span id="weekday316" class="weekday"> Ґпc. <a href="/2020/11/316.html" title="зачало 272">сo7в</a> Лк. <a href="/2020/11/316.html#2" title="зачало 67">…г</a>
+            </span> / <span id="weekday317" class="weekday"> Ґпc. <a href="/2020/11/317.html" title="зачало 191">р§а</a> Лк. <a href="/2020/11/317.html#2" title="зачало 40">м7</a>
             </span>
         </p>
         <p id="week32" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz к7д-z. Седми1ца к7є-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz к7д-z. Седми1ца к7є-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday321" class="weekday">
-                Ґпc.
-                <a href="/2020/11/321.html" title="зачало 221">ск7а</a>
-                Лк.
-                <a href="/2020/11/321.html#2" title="зачало 39">lf</a>
-            </span>
-            /
-
-
-            <span id="weekday322" class="weekday">
-                Ґпc.
-                <a href="/2020/11/322.html" title="зачало 274">сo7д</a>
-                Лк.
-                <a href="/2020/11/322.html#2" title="зачало 65">…є</a>
-            </span>
-            /
-
-
-            <span id="weekday323" class="weekday">
-                Ґпc.
-                <a href="/2020/11/323.html" title="зачало 274*">сo7д t
-                    полY</a>
-                Лк.
-                <a href="/2020/11/323.html#2" title="зачало 68">…и</a>
-            </span>
-            /
-
-
-            <span id="weekday324" class="weekday">
-                Ґпc.
-                <a href="/2020/11/324.html" title="зачало 275">сo7є</a>
-                Лк.
-                <a href="/2020/11/324.html#2" title="зачало 69">…f</a>
-            </span>
-            /
-
-
-            <span id="weekday325" class="weekday">
-                Ґпc.
-                <a href="/2020/11/325.html" title="зачало 276">сo7ѕ</a>
-                Лк.
-                <a href="/2020/11/325.html#2" title="зачало 70">o7</a>
-            </span>
-            /
-
-
-            <span id="weekday32-6" class="weekday">
-                Ґпc.
-                <a href="/2020/11/326.html" title="зачало 277">сo7з</a>
-                Лк.
-                <a href="/2020/11/326.html#2" title="зачало 73">…г</a>
-            </span>
-            /
-
-
-            <span id="weekday327" class="weekday">
-                Ґпc.
-                <a href="/2020/11/327.html" title="зачало 199">р§f</a>
-                Лк.
-                <a href="/2020/11/327.html#2" title="зачало 46">м7ѕ</a>
+            <span id="weekday321" class="weekday"> Ґпc. <a href="/2020/11/321.html" title="зачало 221">ск7а</a> Лк. <a href="/2020/11/321.html#2" title="зачало 39">lf</a>
+            </span> / <span id="weekday322" class="weekday"> Ґпc. <a href="/2020/11/322.html" title="зачало 274">сo7д</a> Лк. <a href="/2020/11/322.html#2" title="зачало 65">…є</a>
+            </span> / <span id="weekday323" class="weekday"> Ґпc. <a href="/2020/11/323.html" title="зачало 274*">сo7д t полY</a> Лк. <a href="/2020/11/323.html#2" title="зачало 68">…и</a>
+            </span> / <span id="weekday324" class="weekday"> Ґпc. <a href="/2020/11/324.html" title="зачало 275">сo7є</a> Лк. <a href="/2020/11/324.html#2" title="зачало 69">…f</a>
+            </span> / <span id="weekday325" class="weekday"> Ґпc. <a href="/2020/11/325.html" title="зачало 276">сo7ѕ</a> Лк. <a href="/2020/11/325.html#2" title="зачало 70">o7</a>
+            </span> / <span id="weekday32-6" class="weekday"> Ґпc. <a href="/2020/11/326.html" title="зачало 277">сo7з</a> Лк. <a href="/2020/11/326.html#2" title="зачало 73">…г</a>
+            </span> / <span id="weekday327" class="weekday"> Ґпc. <a href="/2020/11/327.html" title="зачало 199">р§f</a> Лк. <a href="/2020/11/327.html#2" title="зачало 46">м7ѕ</a>
             </span>
         </p>
         <p id="week33" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz к7є-z. Седми1ца к7ѕ-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz к7є-z. Седми1ца к7ѕ-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday331" class="weekday">
-                Ґпc.
-                <a href="/2020/11/331.html" title="зачало 224">ск7д</a>
-                Лк.
-                <a href="/2020/11/331.html#2" title="зачало 53">н7г</a>
-            </span>
-            /
-
-
-            <span id="weekday332" class="weekday">
-                Ґпc.
-                <a href="/2020/11/332.html" title="зачало 278">сo7и</a>
-                Лк.
-                <a href="/2020/11/332.html#2" title="зачало 75">o7є</a>
-            </span>
-            /
-
-
-            <span id="weekday333" class="weekday">
-                Ґпc.
-                <a href="/2020/12/333.html" title="зачало 279">сo7f</a>
-                Лк.
-                <a href="/2020/12/333.html#2" title="зачало 77">o7з</a>
-            </span>
-            /
-
-
-            <span id="weekday334" class="weekday">
-                Ґпc.
-                <a href="/2020/12/334.html" title="зачало 281">сп7а</a>
-                Лк.
-                <a href="/2020/12/334.html#2" title="зачало 78">o7и</a>
-            </span>
-            /
-
-
-            <span id="weekday335" class="weekday">
-                Ґпc.
-                <a href="/2020/12/335.html" title="зачало 283">сп7г</a>
-                Лк.
-                <a href="/2020/12/335.html#2" title="зачало 80">п7</a>
-            </span>
-            /
-
-
-            <span id="weekday336" class="weekday">
-                Ґпc.
-                <a href="/2020/12/336.html" title="зачало 285">сп7є</a>
-                Лк.
-                <a href="/2020/12/336.html#2" title="зачало 82">п7в</a>
-            </span>
-            /
-
-
-            <span id="weekday337" class="weekday">
-                Ґпc.
-                <a href="/2020/12/337.html" title="зачало 205">©є</a>
-                Лк.
-                <a href="/2020/12/337.html#2" title="зачало 49">м7f</a>
+            <span id="weekday331" class="weekday"> Ґпc. <a href="/2020/11/331.html" title="зачало 224">ск7д</a> Лк. <a href="/2020/11/331.html#2" title="зачало 53">н7г</a>
+            </span> / <span id="weekday332" class="weekday"> Ґпc. <a href="/2020/11/332.html" title="зачало 278">сo7и</a> Лк. <a href="/2020/11/332.html#2" title="зачало 75">o7є</a>
+            </span> / <span id="weekday333" class="weekday"> Ґпc. <a href="/2020/12/333.html" title="зачало 279">сo7f</a> Лк. <a href="/2020/12/333.html#2" title="зачало 77">o7з</a>
+            </span> / <span id="weekday334" class="weekday"> Ґпc. <a href="/2020/12/334.html" title="зачало 281">сп7а</a> Лк. <a href="/2020/12/334.html#2" title="зачало 78">o7и</a>
+            </span> / <span id="weekday335" class="weekday"> Ґпc. <a href="/2020/12/335.html" title="зачало 283">сп7г</a> Лк. <a href="/2020/12/335.html#2" title="зачало 80">п7</a>
+            </span> / <span id="weekday336" class="weekday"> Ґпc. <a href="/2020/12/336.html" title="зачало 285">сп7є</a> Лк. <a href="/2020/12/336.html#2" title="зачало 82">п7в</a>
+            </span> / <span id="weekday337" class="weekday"> Ґпc. <a href="/2020/12/337.html" title="зачало 205">©є</a> Лк. <a href="/2020/12/337.html#2" title="зачало 49">м7f</a>
             </span>
         </p>
         <p id="week34" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz к7ѕ-z. Седми1ца к7з-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz к7ѕ-z. Седми1ца к7з-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday341" class="weekday">
-                Ґпc.
-                <a href="/2020/12/341.html" title="зачало 229">ск7f</a>
-                Лк.
-                <a href="/2020/12/341.html#2" title="зачало 66">…ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday342" class="weekday">
-                Ґпc.
-                <a href="/2020/12/342.html" title="зачало 285*">сп7є t
-                    полY</a>
-                Лк.
-                <a href="/2020/12/342.html#2" title="зачало 86">п7ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday343" class="weekday">
-                Ґпc.
-                <a href="/2020/12/343.html" title="зачало 286">сп7ѕ</a>
-                Лк.
-                <a href="/2020/12/343.html#2" title="зачало 87">п7з</a>
-            </span>
-            /
-
-
-            <span id="weekday344" class="weekday">
-                Ґпc.
-                <a href="/2020/12/344.html" title="зачало 287">сп7з</a>
-                Лк.
-                <a href="/2020/12/344.html#2" title="зачало 90">§</a>
-            </span>
-            /
-
-
-            <span id="weekday345" class="weekday">
-                Ґпc.
-                <a href="/2020/12/345.html" title="зачало 289">сп7f</a>
-                Лк.
-                <a href="/2020/12/345.html#2" title="зачало 92">§в</a>
-            </span>
-            /
-
-
-            <span id="weekday346" class="weekday">
-                Ґпc.
-                <a href="/2020/12/346.html" title="зачало 290">©ч</a>
-                Лк.
-                <a href="/2020/12/346.html#2" title="зачало 95">§є</a>
-            </span>
-            /
-
-
-            <span id="weekday347" class="weekday">
-                Ґпc.
-                <a href="/2020/12/347.html" title="зачало 213">сг7i</a>
-                Лк.
-                <a href="/2020/12/347.html#2" title="зачало 51">н7а</a>
+            <span id="weekday341" class="weekday"> Ґпc. <a href="/2020/12/341.html" title="зачало 229">ск7f</a> Лк. <a href="/2020/12/341.html#2" title="зачало 66">…ѕ</a>
+            </span> / <span id="weekday342" class="weekday"> Ґпc. <a href="/2020/12/342.html" title="зачало 285*">сп7є t полY</a> Лк. <a href="/2020/12/342.html#2" title="зачало 86">п7ѕ</a>
+            </span> / <span id="weekday343" class="weekday"> Ґпc. <a href="/2020/12/343.html" title="зачало 286">сп7ѕ</a> Лк. <a href="/2020/12/343.html#2" title="зачало 87">п7з</a>
+            </span> / <span id="weekday344" class="weekday"> Ґпc. <a href="/2020/12/344.html" title="зачало 287">сп7з</a> Лк. <a href="/2020/12/344.html#2" title="зачало 90">§</a>
+            </span> / <span id="weekday345" class="weekday"> Ґпc. <a href="/2020/12/345.html" title="зачало 289">сп7f</a> Лк. <a href="/2020/12/345.html#2" title="зачало 92">§в</a>
+            </span> / <span id="weekday346" class="weekday"> Ґпc. <a href="/2020/12/346.html" title="зачало 290">©ч</a> Лк. <a href="/2020/12/346.html#2" title="зачало 95">§є</a>
+            </span> / <span id="weekday347" class="weekday"> Ґпc. <a href="/2020/12/347.html" title="зачало 213">сг7i</a> Лк. <a href="/2020/12/347.html#2" title="зачало 51">н7а</a>
             </span>
         </p>
         <p id="week35" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz к7з-z. Седми1ца к7и-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz к7з-z. Седми1ца к7и-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday351" class="weekday">
-                Ґпc.
-                <a href="/2020/12/351.html" title="зачало 233">сlг</a>
-                Лк.
-                <a href="/2020/12/351.html#2" title="зачало 71">o7а</a>
-            </span>
-            /
-
-
-            <span id="weekday352" class="weekday">
-                Ґпc.
-                <a href="/2020/12/352.html" title="зачало 294">с§д</a>
-                Лк.
-                <a href="/2020/12/352.html#2" title="зачало 97">§з</a>
-            </span>
-            /
-
-
-            <span id="weekday353" class="weekday">
-                Ґпc.
-                <a href="/2020/12/353.html" title="зачало 297">с§з</a>
-                Лк.
-                <a href="/2020/12/353.html#2" title="зачало 98">§и</a>
-            </span>
-            /
-
-
-            <span id="weekday354" class="weekday">
-                Ґпc.
-                <a href="/2020/12/354.html" title="зачало 299">с§f</a>
-                Лк.
-                <a href="/2020/12/354.html#2" title="зачало 99">§f</a>
-            </span>
-            /
-
-
-            <span id="weekday355" class="weekday">
-                Ґпc.
-                <a href="/2020/12/355.html" title="зачало 300">т7</a>
-                Лк.
-                <a href="/2020/12/355.html#2" title="зачало 100">R</a>
-            </span>
-            /
-
-
-            <span id="weekday356" class="weekday">
-                Ґпc.
-                <a href="/2020/12/356.html" title="зачало 301">т7а</a>
-                Лк.
-                <a href="/2020/12/356.html#2" title="зачало 101">Rа</a>
-            </span>
-            /
-
-
-            <span id="weekday357" class="weekday">
-                Ґпc.
-                <a href="/2020/12/357.html" title="зачало 218">си7i</a>
-                Лк.
-                <a href="/2020/12/357.html#2" title="зачало 67">…з</a>
+            <span id="weekday351" class="weekday"> Ґпc. <a href="/2020/12/351.html" title="зачало 233">сlг</a> Лк. <a href="/2020/12/351.html#2" title="зачало 71">o7а</a>
+            </span> / <span id="weekday352" class="weekday"> Ґпc. <a href="/2020/12/352.html" title="зачало 294">с§д</a> Лк. <a href="/2020/12/352.html#2" title="зачало 97">§з</a>
+            </span> / <span id="weekday353" class="weekday"> Ґпc. <a href="/2020/12/353.html" title="зачало 297">с§з</a> Лк. <a href="/2020/12/353.html#2" title="зачало 98">§и</a>
+            </span> / <span id="weekday354" class="weekday"> Ґпc. <a href="/2020/12/354.html" title="зачало 299">с§f</a> Лк. <a href="/2020/12/354.html#2" title="зачало 99">§f</a>
+            </span> / <span id="weekday355" class="weekday"> Ґпc. <a href="/2020/12/355.html" title="зачало 300">т7</a> Лк. <a href="/2020/12/355.html#2" title="зачало 100">R</a>
+            </span> / <span id="weekday356" class="weekday"> Ґпc. <a href="/2020/12/356.html" title="зачало 301">т7а</a> Лк. <a href="/2020/12/356.html#2" title="зачало 101">Rа</a>
+            </span> / <span id="weekday357" class="weekday"> Ґпc. <a href="/2020/12/357.html" title="зачало 218">си7i</a> Лк. <a href="/2020/12/357.html#2" title="зачало 67">…з</a>
             </span>
         </p>
         <p id="week36" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz к7и-z. Седми1ца к7f-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz к7и-z. Седми1ца к7f-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday361" class="weekday">
-                Ґпc.
-                <a href="/2020/12/361.html" title="зачало 250">©н</a>
-                Мф.
-                <a href="/2020/12/361.html#2" title="зачало 76">o7ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday362" class="weekday">
-                Ґпc.
-                <a href="/2020/12/362.html" title="зачало 308">™и</a>
-                Лк.
-                <a href="/2020/12/362.html#2" title="зачало 102">Rв</a>
-            </span>
-            /
-
-
-            <span id="weekday363" class="weekday">
-                Ґпc.
-                <a href="/2020/12/363.html" title="зачало 310">™i</a>
-                Лк.
-                <a href="/2020/12/363.html#2" title="зачало 106">Rѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday364" class="weekday">
-                Ґпc.
-                <a href="/2020/12/364.html" title="зачало 312">тв7i</a>
-                Лк.
-                <a href="/2020/12/364.html#2" title="зачало 104">Rд</a>
-            </span>
-            /
-
-
-            <span id="weekday365" class="weekday">
-                Ґпc.
-                <a href="/2020/12/365.html" title="зачало 315">тє7i</a>
-                Лк.
-                <a href="/2020/12/365.html#2" title="зачало 107">Rз</a>
-            </span>
-            /
-
-
-            <span id="weekday366" class="weekday">
-                Ґпc.
-                <a href="/2020/12/366.html" title="зачало 317">тз7i</a>
-                Лк.
-                <a href="/2020/12/366.html#2" title="зачало 108">Rи</a>
-            </span>
-            /
-
-
-            <span id="weekday367" class="weekday">
-                Ґпc.
-                <a href="/2020/12/367.html" title="зачало 220*">©к t
-                    полY</a>
-                Лк.
-                <a href="/2020/12/367.html#2" title="зачало 72">o7в</a>
+            <span id="weekday361" class="weekday"> Ґпc. <a href="/2020/12/361.html" title="зачало 250">©н</a> Мф. <a href="/2020/12/361.html#2" title="зачало 76">o7ѕ</a>
+            </span> / <span id="weekday362" class="weekday"> Ґпc. <a href="/2020/12/362.html" title="зачало 308">™и</a> Лк. <a href="/2020/12/362.html#2" title="зачало 102">Rв</a>
+            </span> / <span id="weekday363" class="weekday"> Ґпc. <a href="/2020/12/363.html" title="зачало 310">™i</a> Лк. <a href="/2020/12/363.html#2" title="зачало 106">Rѕ</a>
+            </span> / <span id="weekday364" class="weekday"> Ґпc. <a href="/2020/12/364.html" title="зачало 312">тв7i</a> Лк. <a href="/2020/12/364.html#2" title="зачало 104">Rд</a>
+            </span> / <span id="weekday365" class="weekday"> Ґпc. <a href="/2020/12/365.html" title="зачало 315">тє7i</a> Лк. <a href="/2020/12/365.html#2" title="зачало 107">Rз</a>
+            </span> / <span id="weekday366" class="weekday"> Ґпc. <a href="/2020/12/366.html" title="зачало 317">тз7i</a> Лк. <a href="/2020/12/366.html#2" title="зачало 108">Rи</a>
+            </span> / <span id="weekday367" class="weekday"> Ґпc. <a href="/2020/12/367.html" title="зачало 220*">©к t полY</a> Лк. <a href="/2020/12/367.html#2" title="зачало 72">o7в</a>
             </span>
         </p>
         <p id="week37" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz к7f-z. Седми1ца l-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz к7f-z. Седми1ца l-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday371" class="weekday">
-                Ґпc.
-                <a href="/2020/12/371.html" title="зачало 257">сн7з</a>
-                Лк.
-                <a href="/2020/12/371.html#2" title="зачало 85">п7є</a>
-            </span>
-            /
-
-
-            <span id="weekday372" class="weekday">
-                Ґпc.
-                <a href="/2020/12/372.html" title="зачало 319">тf7i</a>
-                Лк.
-                <a href="/2020/12/372.html#2" title="зачало 33">lг</a>
-            </span>
-            /
-
-
-            <span id="weekday373" class="weekday">
-                Ґпc.
-                <a href="/2020/12/373.html" title="зачало 321">тк7а</a>
-                Лк.
-                <a href="/2020/12/373.html#2" title="зачало 34">lд</a>
-            </span>
-            /
-
-
-            <span id="weekday374" class="weekday">
-                Ґпc.
-                <a href="/2020/12/374.html" title="зачало 323">тк7г</a>
-                Лк.
-                <a href="/2020/12/374.html#2" title="зачало 36">lѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday375" class="weekday">
-                Ґпc.
-                <a href="/2020/12/375.html" title="зачало 326">тк7ѕ</a>
-                Лк.
-                <a href="/2020/12/375.html#2" title="зачало 39">lf</a>
-            </span>
-            /
-
-
-            <span id="weekday376" class="weekday">
-                Ґпc.
-                <a href="/2021/01/376.html" title="зачало 327">тк7з</a>
-                Мк.
-                <a href="/2021/01/376.html#2" title="зачало 41">м7а</a>
-            </span>
-            /
-
-
-            <span id="weekday377" class="weekday">
-                Ґпc.
-                <a href="/2021/01/377.html" title="зачало 228">ск7и</a>
-                Мф.
-                <a href="/2021/01/377.html#2" title="зачало 74">o7д.</a>
+            <span id="weekday371" class="weekday"> Ґпc. <a href="/2020/12/371.html" title="зачало 257">сн7з</a> Лк. <a href="/2020/12/371.html#2" title="зачало 85">п7є</a>
+            </span> / <span id="weekday372" class="weekday"> Ґпc. <a href="/2020/12/372.html" title="зачало 319">тf7i</a> Лк. <a href="/2020/12/372.html#2" title="зачало 33">lг</a>
+            </span> / <span id="weekday373" class="weekday"> Ґпc. <a href="/2020/12/373.html" title="зачало 321">тк7а</a> Лк. <a href="/2020/12/373.html#2" title="зачало 34">lд</a>
+            </span> / <span id="weekday374" class="weekday"> Ґпc. <a href="/2020/12/374.html" title="зачало 323">тк7г</a> Лк. <a href="/2020/12/374.html#2" title="зачало 36">lѕ</a>
+            </span> / <span id="weekday375" class="weekday"> Ґпc. <a href="/2020/12/375.html" title="зачало 326">тк7ѕ</a> Лк. <a href="/2020/12/375.html#2" title="зачало 39">lf</a>
+            </span> / <span id="weekday376" class="weekday"> Ґпc. <a href="/2021/01/376.html" title="зачало 327">тк7з</a> Мк. <a href="/2021/01/376.html#2" title="зачало 41">м7а</a>
+            </span> / <span id="weekday377" class="weekday"> Ґпc. <a href="/2021/01/377.html" title="зачало 228">ск7и</a> Мф. <a href="/2021/01/377.html#2" title="зачало 74">o7д.</a>
             </span>
         </p>
         <p id="week38" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz l-z. Седми1ца lа-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz l-z. Седми1ца lа-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday381" class="weekday">
-                Ґпc.
-                <a href="/2021/01/381.html" title="зачало 258">сн7и</a>
-                Лк.
-                <a href="/2021/01/381.html#2" title="зачало 91">§а</a>
-            </span>
-            /
-
-
-            <span id="weekday382" class="weekday">
-                Ґпc.
-                <a href="/2021/01/382.html" title="зачало 329">тк7f</a>
-                Мк.
-                <a href="/2021/01/382.html#2" title="зачало 42">м7в</a>
-            </span>
-            /
-
-
-            <span id="weekday383" class="weekday">
-                Ґпc.
-                <a href="/2021/01/383.html" title="зачало 333">тlг</a>
-                Мк.
-                <a href="/2021/01/383.html#2" title="зачало 43">м7г</a>
-            </span>
-            /
-
-
-            <span id="weekday384" class="weekday">
-                Ґпc.
-                <a href="/2021/01/384.html" title="зачало 50">н7</a>
-                Мк.
-                <a href="/2021/01/384.html#2" title="зачало 44">м7д</a>
-            </span>
-            /
-
-
-            <span id="weekday385" class="weekday">
-                Ґпc.
-                <a href="/2021/01/385.html" title="зачало 51">н7а</a>
-                Мк.
-                <a href="/2021/01/385.html#2" title="зачало 45">м7є</a>
-            </span>
-            /
-
-
-            <span id="weekday386" class="weekday">
-                Ґпc.
-                <a href="/2021/01/386.html" title="зачало 52">н7в</a>
-                Мк.
-                <a href="/2021/01/386.html#2" title="зачало 46">м7ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday387" class="weekday">
-                Ґпc.
-                <a href="/2021/01/387.html" title="зачало 249*">см7f t
-                    полY</a>
-                Лк.
-                <a href="/2021/01/387.html#2" title="зачало 81">п7а</a>
+            <span id="weekday381" class="weekday"> Ґпc. <a href="/2021/01/381.html" title="зачало 258">сн7и</a> Лк. <a href="/2021/01/381.html#2" title="зачало 91">§а</a>
+            </span> / <span id="weekday382" class="weekday"> Ґпc. <a href="/2021/01/382.html" title="зачало 329">тк7f</a> Мк. <a href="/2021/01/382.html#2" title="зачало 42">м7в</a>
+            </span> / <span id="weekday383" class="weekday"> Ґпc. <a href="/2021/01/383.html" title="зачало 333">тlг</a> Мк. <a href="/2021/01/383.html#2" title="зачало 43">м7г</a>
+            </span> / <span id="weekday384" class="weekday"> Ґпc. <a href="/2021/01/384.html" title="зачало 50">н7</a> Мк. <a href="/2021/01/384.html#2" title="зачало 44">м7д</a>
+            </span> / <span id="weekday385" class="weekday"> Ґпc. <a href="/2021/01/385.html" title="зачало 51">н7а</a> Мк. <a href="/2021/01/385.html#2" title="зачало 45">м7є</a>
+            </span> / <span id="weekday386" class="weekday"> Ґпc. <a href="/2021/01/386.html" title="зачало 52">н7в</a> Мк. <a href="/2021/01/386.html#2" title="зачало 46">м7ѕ</a>
+            </span> / <span id="weekday387" class="weekday"> Ґпc. <a href="/2021/01/387.html" title="зачало 249*">см7f t полY</a> Лк. <a href="/2021/01/387.html#2" title="зачало 81">п7а</a>
             </span>
         </p>
         <p id="week39" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz lа-z. Седми1ца lв-z по пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz lа-z. Седми1ца lв-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday391" class="weekday">
-                Ґпc.
-                <a href="/2021/01/391.html" title="зачало 280">©п</a>
-                Лк.
-                <a href="/2021/01/391.html#2" title="зачало 93">§г</a>
-            </span>
-            /
-
-
-            <span id="weekday392" class="weekday">
-                Ґпc.
-                <a href="/2021/01/392.html" title="зачало 53">н7г</a>
-                Мк.
-                <a href="/2021/01/392.html#2" title="зачало 48">м7и</a>
-            </span>
-            /
-
-
-            <span id="weekday393" class="weekday">
-                Ґпc.
-                <a href="/2021/01/393.html" title="зачало 54">н7д</a>
-                Мк.
-                <a href="/2021/01/393.html#2" title="зачало 50">н7</a>
-            </span>
-            /
-
-
-            <span id="weekday394" class="weekday">
-                Ґпc.
-                <a href="/2021/01/394.html" title="зачало 55">н7є</a>
-                Мк.
-                <a href="/2021/01/394.html#2" title="зачало 51">н7а</a>
-            </span>
-            /
-
-
-            <span id="weekday395" class="weekday">
-                Ґпc.
-                <a href="/2021/01/395.html" title="зачало 56">н7ѕ</a>
-                Мк.
-                <a href="/2021/01/395.html#2" title="зачало 52">н7в</a>
-            </span>
-            /
-
-
-            <span id="weekday396" class="weekday">
-                Ґпc.
-                <a href="/2021/01/396.html" title="зачало 58">н7и</a>
-                Мк.
-                <a href="/2021/01/396.html#2" title="зачало 53">н7г</a>
-            </span>
-            /
-
-
-            <span id="weekday397" class="weekday">
-                Ґпc.
-                <a href="/2021/01/397.html" title="зачало 273">сo7г</a>
-                Лк.
-                <a href="/2021/01/397.html#2" title="зачало 84">п7д</a>
+            <span id="weekday391" class="weekday"> Ґпc. <a href="/2021/01/391.html" title="зачало 280">©п</a> Лк. <a href="/2021/01/391.html#2" title="зачало 93">§г</a>
+            </span> / <span id="weekday392" class="weekday"> Ґпc. <a href="/2021/01/392.html" title="зачало 53">н7г</a> Мк. <a href="/2021/01/392.html#2" title="зачало 48">м7и</a>
+            </span> / <span id="weekday393" class="weekday"> Ґпc. <a href="/2021/01/393.html" title="зачало 54">н7д</a> Мк. <a href="/2021/01/393.html#2" title="зачало 50">н7</a>
+            </span> / <span id="weekday394" class="weekday"> Ґпc. <a href="/2021/01/394.html" title="зачало 55">н7є</a> Мк. <a href="/2021/01/394.html#2" title="зачало 51">н7а</a>
+            </span> / <span id="weekday395" class="weekday"> Ґпc. <a href="/2021/01/395.html" title="зачало 56">н7ѕ</a> Мк. <a href="/2021/01/395.html#2" title="зачало 52">н7в</a>
+            </span> / <span id="weekday396" class="weekday"> Ґпc. <a href="/2021/01/396.html" title="зачало 58">н7и</a> Мк. <a href="/2021/01/396.html#2" title="зачало 53">н7г</a>
+            </span> / <span id="weekday397" class="weekday"> Ґпc. <a href="/2021/01/397.html" title="зачало 273">сo7г</a> Лк. <a href="/2021/01/397.html#2" title="зачало 84">п7д</a>
             </span>
         </p>
         <p id="week40" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz lв-z њ Закхе1и. Седми1ца lг-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz lв-z њ Закхе1и. Седми1ца lг-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday401" class="weekday">
-                Ґпc.
-                <a href="/2021/01/401.html" title="зачало 285*">сп7є t
-                    полY</a>
-                Лк.
-                <a href="/2021/01/401.html#2" title="зачало 94">§д</a>
-            </span>
-            /
-
-
-            <span id="weekday402" class="weekday">
-                Ґпc.
-                <a href="/2021/01/402.html" title="зачало 59">н7f</a>
-                Мк.
-                <a href="/2021/01/402.html#2" title="зачало 54">н7д</a>
-            </span>
-            /
-
-
-            <span id="weekday403" class="weekday">
-                Ґпc.
-                <a href="/2021/01/403.html" title="зачало 60">…</a>
-                Мк.
-                <a href="/2021/01/403.html#2" title="зачало 55">н7є</a>
-            </span>
-            /
-
-
-            <span id="weekday404" class="weekday">
-                Ґпc.
-                <a href="/2021/01/404.html" title="зачало 61">…а</a>
-                Мк.
-                <a href="/2021/01/404.html#2" title="зачало 56">н7ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday405" class="weekday">
-                Ґпc.
-                <a href="/2021/01/405.html" title="зачало 62">…в</a>
-                Мк.
-                <a href="/2021/01/405.html#2" title="зачало 57">н7з</a>
-            </span>
-            /
-
-
-            <span id="weekday406" class="weekday">
-                Ґпc.
-                <a href="/2021/01/406.html" title="зачало 64">…д</a>
-                Мк.
-                <a href="/2021/01/406.html#2" title="зачало 58">н7и</a>
-            </span>
-            /
-
-
-            <span id="weekday407" class="weekday">
-                Ґпc.
-                <a href="/2021/01/407.html" title="зачало 293">с§г</a>
-                Лк.
-                <a href="/2021/01/407.html#2" title="зачало 88">п7и</a>
+            <span id="weekday401" class="weekday"> Ґпc. <a href="/2021/01/401.html" title="зачало 285*">сп7є t полY</a> Лк. <a href="/2021/01/401.html#2" title="зачало 94">§д</a>
+            </span> / <span id="weekday402" class="weekday"> Ґпc. <a href="/2021/01/402.html" title="зачало 59">н7f</a> Мк. <a href="/2021/01/402.html#2" title="зачало 54">н7д</a>
+            </span> / <span id="weekday403" class="weekday"> Ґпc. <a href="/2021/01/403.html" title="зачало 60">…</a> Мк. <a href="/2021/01/403.html#2" title="зачало 55">н7є</a>
+            </span> / <span id="weekday404" class="weekday"> Ґпc. <a href="/2021/01/404.html" title="зачало 61">…а</a> Мк. <a href="/2021/01/404.html#2" title="зачало 56">н7ѕ</a>
+            </span> / <span id="weekday405" class="weekday"> Ґпc. <a href="/2021/01/405.html" title="зачало 62">…в</a> Мк. <a href="/2021/01/405.html#2" title="зачало 57">н7з</a>
+            </span> / <span id="weekday406" class="weekday"> Ґпc. <a href="/2021/01/406.html" title="зачало 64">…д</a> Мк. <a href="/2021/01/406.html#2" title="зачало 58">н7и</a>
+            </span> / <span id="weekday407" class="weekday"> Ґпc. <a href="/2021/01/407.html" title="зачало 293">с§г</a> Лк. <a href="/2021/01/407.html#2" title="зачало 88">п7и</a>
             </span>
         </p>
         <p class="abzac" style="width: 95%; color: white
-                    ; background-color: #9b845c; border-radius: 4px 44px 44px 4px;">U3готови1тельные
-            седми1цы
-            вели1кагw поста2.
-        </p>
+                    ; background-color: #9b845c; border-radius: 4px 44px 44px 4px;">U3готови1тельные седми1цы вели1кагw поста2. </p>
         <p id="week41" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz lг-z њ мытари2, и3 фарісeи. Седми1ца lд-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz lг-z њ мытари2, и3 фарісeи. Седми1ца lд-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday411" class="weekday">
-                Ґпc.
-                <a href="/2021/02/411.html" title="зачало 296">сч7ѕ</a>
-                Лк.
-                <a href="/2021/02/411.html#2" title="зачало 89">п7f</a>
-            </span>
-            /
-
-
-            <span id="weekday412" class="weekday">
-                Ґпc.
-                <a href="/2021/02/412.html" title="зачало 66">…ѕ</a>
-                Мк.
-                <a href="/2021/02/412.html#2" title="зачало 59">н7f</a>
-            </span>
-            /
-
-
-            <span id="weekday413" class="weekday">
-                Ґпc.
-                <a href="/2021/02/413.html" title="зачало 67">…з</a>
-                Мк.
-                <a href="/2021/02/413.html#2" title="зачало 60">…</a>
-            </span>
-            /
-
-
-            <span id="weekday414" class="weekday">
-                Ґпc.
-                <a href="/2021/02/414.html" title="зачало 68*">…и</a>
-                Мк.
-                <a href="/2021/02/414.html#2" title="зачало 61">…а</a>
-            </span>
-            /
-
-
-            <span id="weekday41-5" class="weekday">
-                Ґпc.
-                <a href="/2021/02/415.html" title="зачало 69">…f</a>
-                Мк.
-                <a href="/2021/02/415.html#2" title="зачало 62">…в</a>
-            </span>
-            /
-
-
-            <span id="weekday416" class="weekday">
-                Ґпc.
-                <a href="/2021/02/416.html" title="зачало 70">o7</a>
-                Мк.
-                <a href="/2021/02/416.html#2" title="зачало 63">…г</a>
-            </span>
-            /
-
-
-            <span id="weekday417" class="weekday">
-                Ґпc.
-                <a href="/2021/02/417.html" title="зачало 295">с§є</a>
-                Лк.
-                <a href="/2021/02/417.html#2" title="зачало 103">Rг</a>
+            <span id="weekday411" class="weekday"> Ґпc. <a href="/2021/02/411.html" title="зачало 296">сч7ѕ</a> Лк. <a href="/2021/02/411.html#2" title="зачало 89">п7f</a>
+            </span> / <span id="weekday412" class="weekday"> Ґпc. <a href="/2021/02/412.html" title="зачало 66">…ѕ</a> Мк. <a href="/2021/02/412.html#2" title="зачало 59">н7f</a>
+            </span> / <span id="weekday413" class="weekday"> Ґпc. <a href="/2021/02/413.html" title="зачало 67">…з</a> Мк. <a href="/2021/02/413.html#2" title="зачало 60">…</a>
+            </span> / <span id="weekday414" class="weekday"> Ґпc. <a href="/2021/02/414.html" title="зачало 68*">…и</a> Мк. <a href="/2021/02/414.html#2" title="зачало 61">…а</a>
+            </span> / <span id="weekday41-5" class="weekday"> Ґпc. <a href="/2021/02/415.html" title="зачало 69">…f</a> Мк. <a href="/2021/02/415.html#2" title="зачало 62">…в</a>
+            </span> / <span id="weekday416" class="weekday"> Ґпc. <a href="/2021/02/416.html" title="зачало 70">o7</a> Мк. <a href="/2021/02/416.html#2" title="зачало 63">…г</a>
+            </span> / <span id="weekday417" class="weekday"> Ґпc. <a href="/2021/02/417.html" title="зачало 295">с§є</a> Лк. <a href="/2021/02/417.html#2" title="зачало 103">Rг</a>
             </span>
         </p>
         <p id="week42" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz л7д-z њ блyднэмъ сhнэ. Седми1ца л7є-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz л7д-z њ блyднэмъ сhнэ. Седми1ца л7є-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday421" class="weekday">
-                Ґпc.
-                <a href="/2021/02/421.html" title="зачало 135">рlє</a>
-                Мф.
-                <a href="/2021/02/421.html#2" title="зачало 79">o7f</a>
-            </span>
-            /
-
-
-            <span id="weekday422" class="weekday">
-                Ґпc.
-                <a href="/2021/03/422.html" title="зачало 71">o7а</a>
-                Мк.
-                <a href="/2021/03/422.html#2" title="зачало 49">м7f</a>
-            </span>
-            /
-
-
-            <span id="weekday423" class="weekday">
-                Ґпc.
-                <a href="/2021/03/423.html" title="зачало 72">o7в</a>
-                Мк.
-                <a href="/2021/03/423.html#2" title="зачало 64">…д</a>
-            </span>
-            /
-
-
-            <span id="weekday42-4" class="weekday">
-                Ґпc.
-                <a href="/2021/03/424.html" title="зачало 73">o7г</a>
-                Мк.
-                <a href="/2021/03/424.html#2" title="зачало 65">…є</a>
-            </span>
-            /
-
-
-            <span id="weekday425" class="weekday">
-                Ґпc.
-                <a href="/2021/03/425.html" title="зачало 74">o7д</a>
-                Мк.
-                <a href="/2021/03/425.html#2" title="зачало 66">…ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday426" class="weekday">
-                Ґпc.
-                <a href="/2021/03/426.html" title="зачало 75">o7є</a>
-                Мк.
-                <a href="/2021/03/426.html#2" title="зачало 68">…и</a>
-            </span>
-            /
-
-
-            <span id="weekday427" class="weekday">
-                Ґпc.
-                <a href="/2021/03/427.html" title="зачало 146">рм7ѕ</a>
-                Мф.
-                <a href="/2021/03/427.html#2" title="зачало 105">р7є</a>
+            <span id="weekday421" class="weekday"> Ґпc. <a href="/2021/02/421.html" title="зачало 135">рlє</a> Мф. <a href="/2021/02/421.html#2" title="зачало 79">o7f</a>
+            </span> / <span id="weekday422" class="weekday"> Ґпc. <a href="/2021/03/422.html" title="зачало 71">o7а</a> Мк. <a href="/2021/03/422.html#2" title="зачало 49">м7f</a>
+            </span> / <span id="weekday423" class="weekday"> Ґпc. <a href="/2021/03/423.html" title="зачало 72">o7в</a> Мк. <a href="/2021/03/423.html#2" title="зачало 64">…д</a>
+            </span> / <span id="weekday42-4" class="weekday"> Ґпc. <a href="/2021/03/424.html" title="зачало 73">o7г</a> Мк. <a href="/2021/03/424.html#2" title="зачало 65">…є</a>
+            </span> / <span id="weekday425" class="weekday"> Ґпc. <a href="/2021/03/425.html" title="зачало 74">o7д</a> Мк. <a href="/2021/03/425.html#2" title="зачало 66">…ѕ</a>
+            </span> / <span id="weekday426" class="weekday"> Ґпc. <a href="/2021/03/426.html" title="зачало 75">o7є</a> Мк. <a href="/2021/03/426.html#2" title="зачало 68">…и</a>
+            </span> / <span id="weekday427" class="weekday"> Ґпc. <a href="/2021/03/427.html" title="зачало 146">рм7ѕ</a> Мф. <a href="/2021/03/427.html#2" title="зачало 105">р7є</a>
             </span>
         </p>
         <p id="week43" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz л7є-z мzсопyстнаz. Седми1ца л7ѕ-z по
-                    пzтьдесz1тнице.
-
-                </span>
+                    <span class="red">Н</span> едёлz л7є-z мzсопyстнаz. Седми1ца л7ѕ-z по пzтьдесz1тнице. </span>
             </a>
             <br>
-            <span id="weekday431" class="weekday">
-                Ґпc.
-                <a href="/2021/03/431.html" title="зачало 140">Rм</a>
-                Мф.
-                <a href="/2021/03/431.html#2" title="зачало 106">Rѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday432" class="weekday">
-                Ґпc.
-                <a href="/2021/03/432.html" title="зачало 76">o7ѕ</a>
-                Мк.
-                <a href="/2021/03/432.html#2" title="зачало 96">§ѕ</a>
-            </span>
-            /
-
-
-            <span id="weekday433" class="weekday">
-                Ґпc.
-                <a href="/2021/03/433.html" title="зачало 77">o7з</a>
-                Мк.
-                <a href="/2021/03/433.html#2" title="зачало 109">Rf</a>
-            </span>
-            /
-
-
-            <span id="weekday434" class="weekday">
-                Ґпc.
-                <a href="/2021/03/434.html" title="нет литургии">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/434.html#2" title="нет литургии">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday435" class="weekday">
-                Ґпc.
-                <a href="/2021/03/435.html" title="зачало 78">o7и</a>
-                Е#vg.
-                <a href="/2021/03/435.html#2" title="зачало 110">Ri</a>
-            </span>
-            /
-
-
-            <span id="weekday436" class="weekday">
-                Ґпc.
-                <a href="/2021/03/436.html" title="нет литургии">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/436.html#2" title="нет литургии">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday437" class="weekday">
-                Ґпc.
-                <a href="/2021/03/437.html" title="зачало 213">сг7i</a>
-                Мф.
-                <a href="/2021/03/437.html#2" title="зачало 16">ѕ7i</a>
+            <span id="weekday431" class="weekday"> Ґпc. <a href="/2021/03/431.html" title="зачало 140">Rм</a> Мф. <a href="/2021/03/431.html#2" title="зачало 106">Rѕ</a>
+            </span> / <span id="weekday432" class="weekday"> Ґпc. <a href="/2021/03/432.html" title="зачало 76">o7ѕ</a> Мк. <a href="/2021/03/432.html#2" title="зачало 96">§ѕ</a>
+            </span> / <span id="weekday433" class="weekday"> Ґпc. <a href="/2021/03/433.html" title="зачало 77">o7з</a> Мк. <a href="/2021/03/433.html#2" title="зачало 109">Rf</a>
+            </span> / <span id="weekday434" class="weekday"> Ґпc. <a href="/2021/03/434.html" title="нет литургии">нeтъ</a> Е#vg. <a href="/2021/03/434.html#2" title="нет литургии">нeтъ</a>
+            </span> / <span id="weekday435" class="weekday"> Ґпc. <a href="/2021/03/435.html" title="зачало 78">o7и</a> Е#vg. <a href="/2021/03/435.html#2" title="зачало 110">Ri</a>
+            </span> / <span id="weekday436" class="weekday"> Ґпc. <a href="/2021/03/436.html" title="нет литургии">нeтъ</a> Е#vg. <a href="/2021/03/436.html#2" title="нет литургии">нeтъ</a>
+            </span> / <span id="weekday437" class="weekday"> Ґпc. <a href="/2021/03/437.html" title="зачало 213">сг7i</a> Мф. <a href="/2021/03/437.html#2" title="зачало 16">ѕ7i</a>
             </span>
         </p>
         <p class="abzac" style="width: 95%; color: white;
-                    ; background-color: #0066ff; border-radius: 4px 44px 44px 4px">С™hz
-            четыредесsтница.
-        </p>
+                    ; background-color: #0066ff; border-radius: 4px 44px 44px 4px">С™hz четыредесsтница. </p>
         <p id="week44" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
                     <span class="red" title="ПРОЩЕНОЕ ВОСКРЕСЕНЬЕ. Начало Великого Поста,
                                 иначе Святой
-                                Четыредесятницы.">Н</span>
-                    едёлz
-                    л7ѕ-z сыропyстнаz. Седми1ца а7-z с™hz
-                    четыредесsтницы.
-
-                </span>
+                                Четыредесятницы.">Н</span> едёлz л7ѕ-z сыропyстнаz. Седми1ца а7-z с™hz четыредесsтницы. </span>
             </a>
             <br>
-            <span id="weekday441" class="weekday">
-                Ґпc.
-                <a href="/2021/03/441.html" title="зачало 112">рв7i</a>
-                Мф.
-                <a href="/2021/03/441.html#2" title="зачало 17">з7i</a>
-            </span>
-            /
-
-
-            <span id="weekday442" class="weekday">
-                Ґпc.
-                <a href="/2021/03/442.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/442.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday443" class="weekday">
-                Ґпc.
-                <a href="/2021/03/443.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/443.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday444" class="weekday">
-                Ґпc.
-                <a href="/2021/03/444.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/444.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday445" class="weekday">
-                Ґпc.
-                <a href="/2021/03/445.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/445.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday446" class="weekday">
-                Ґпc.
-                <a href="/2021/03/446.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/446.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday447" class="weekday">
-                Ґпc.
-                <a href="/2021/03/447.html" title="зачало 303">т7г</a>
-                Мф.
-                <a href="/2021/03/447.html#2" title="зачало 10">‹</a>
+            <span id="weekday441" class="weekday"> Ґпc. <a href="/2021/03/441.html" title="зачало 112">рв7i</a> Мф. <a href="/2021/03/441.html#2" title="зачало 17">з7i</a>
+            </span> / <span id="weekday442" class="weekday"> Ґпc. <a href="/2021/03/442.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/442.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday443" class="weekday"> Ґпc. <a href="/2021/03/443.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/443.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday444" class="weekday"> Ґпc. <a href="/2021/03/444.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/444.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday445" class="weekday"> Ґпc. <a href="/2021/03/445.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/445.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday446" class="weekday"> Ґпc. <a href="/2021/03/446.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/446.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday447" class="weekday"> Ґпc. <a href="/2021/03/447.html" title="зачало 303">т7г</a> Мф. <a href="/2021/03/447.html#2" title="зачало 10">‹</a>
             </span>
         </p>
         <p id="week45" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red" title="ТОРЖЕСТВО ПРАВОСЛАВИЯ">Н</span>
-                    едёлz а7-z. Седми1ца в7-z с™hz
-                    четыредесsтницы.
-
-                </span>
+                    <span class="red" title="ТОРЖЕСТВО ПРАВОСЛАВИЯ">Н</span> едёлz а7-z. Седми1ца в7-z с™hz четыредесsтницы. </span>
             </a>
             <br>
-            <span id="weekday451" class="weekday">
-                Ґпc.
-                <a href="/2021/03/451.html" title="зачало 329">тв7f</a>
-                Мф.
-                <a href="/2021/03/451.html#2" title="зачало 5">є7</a>
-            </span>
-            /
-
-
-            <span id="weekday452" class="weekday">
-                Ґпc.
-                <a href="/2021/03/452.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/452.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday453" class="weekday">
-                Ґпc.
-                <a href="/2021/03/453.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/453.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday454" class="weekday">
-                Ґпc.
-                <a href="/2021/03/454.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/454.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday455" class="weekday">
-                Ґпc.
-                <a href="/2021/03/455.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/455.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday456" class="weekday">
-                Ґпc.
-                <a href="/2021/03/456.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/456.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday457" class="weekday">
-                Ґпc.
-                <a href="/2021/03/457.html" title="зачало 309">™f</a>
-                Е#vg.
-                <a href="/2021/03/457.html#2" title="зачало 6">ѕ7</a>
+            <span id="weekday451" class="weekday"> Ґпc. <a href="/2021/03/451.html" title="зачало 329">тв7f</a> Мф. <a href="/2021/03/451.html#2" title="зачало 5">є7</a>
+            </span> / <span id="weekday452" class="weekday"> Ґпc. <a href="/2021/03/452.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/452.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday453" class="weekday"> Ґпc. <a href="/2021/03/453.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/453.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday454" class="weekday"> Ґпc. <a href="/2021/03/454.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/454.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday455" class="weekday"> Ґпc. <a href="/2021/03/455.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/455.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday456" class="weekday"> Ґпc. <a href="/2021/03/456.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/456.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday457" class="weekday"> Ґпc. <a href="/2021/03/457.html" title="зачало 309">™f</a> Е#vg. <a href="/2021/03/457.html#2" title="зачало 6">ѕ7</a>
             </span>
         </p>
         <p id="week46" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red" title="ГРИГОРИЯ ПАЛАМЫ">Н</span>
-                    едёлz в7-z. Седми1ца г7-z с™hz
-                    четыредесsтницы.
-
-                </span>
+                    <span class="red" title="ГРИГОРИЯ ПАЛАМЫ">Н</span> едёлz в7-z. Седми1ца г7-z с™hz четыредесsтницы. </span>
             </a>
             <br>
-            <span id="weekday461" class="weekday">
-                Ґпc.
-                <a href="/2021/02/461.html" title="зачало 304">™д</a>
-                Е#vg.
-                <a href="/2021/02/461.html#2" title="зачало 7">з7</a>
-            </span>
-            /
-
-
-            <span id="weekday462" class="weekday">
-                Ґпc.
-                <a href="/2021/03/462.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/462.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday463" class="weekday">
-                Ґпc.
-                <a href="/2021/03/463.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/463.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday464" class="weekday">
-                Ґпc.
-                <a href="/2021/03/464.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/464.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday465" class="weekday">
-                Ґпc.
-                <a href="/2021/03/465.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/465.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday466" class="weekday">
-                Ґпc.
-                <a href="/2021/03/466.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/466.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday467" class="weekday">
-                Ґпc.
-                <a href="/2021/03/467.html" title="зачало 325">тк7є</a>
-                Мк.
-                <a href="/2021/03/467.html#2" title="зачало 8">и7</a>
+            <span id="weekday461" class="weekday"> Ґпc. <a href="/2021/02/461.html" title="зачало 304">™д</a> Е#vg. <a href="/2021/02/461.html#2" title="зачало 7">з7</a>
+            </span> / <span id="weekday462" class="weekday"> Ґпc. <a href="/2021/03/462.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/462.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday463" class="weekday"> Ґпc. <a href="/2021/03/463.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/463.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday464" class="weekday"> Ґпc. <a href="/2021/03/464.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/464.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday465" class="weekday"> Ґпc. <a href="/2021/03/465.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/465.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday466" class="weekday"> Ґпc. <a href="/2021/03/466.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/466.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday467" class="weekday"> Ґпc. <a href="/2021/03/467.html" title="зачало 325">тк7є</a> Мк. <a href="/2021/03/467.html#2" title="зачало 8">и7</a>
             </span>
         </p>
         <p id="week47" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red" title="КРЕСТОПОКЛОННАЯ СЕДМИЦА">Н</span>
-                    едёлz г7-z. Седми1ца д7-z с™hz
-                    четыредесsтницы.
-
-                </span>
+                    <span class="red" title="КРЕСТОПОКЛОННАЯ СЕДМИЦА">Н</span> едёлz г7-z. Седми1ца д7-z с™hz четыредесsтницы. </span>
             </a>
             <br>
-            <span id="weekday471" class="weekday">
-                Ґпc.
-                <a href="/2021/03/471.html" title="зачало 311">та7i</a>
-                Е#vg.
-                <a href="/2021/03/471.html#2" title="зачало 37">lз</a>
-            </span>
-            /
-
-
-            <span id="weekday472" class="weekday">
-                Ґпc.
-                <a href="/2021/03/472.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/03/472.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday473" class="weekday">
-                Ґпc.
-                <a href="/2021/04/473.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/04/473.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday474" class="weekday">
-                Ґпc.
-                <a href="/2021/04/474.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/04/474.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday475" class="weekday">
-                Ґпc.
-                <a href="/2021/04/475.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/04/475.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday476" class="weekday">
-                Ґпc.
-                <a href="/2021/04/476.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/04/476.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday477" class="weekday">
-                Ґпc.
-                <a href="/2021/04/477.html" title="зачало 313">тг7i</a>
-                Мк.
-                <a href="/2021/04/477.html#2" title="зачало 31">lа</a>
+            <span id="weekday471" class="weekday"> Ґпc. <a href="/2021/03/471.html" title="зачало 311">та7i</a> Е#vg. <a href="/2021/03/471.html#2" title="зачало 37">lз</a>
+            </span> / <span id="weekday472" class="weekday"> Ґпc. <a href="/2021/03/472.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/03/472.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday473" class="weekday"> Ґпc. <a href="/2021/04/473.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/04/473.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday474" class="weekday"> Ґпc. <a href="/2021/04/474.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/04/474.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday475" class="weekday"> Ґпc. <a href="/2021/04/475.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/04/475.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday476" class="weekday"> Ґпc. <a href="/2021/04/476.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/04/476.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday477" class="weekday"> Ґпc. <a href="/2021/04/477.html" title="зачало 313">тг7i</a> Мк. <a href="/2021/04/477.html#2" title="зачало 31">lа</a>
             </span>
         </p>
         <p id="week48" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz д7-z. Седми1ца є7-z с™hz четыредесsтницы.
-
-                </span>
+                    <span class="red">Н</span> едёлz д7-z. Седми1ца є7-z с™hz четыредесsтницы. </span>
             </a>
             <br>
-            <span id="weekday481" class="weekday">
-                Ґпc.
-                <a href="/2021/04/481.html" title="зачало 314">тд7i</a>
-                Мф.
-                <a href="/2021/04/481.html#2" title="зачало 40">м7</a>
-            </span>
-            /
-
-
-            <span id="weekday482" class="weekday">
-                Ґпc.
-                <a href="/2021/04/482.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/04/482.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday483" class="weekday">
-                Ґпc.
-                <a href="/2021/04/483.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/04/483.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday484" class="weekday">
-                Ґпc.
-                <a href="/2021/04/484.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/04/484.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday485" class="weekday">
-                Ґпc.
-                <a href="/2021/04/485.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/04/485.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday486" class="weekday">
-                Ґпc.
-                <a href="/2021/04/486.html" title="зачала нет">нeтъ</a>
-                Мк.
-                <a href="/2021/04/486.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday487" class="weekday">
-                Ґпc.
-                <a href="/2021/04/487.html" title="зачало 22">к7в</a>
-                Мф.
-                <a href="/2021/04/487.html#2" title="зачало 35">lє</a>
+            <span id="weekday481" class="weekday"> Ґпc. <a href="/2021/04/481.html" title="зачало 314">тд7i</a> Мф. <a href="/2021/04/481.html#2" title="зачало 40">м7</a>
+            </span> / <span id="weekday482" class="weekday"> Ґпc. <a href="/2021/04/482.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/04/482.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday483" class="weekday"> Ґпc. <a href="/2021/04/483.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/04/483.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday484" class="weekday"> Ґпc. <a href="/2021/04/484.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/04/484.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday485" class="weekday"> Ґпc. <a href="/2021/04/485.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/04/485.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday486" class="weekday"> Ґпc. <a href="/2021/04/486.html" title="зачала нет">нeтъ</a> Мк. <a href="/2021/04/486.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday487" class="weekday"> Ґпc. <a href="/2021/04/487.html" title="зачало 22">к7в</a> Мф. <a href="/2021/04/487.html#2" title="зачало 35">lє</a>
             </span>
         </p>
         <p id="week49" class="abzac">
             <a href="#" class="return">
                 <span class="sedmica">
-                    <span class="red">Н</span>
-                    едёлz є7-z. Седми1ца ѕ7-z с™hz четыредесsтницы.
-
-                </span>
+                    <span class="red">Н</span> едёлz є7-z. Седми1ца ѕ7-z с™hz четыредесsтницы. </span>
             </a>
             <br>
-            <span id="weekday491" class="weekday">
-                Ґпc.
-                <a href="/2021/04/491.html" title="зачало 321**">тк7а</a>
-                Мф.
-                <a href="/2021/04/491.html#2" title="зачало 47">м7з</a>
-            </span>
-            /
-
-
-            <span id="weekday492" class="weekday">
-                Ґпc.
-                <a href="/2021/04/492.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/04/492.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday493" class="weekday">
-                Ґпc.
-                <a href="/2021/04/493.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/04/493.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday494" class="weekday">
-                Ґпc.
-                <a href="/2021/04/494.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/04/494.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday495" class="weekday">
-                Ґпc.
-                <a href="/2021/04/495.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/04/495.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday496" class="weekday">
-                Ґпc.
-                <a href="/2021/04/496.html" title="зачала нет">нeтъ</a>
-                Е#vg.
-                <a href="/2021/04/496.html#2" title="зачала нет">нeтъ</a>
-            </span>
-            /
-
-
-            <span id="weekday497" class="weekday">
-                Ґпc.
-                <a href="/2021/04/497.html" title="зачало 333**">тlг</a>
-                Мф.
-                <a href="/2021/04/497.html#2" title="зачало 39">lf</a>
+            <span id="weekday491" class="weekday"> Ґпc. <a href="/2021/04/491.html" title="зачало 321**">тк7а</a> Мф. <a href="/2021/04/491.html#2" title="зачало 47">м7з</a>
+            </span> / <span id="weekday492" class="weekday"> Ґпc. <a href="/2021/04/492.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/04/492.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday493" class="weekday"> Ґпc. <a href="/2021/04/493.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/04/493.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday494" class="weekday"> Ґпc. <a href="/2021/04/494.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/04/494.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday495" class="weekday"> Ґпc. <a href="/2021/04/495.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/04/495.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday496" class="weekday"> Ґпc. <a href="/2021/04/496.html" title="зачала нет">нeтъ</a> Е#vg. <a href="/2021/04/496.html#2" title="зачала нет">нeтъ</a>
+            </span> / <span id="weekday497" class="weekday"> Ґпc. <a href="/2021/04/497.html" title="зачало 333**">тlг</a> Мф. <a href="/2021/04/497.html#2" title="зачало 39">lf</a>
             </span>
         </p>
         <hr>
@@ -3231,34 +821,21 @@
             <a href="#" class="return">
                 <span class="sedmica" title="ЦВЕТОНОСНАЯ НЕДЕЛЯ (Вербное воскресенье)">
                     <span class="red">Н</span>едёлz ѕ7-z. цвэтон0снаz. <br> <span class="red">Страстнaz седми1ца.</span>
-            </a> <br> <span id="weekday501" class="weekday"> Ґпc. <a href="/2021/04/501.html"
-                    title="зачало 247">см7з</a>
-                Мф. <a href="/2021/04/501.html#2" title="зачало 41">м7а</a> </span> /
-            <span id="weekday502" class="weekday">
-                <!-- Ґпc. <a href="/2021/03/502.html" title="зачало ">zzz</a> --> Мф. <a href="/2021/04/502.html#2"
-                    title="зачало 98">ч7и</a> </span> / <span id="weekday503" class="weekday">
-                <!-- Ґпc. <a href="/2021/03/503.html" title="зачало ">zzz</a> --> Мф. <a href="/2021/04/503.html#2"
-                    title="зачало 102">Rв</a> </span> / <span id="weekday504" class="weekday">
-                <!-- Ґпc. <a href="/2021/03/504.html" title="зачало ">zzz</a> --> Мф. <a href="/2021/04/504.html#2"
-                    title="зачало 108">Rи</a> </span> / <span id="weekday505" class="weekday"> Ґпc. <a
-                    href="/2021/04/505.html" title="зачало 149">рм7f</a> Мф. <a href="/2021/04/505.html#2"
-                    title="зачало 107">Rз</a> </span> / <span id="weekday506" class="weekday">
-                <!-- Ґпc. <a href="506.html" title="зачало ">zzz</a> --> Часы2 <a href="/2021/04/506.html"
-                    title="Последование часов Великой Пятницы">послeдованiе</a> </span> /
-            <span id="weekday507" class="weekday"> Ґпc. <a href="/2021/04/507.html" title="зачало 91">§а</a>
-                Мф. <a href="/2021/04/507.html#2" title="зачало 115">рє7i</a> </span>
+            </a> <br> <span id="weekday501" class="weekday"> Ґпc. <a href="/2021/04/501.html" title="зачало 247">см7з</a> Мф. <a href="/2021/04/501.html#2" title="зачало 41">м7а</a> </span> / <span id="weekday502" class="weekday">
+                <!-- Ґпc. <a href="/2021/03/502.html" title="зачало ">zzz</a> --> Мф. <a href="/2021/04/502.html#2" title="зачало 98">ч7и</a> </span> / <span id="weekday503" class="weekday">
+                <!-- Ґпc. <a href="/2021/03/503.html" title="зачало ">zzz</a> --> Мф. <a href="/2021/04/503.html#2" title="зачало 102">Rв</a> </span> / <span id="weekday504" class="weekday">
+                <!-- Ґпc. <a href="/2021/03/504.html" title="зачало ">zzz</a> --> Мф. <a href="/2021/04/504.html#2" title="зачало 108">Rи</a> </span> / <span id="weekday505" class="weekday"> Ґпc. <a href="/2021/04/505.html" title="зачало 149">рм7f</a> Мф. <a href="/2021/04/505.html#2" title="зачало 107">Rз</a> </span> / <span id="weekday506" class="weekday">
+                <!-- Ґпc. <a href="506.html" title="зачало ">zzz</a> --> Часы2 <a href="/2021/04/506.html" title="Последование часов Великой Пятницы">послeдованiе</a>
+            </span> / <span id="weekday507" class="weekday"> Ґпc. <a href="/2021/04/507.html" title="зачало 91">§а</a> Мф. <a href="/2021/04/507.html#2" title="зачало 115">рє7i</a> </span>
         </p>
         <hr>
         <p class="abzac apracos" style="padding: auto">Конeцъ и3 бGу слaва. </p>
     </div>
-    <p id="apracos-dolu " class="abzac "></p> 
+    <p id="apracos-dolu " class="abzac "></p>
     <div></div>
-
-
     <div class='ystm' id='fp00' onclick='apr.closeModalView()'>
         <div class='ystm' id='first-preview'>
-    <script src="../export/apr-blogspot.js" defer="defer"></script>
-
+            <script src="../export/apr-blogspot.js" defer="defer"></script>
 </body>
 
 </html>
