@@ -1199,7 +1199,7 @@ class SelectedDay {
 
     newDate: any = document.getElementById('form-date')
     userDate_ss = sessionStorage.getItem('userDate') as string
-    userCheck_ss = sessionStorage.getItem('userCheck') as string
+    checkbox = sessionStorage.getItem('userCheck') as string
     counter: number = 0
 
     constructor() {
@@ -1270,7 +1270,16 @@ class SelectedDay {
     *  Метод перезагружает страницу и удаляет сохранённую ранее дату пользователем.
      */
     reloadPage() {
-        sessionStorage.removeItem('userDate')
+
+        if (!this.checkbox) {
+            sessionStorage.removeItem('userCheck')
+            sessionStorage.removeItem('userDate')
+        } else {
+            var lastDate = new Date(Number(this.userDate_ss))
+            sessionStorage.setItem('lastInstalledDate', lastDate.toISOString().slice(0, 10))
+            sessionStorage.removeItem('userDate')
+
+        }
         document.location.reload()
     }
 
@@ -1282,7 +1291,7 @@ class SelectedDay {
         let hide = 'hidden'
         if (this.userDate_ss) {
             document.getElementById('form-date')!.classList.add(hide)
-            let returnToRealDate = document.getElementById('button-date')!
+            let returnToRealDate = document.getElementById('button-red')!
             returnToRealDate.classList.add(show)
             returnToRealDate.focus()
             document
@@ -1304,10 +1313,13 @@ class SelectedDay {
             * В данной строчке присутствует важное корректировка – отступ временной зоны. 
             * Без этой корректировки вычисления запаздывают на 03:00.
             */
-            this.userCheck_ss ? undefined : dateFromForm.value = apr.theMomentOffsetZone.toISOString().slice(0, 10)
+            // dateFromForm.value = apr.theMomentOffsetZone.toISOString().slice(0, 10)
+            if (this.checkbox) { this.newDate[0].checked = true }
+            !this.checkbox ? dateFromForm.value = apr.theMomentOffsetZone.toISOString().slice(0, 10)
+                : dateFromForm.value = sessionStorage.getItem('lastInstalledDate') as string
 
             document.getElementById('form-date')!.classList.add(show)
-            document.getElementById('button-date')!.classList.add(hide)
+            document.getElementById('button-red')!.classList.add(hide)
             document.getElementById('apr-year')!.innerText = ' СЕГО ДНЯ '
         }
     }
@@ -1320,7 +1332,7 @@ class SelectedDay {
         const check: boolean = dataftf["fixed-date"].checked
 
         if (check) {
-            sessionStorage.setItem('userCheck', 'yes')
+            sessionStorage.setItem('userCheck', 'check')
         } else {
             sessionStorage.removeItem('userCheck')
         }
