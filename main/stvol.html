@@ -43,6 +43,10 @@
             color: white;
             background-color: #ff6052c4;
             padding: 0.5rem;
+            border: 1px solid #245488;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
         }
 
         #info {
@@ -115,11 +119,19 @@
             #a2 {
                 flex-direction: column;
             }
-        }/* =========================================== */
-			/*  после добавления в css файл — удалить свойства  */
-			.visibility{visibility: visible;}
-				.hidden{display: none;}
-			/* =========================================== */
+        }
+
+        /* =========================================== */
+        /*  после добавления в css файл — удалить свойства  */
+        .visibility {
+            visibility: visible;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* =========================================== */
     </style>
     <div id="input-date" class="aprakos-date">
         <button id="button-red" href="#" onclick="set.reloadPage()"> Вернуться в реальность … </button>
