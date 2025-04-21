@@ -529,7 +529,7 @@ class OLY implements IOLY {
         ]
         this.datesOLY['pip'] = [
             new Date(this.oldEaster.getFullYear() + '-07-12T00:00:00'),
-            'Начало Петрова поста',
+            'Петра и Павла',
         ]
 
         // this.datesOLY['dopip'] = [

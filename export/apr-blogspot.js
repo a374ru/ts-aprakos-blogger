@@ -283,7 +283,7 @@ class OLY {
         ];
         this.datesOLY['pip'] = [
             new Date(this.oldEaster.getFullYear() + '-07-12T00:00:00'),
-            'Начало Петрова поста',
+            'Петра и Павла',
         ];
         this.datesOLY['vozdvizgenieKresta'] = [
             new Date(this.oldEaster.getFullYear() + '-09-27T00:00:00'),
