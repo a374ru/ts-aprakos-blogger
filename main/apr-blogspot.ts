@@ -118,7 +118,7 @@ class OLY implements IOLY {
     offsetZone = this.theMoment.getTimezoneOffset() * 60000 // ВАЖНОЕ
 
     /**
-    *  Переменная точного времени с учётом сдвига временной зоны длягорода Москва.
+    *  Переменная точного времени с учётом сдвига временной зоны для города Москва.
      */
     theMomentOffsetZone = new Date(this.theMoment.getTime() - this.offsetZone) // точное время для вычислений для Московского Времени
 
@@ -855,6 +855,21 @@ class OLY implements IOLY {
     }
 
     /**
+    * Проверяет дату Пятидесятницы. 
+    * Если даты Пятидесятницы ещё не было то в модальное окно не выводятся данные Пятидесятницы.
+    * 
+    * *Возвращает строку – число текущей седмицы по Пятидесятнице.*
+    *
+    * @returns 
+    */
+    modalCweek50() {
+        if (this.weeks.current[0] < 7) {
+            return ""
+        }
+        return `По Пять&shy;десят&shy;нице <span class="red bold">${this.weeks.current[0] > 7 ? Number(this.anchorElemID) - 7 : "нет"}</span>`
+    }
+
+    /**
      * Метод всплывающего окна с указанием читаемой седмицы.
      * На определенных страницах показывает отступку.
      * @returns description
@@ -869,10 +884,9 @@ class OLY implements IOLY {
         let str = `
         <section id="fp-content" class="fp-content">
         <b>Седмица Евангелия: </b>
-        <div id="modal-cweek">по Пасхе&nbsp; <span class="red bold">${this.anchorElemID
-            },</span></div>
-        <div id="modal-cweek50">по Пять&shy;десят&shy;нице <span class="red bold">${this.weeks.current[0] > 7 ? Number(this.anchorElemID) - 7 : 'нет'
-            }.</span>
+        <div id="modal-cweek">По Пасхе&nbsp; <span style="background-color: white; border-radius: 50%; padding: 0 .7rem 0" class="red bold">${this.anchorElemID
+            }</span></div>
+        ${this.modalCweek50()}
         <div>${lastSegment === 'stvol.html'
                 ? `${this.weeks.stupkaV[1]} <span class="red bold">${Math.abs(
                     this.weeks.stupkaV[0]
@@ -1369,11 +1383,12 @@ class SelectedDay {
     widthButton() {
 
         if (window.innerWidth < 660) {
-            document.getElementById('submit')!.value = "✔️"
-            document.getElementById('submit')!.style.backgroundColor = "#ffe6d3" 
-            
+            let inputElement = document.getElementById('submit') as HTMLInputElement
+            inputElement!.value = "✔️"
+            inputElement!.style.backgroundColor = "#ffe6d3"
+
         }
-        
+
     }
 
     listener() {
