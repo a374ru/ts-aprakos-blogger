@@ -218,7 +218,15 @@ class OLY {
         }
     }
     ruday() {
-        const days = ['Воскресенье', 'Понедельник', 'Вторник', ' Среда', 'Четверг', 'Пятница', 'Суббота'];
+        const days = [
+            'Воскресенье',
+            'Понедельник',
+            'Вторник',
+            ' Среда',
+            'Четверг',
+            'Пятница',
+            'Суббота',
+        ];
         const d = days[this.theMomentTime.getDay()];
         return d;
     }
@@ -226,7 +234,7 @@ class OLY {
         const day = (this.weeks['day'] = [
             this.theMomentTime.getDay() + 1,
             'День седмицы',
-            " … " + this.ruday(),
+            ' … ' + this.ruday(),
         ]);
         const all = (this.weeks['all'] = [
             Math.ceil((this.newEasterMLS - this.oldEasterMLS) / 864e5 / 7),
@@ -242,10 +250,12 @@ class OLY {
         if (current[0] == 0 || current[0] > 55) {
             this.weeks['current'][0] = 1;
         }
-        const pip = (this.weeks['mif2'] = [
-            Math.ceil((this.datesOLY.pip[0].getTime() - (this.datesOLY.pentecost[0].getTime() + 864e5 * 7)) / 864e5),
+        const piterPost = (this.weeks['mif2'] = [
+            Math.ceil((this.datesOLY.pip[0].getTime() -
+                (this.datesOLY.pentecost[0].getTime() + 864e5 * 7)) /
+                864e5),
             'Петров пост',
-            'дн.'
+            'дн.',
         ]);
         const zakhey = (this.weeks['zakhey'] = [
             all[0] - 10,
@@ -277,6 +287,10 @@ class OLY {
         return this.theMomentTime >= dateMonday;
     }
     initDatesOLY() {
+        this.datesOLY['voznesenie'] = [
+            new Date(this.oldEasterMLS + 864e5 * 39),
+            "Вознесение Христово"
+        ];
         this.datesOLY['pentecost'] = [
             new Date(this.oldEasterMLS + 864e5 * 49),
             'Пятьдесятница',
@@ -319,7 +333,7 @@ class OLY {
         ];
         this.datesOLY['CrossSunday'] = [
             new Date(this.newEaster - 864e5 * 28),
-            'Неделя Крестопоклонная'
+            'Неделя Крестопоклонная',
         ];
         return this.datesOLY;
     }
@@ -424,14 +438,8 @@ class OLY {
                 break;
         }
         this.weeks['aprID'] = [aprID, 'Апракос-ID'];
-        this.weeks['apstlElemID'] = [
-            apostolElemID,
-            'Апостола-ID',
-        ];
-        this.weeks['evnglElemID'] = [
-            evangelieElemID,
-            'Евангелие-ID ',
-        ];
+        this.weeks['apstlElemID'] = [apostolElemID, 'Апостола-ID'];
+        this.weeks['evnglElemID'] = [evangelieElemID, 'Евангелие-ID '];
         return partURL;
     }
     stupka() {
@@ -498,9 +506,9 @@ class OLY {
     }
     modalCweek50() {
         if (this.weeks.current[0] < 7) {
-            return "";
+            return '';
         }
-        return `По Пять&shy;десят&shy;нице <span class="red bold">${this.weeks.current[0] > 7 ? Number(this.anchorElemID) - 7 : "нет"}</span>`;
+        return `По Пять&shy;десят&shy;нице <span class="red bold">${this.weeks.current[0] > 7 ? Number(this.anchorElemID) - 7 : 'нет'}</span>`;
     }
     initModalView() {
         let lastSegment = document.location.pathname.split('/').pop();
@@ -727,7 +735,7 @@ class SelectedDay {
                 if (Object.prototype.hasOwnProperty.call(obj, key)) {
                     var element = obj[key];
                     const li = document.createElement('li');
-                    var str = " ";
+                    var str = ' ';
                     if (element[2] != undefined) {
                         str += element[2];
                     }
@@ -783,8 +791,11 @@ class SelectedDay {
             if (this.checkbox) {
                 this.newDate[0].checked = true;
             }
-            !this.checkbox ? dateFromForm.value = apr.theMomentOffsetZone.toISOString().slice(0, 10)
-                : dateFromForm.value = sessionStorage.getItem('lastInstalledDate');
+            !this.checkbox
+                ? (dateFromForm.value = apr.theMomentOffsetZone
+                    .toISOString()
+                    .slice(0, 10))
+                : (dateFromForm.value = sessionStorage.getItem('lastInstalledDate'));
             document.getElementById('form-date').classList.add(show);
             document.getElementById('button-red').classList.add(hide);
             document.getElementById('apr-year').innerText = ' СЕГО ДНЯ ';
@@ -792,22 +803,26 @@ class SelectedDay {
     }
     serializeForm(dataftf) {
         let d = [];
-        const check = dataftf["fixed-date"].checked;
+        const check = dataftf['fixed-date'].checked;
         if (check) {
             sessionStorage.setItem('userCheck', 'check');
         }
         else {
             sessionStorage.removeItem('userCheck');
         }
-        const inputDate = dataftf["adate"].value;
-        d = [+inputDate.slice(0, 4), +inputDate.slice(5, 7) - 1, +inputDate.slice(-2)];
+        const inputDate = dataftf['adate'].value;
+        d = [
+            +inputDate.slice(0, 4),
+            +inputDate.slice(5, 7) - 1,
+            +inputDate.slice(-2),
+        ];
         new OLY(d);
     }
     widthButton() {
         if (window.innerWidth < 660) {
             let inputElement = document.getElementById('submit');
-            inputElement.value = "✔️";
-            inputElement.style.backgroundColor = "#ffe6d3";
+            inputElement.value = '✔️';
+            inputElement.style.backgroundColor = '#ffe6d3';
         }
     }
     listener() {
