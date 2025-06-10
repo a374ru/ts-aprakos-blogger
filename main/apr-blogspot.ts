@@ -893,7 +893,7 @@ class OLY implements IOLY {
 		const closeClick =
 			'<span id="close" class="close" onclick="apr.closeModalView()"></span>'
 		const commentStvol =
-			"<span class='comment-stvol'>В стволе указаны числа текущих седмиц.<br> Подробнее<a class='a-href' href='https://www.aprakos.ru/p/blog-page.html'> здесь</a>.</div>"
+			"<span class='comment-stvol'><br> Подробнее<a class='a-href' href='https://www.aprakos.ru/p/blog-page.html'> здесь</a>.</div>"
 
 		let str = `
         <section id="fp-content" class="fp-content">
