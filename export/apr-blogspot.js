@@ -74,7 +74,7 @@ class OLY {
             2049: [3, 25],
             2050: [3, 17],
             2051: [4, 7],
-            2052: [4, 21],
+            2052: [3, 21],
             2053: [3, 13],
             2054: [4, 3],
             2055: [3, 18],
@@ -239,7 +239,7 @@ class OLY {
         const all = (this.weeks['all'] = [
             Math.ceil((this.newEasterMLS - this.oldEasterMLS) / 864e5 / 7),
             'Протяженность ПБГ',
-            'седмиц',
+            'седм.',
         ]);
         const current = (this.weeks['current'] = [
             Math.ceil((this.theMomentTime.getTime() - this.offsetZone - this.oldEasterMLS) /
